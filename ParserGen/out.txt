@@ -1,0 +1,52 @@
+file
+├── TokenInfo(type=0 (ENDMARKER), string='', start=(2, 0), end=(2, 0), line='')
+└── statements
+    └── statement
+        └── simple_stmts
+            ├── TokenInfo(type=4 (NEWLINE), string='', start=(1, 14), end=(1, 15), line='')
+            └── simple_stmt
+                └── star_expressions
+                    └── star_expression
+                        └── expression
+                            └── disjunction
+                                └── conjunction
+                                    └── inversion
+                                        └── comparison
+                                            └── bitwise_or
+                                                └── bitwise_xor
+                                                    └── bitwise_and
+                                                        └── shift_expr
+                                                            └── sum
+                                                                └── term
+                                                                    └── factor
+                                                                        └── power
+                                                                            └── await_var_primary
+                                                                                └── primary
+                                                                                    ├── arguments
+                                                                                    │   └── args
+                                                                                    │       ├── None
+                                                                                    │       └── _synthetic_rule_83
+                                                                                    │           └── _synthetic_rule_80
+                                                                                    │               └── expression
+                                                                                    │                   └── disjunction
+                                                                                    │                       └── conjunction
+                                                                                    │                           └── inversion
+                                                                                    │                               └── comparison
+                                                                                    │                                   └── bitwise_or
+                                                                                    │                                       └── bitwise_xor
+                                                                                    │                                           └── bitwise_and
+                                                                                    │                                               └── shift_expr
+                                                                                    │                                                   └── sum
+                                                                                    │                                                       └── term
+                                                                                    │                                                           └── factor
+                                                                                    │                                                               └── power
+                                                                                    │                                                                   └── await_var_primary
+                                                                                    │                                                                       └── primary
+                                                                                    │                                                                           └── atom
+                                                                                    │                                                                               ├── Node(strings, [[TokenInfo(type=3 (STRING), string='"HEllo"', start=(1, 6), end=(1, 13), line='print("HEllo")')]])
+                                                                                    │                                                                               └── strings
+                                                                                    │                                                                                   └── 3
+                                                                                    └── primary
+                                                                                        └── atom
+                                                                                            └── TokenInfo(type=1 (NAME), string='print', start=(1, 0), end=(1, 5), line='print("HEllo")')
+

@@ -1,5 +1,5 @@
 - [x]  Build Frontend for Python
-- [ ] Built AST from this frontend
-- [ ] Allow for unknown nodes
+- [x] Built AST from this frontend
+- [ ] Allow for unknown nodes and tokens
 - [ ] Walk tree, if a node is unknown replace it with the appropriate translation from an extension
 - [ ] Output tree as Python code, then run through a Pythonn interpeter
