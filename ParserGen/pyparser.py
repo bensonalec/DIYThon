@@ -1,5 +1,5 @@
 # This is @generated code; do not edit!
-from token import ASYNC, AWAIT, DEDENT, INDENT, NAME, NUMBER, STRING, NEWLINE, ENDMARKER, TYPE_COMMENT
+from token import NAME, NUMBER, STRING, NEWLINE, ENDMARKER
 from memo import memoize, memoize_left_rec
 from Node import Node
 from Parser import Parser
@@ -1031,7 +1031,7 @@ class PythonParser(Parser):
             return None
         if (True
             and self.show_index(1, 0)
-            and (async_var := self.expect(ASYNC)) is not None
+            and (async := self.expect(ASYNC)) is not None
             and self.show_index(1, 1)
             and self.expect('for') is not None
             and self.show_index(1, 2)
@@ -1052,7 +1052,7 @@ class PythonParser(Parser):
             and ((else_block := self.else_block()) is not None or True)
         ):
             self.show_index(1, 0, 10)
-            return Node('for_stmt', [async_var, star_targets, star_expressions, type_comment, block, else_block])
+            return Node('for_stmt', [async, star_targets, star_expressions, type_comment, block, else_block])
         self.reset(pos)
         if cut:
             self.show_index(0, 0, 0)
@@ -1100,7 +1100,7 @@ class PythonParser(Parser):
         self.reset(pos)
         if (True
             and self.show_index(2, 0)
-            and (async_var := self.expect(ASYNC)) is not None
+            and (async := self.expect(ASYNC)) is not None
             and self.show_index(2, 1)
             and self.expect('with') is not None
             and self.show_index(2, 2)
@@ -1117,11 +1117,11 @@ class PythonParser(Parser):
             and (block := self.block()) is not None
         ):
             self.show_index(2, 0, 8)
-            return Node('with_stmt', [async_var, _synthetic_rule_35, block])
+            return Node('with_stmt', [async, _synthetic_rule_35, block])
         self.reset(pos)
         if (True
             and self.show_index(3, 0)
-            and (async_var := self.expect(ASYNC)) is not None
+            and (async := self.expect(ASYNC)) is not None
             and self.show_index(3, 1)
             and self.expect('with') is not None
             and self.show_index(3, 2)
@@ -1134,7 +1134,7 @@ class PythonParser(Parser):
             and (block := self.block()) is not None
         ):
             self.show_index(3, 0, 6)
-            return Node('with_stmt', [async_var, _synthetic_rule_37, type_comment, block])
+            return Node('with_stmt', [async, _synthetic_rule_37, type_comment, block])
         self.reset(pos)
         self.show_index(0, 0, 0)
         return None
@@ -2226,7 +2226,7 @@ class PythonParser(Parser):
         self.reset(pos)
         if (True
             and self.show_index(1, 0)
-            and (async_var := self.expect(ASYNC)) is not None
+            and (async := self.expect(ASYNC)) is not None
             and self.show_index(1, 1)
             and self.expect('def') is not None
             and self.show_index(1, 2)
@@ -2247,7 +2247,7 @@ class PythonParser(Parser):
             and (block := self.block()) is not None
         ):
             self.show_index(1, 0, 10)
-            return Node('function_def_raw', [async_var, name, params, _synthetic_rule_57, func_type_comment, block])
+            return Node('function_def_raw', [async, name, params, _synthetic_rule_57, func_type_comment, block])
         self.reset(pos)
         self.show_index(0, 0, 0)
         return None
@@ -3829,48 +3829,48 @@ class PythonParser(Parser):
 
     @memoize
     def power(self):
-        self.show_rule('power', [['await_var_primary', "'**'", 'factor'], ['await_var_primary']])
+        self.show_rule('power', [['await_primary', "'**'", 'factor'], ['await_primary']])
         pos = self.mark()
         if (True
             and self.show_index(0, 0)
-            and (await_var_primary := self.await_var_primary()) is not None
+            and (await_primary := self.await_primary()) is not None
             and self.show_index(0, 1)
             and self.expect('**') is not None
             and self.show_index(0, 2)
             and (factor := self.factor()) is not None
         ):
             self.show_index(0, 0, 3)
-            return Node('power', [await_var_primary, factor])
+            return Node('power', [await_primary, factor])
         self.reset(pos)
         if (True
             and self.show_index(1, 0)
-            and (await_var_primary := self.await_var_primary()) is not None
+            and (await_primary := self.await_primary()) is not None
         ):
             self.show_index(1, 0, 1)
-            return Node('power', [await_var_primary])
+            return Node('power', [await_primary])
         self.reset(pos)
         self.show_index(0, 0, 0)
         return None
 
     @memoize
-    def await_var_primary(self):
-        self.show_rule('await_var_primary', [['AWAIT', 'primary'], ['primary']])
+    def await_primary(self):
+        self.show_rule('await_primary', [['AWAIT', 'primary'], ['primary']])
         pos = self.mark()
         if (True
             and self.show_index(0, 0)
-            and (await_var := self.expect(AWAIT)) is not None
+            and (await := self.expect(AWAIT)) is not None
             and self.show_index(0, 1)
             and (primary := self.primary()) is not None
         ):
             self.show_index(0, 0, 2)
-            return Node('await_var_primary', [await_var, primary])
+            return Node('await_primary', [await, primary])
         self.reset(pos)
         if (True
             and self.show_index(1, 0)
             and (primary := self.primary()) is not None
         ):
             self.show_index(1, 0, 1)
-            return Node('await_var_primary', [primary])
+            return Node('await_primary', [primary])
         self.reset(pos)
         self.show_index(0, 0, 0)
         return None
@@ -4337,7 +4337,7 @@ class PythonParser(Parser):
         cut = False
         if (True
             and self.show_index(0, 0)
-            and (async_var := self.expect(ASYNC)) is not None
+            and (async := self.expect(ASYNC)) is not None
             and self.show_index(0, 1)
             and self.expect('for') is not None
             and self.show_index(0, 2)
@@ -4352,7 +4352,7 @@ class PythonParser(Parser):
             and (_synthetic_rule_78 := self.loop(False, self._synthetic_rule_78)) is not None
         ):
             self.show_index(0, 0, 7)
-            return Node('for_if_clause', [async_var, star_targets, disjunction, _synthetic_rule_78])
+            return Node('for_if_clause', [async, star_targets, disjunction, _synthetic_rule_78])
         self.reset(pos)
         if cut:
             self.show_index(0, 0, 0)
