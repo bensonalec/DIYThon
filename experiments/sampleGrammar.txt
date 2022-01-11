@@ -1,0 +1,7 @@
+statement: assignment | expr | if_statement { statement }
+expr: expr '+' term | expr '-' term | term { expr TERM1 term }
+term: term '*' atom | term '/' atom | atom { term TERM1 atom }
+atom: NAME | NUMBER | '(' expr ')' { atom }
+assignment: target '=' expr { target TERM1 expr }
+target: NAME { name }
+if_statement: 'if' expr ':' statement { if_statement }
