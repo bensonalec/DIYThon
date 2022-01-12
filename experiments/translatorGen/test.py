@@ -4,5 +4,5 @@ from out import NewParser
 with open("sample.txt") as fi:
     tokenGen = generate_tokens(fi.read)
     p = NewParser(Tokenizer(tokenGen))
-    gram = p.statement()
+    gram = p.start()
 print(gram)

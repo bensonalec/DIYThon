@@ -1,3 +1,5 @@
+start: start state | state 
+state: statement NEWLINE
 statement: assignment | expr | if_statement
 expr: expr OP term | term 
 term: atom 
