@@ -5,4 +5,4 @@ with open("../grammars/translation/toy.grm") as fi:
     tokenGen = generate_tokens(fi.read)
     p = GrammarParser(Tokenizer(tokenGen))
     gram = p.start()
-print(p.body)
+print(p.code)

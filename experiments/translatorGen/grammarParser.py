@@ -1,15 +1,22 @@
 from tokenize import NAME, ENDMARKER, STRING, NEWLINE
 from std import Parser, Node
 class GrammarParser(Parser):
+    code = ""
     nameCount = 0
     body = ""
     currentRule = ""
     andPart = []
     andReturns = []
+    tokenList = set()
     def start(self):
         if r := self.rules():
             pos = self.mark()
             if marker := self.expect(ENDMARKER):
+                self.code += "import Parser from std\n"
+                self.code += f"from tokenize import {','.join(self.tokenList)}\n\n"
+                self.code += "class NewParser(Parser):\n"
+                self.code += self.body
+
                 return Node("start", [r])
             self.reset(pos)
         return None
@@ -33,9 +40,9 @@ class GrammarParser(Parser):
             and self.expect(NEWLINE)
         ):
             self.body += f"""
-            def {n.string}(self):
-                {self.currentRule}
-                return None
+    def {n.string}(self):
+        {self.currentRule}
+        return None
             """
             self.currentRule = ""
             return Node("rule", [n, a])
@@ -58,10 +65,10 @@ class GrammarParser(Parser):
     def alt(self):
         if i := self.items():
             self.currentRule += f"""
-                pos = self.mark()
-                if({" and ".join(self.andPart)}):
-                    return [{", ".join(self.andReturns)}]
-                self.reset(pos)
+        pos = self.mark()
+        if({" and ".join(self.andPart)}):
+            return [{", ".join(self.andReturns)}]
+        self.reset(pos)
             """
             self.andPart = []
             self.andReturns = []
@@ -82,6 +89,8 @@ class GrammarParser(Parser):
         if n := self.expect(NAME):
             self.andPart.append(f"(n{self.nameCount} := self.expect({n.string}))" if n.string.isupper() else f"(n{self.nameCount} := self.{n.string}())")
             self.andReturns.append(f"({n.string}, n{self.nameCount})")
+            if(n.string.isupper()):
+                self.tokenList.add(n.string)
             self.nameCount += 1
             return n
         self.reset(pos)
