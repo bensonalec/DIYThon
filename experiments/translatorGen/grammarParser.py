@@ -8,13 +8,18 @@ class GrammarParser(Parser):
     andPart = []
     andReturns = []
     tokenList = set()
+    currentTranslationName = None
+    currentTranslation = []
+    nodes = ""
+
     def start(self):
         if r := self.rules():
             pos = self.mark()
             if marker := self.expect(ENDMARKER):
                 self.code += "from std import Parser\n"
-                self.code += f"from tokenize import {','.join(self.tokenList)}\n\n"
+                self.code += f"from tokenize import TokenInfo, {','.join(self.tokenList)}\n\n"
                 self.code += f"from memo import memoize_left_rec\n"
+                self.code += self.nodes + "\n"
                 self.code += "class NewParser(Parser):\n"
                 self.code += self.body
 
@@ -35,9 +40,14 @@ class GrammarParser(Parser):
         #each rule should produce a function for the Parser, 
         #and a node class
         pos = self.mark()
-        if ((n := self.expect(NAME)) 
+        n = self.expect(NAME)
+        self.currentTranslationName = n.string if n != None else n
+        if (n 
             and self.expect(":") 
             and (a := self.alts()) 
+            and self.expect("{")
+            and (t := self.translation())
+            and self.expect("}")
             and self.expect(NEWLINE)
         ):
             self.body += f"""
@@ -47,12 +57,49 @@ class GrammarParser(Parser):
         return None
             """
             self.currentRule = ""
-            return Node("rule", [n, a])
+            nodeVariables = [x for x in self.currentTranslation if x.startswith('_')]
+            self.nodes += f"""
+class {n.string}:
+    def __init__(self, {", ".join([f"{x} = None" for x in nodeVariables])}, *rest):
+        {",".join([f"self.{x}" for x in nodeVariables])} = {",".join([x for x in nodeVariables])}
+        
+    def translate(self):
+        return f"{{{"}{".join([ f"self.{x}.translate() if type(self.{x}) != TokenInfo and self.{x} else self.{x}.string if self.{x} else self.{x}" if x.startswith("_") else x for x in self.currentTranslation])}}}"
+"""
+            self.currentTranslation = []
+            return Node("rule", [n, a, t])
         self.reset(pos)
         return None
 
     def translation(self):
-        return True
+        if t := self.transLine():
+            return Node("translation", [t])
+        return None
+
+    def transLine(self):
+        if i := self.transItems():
+            return Node('transLine', [i])
+        return None
+
+    def transItems(self):
+        if i := self.transItem():
+            pos = self.mark()
+            if iSin := self.transItems():
+                return Node("transItems", [i, iSin])
+            self.reset(pos)
+            return Node("transItems", [i])
+        return None
+
+    def transItem(self):
+        pos = self.mark()
+        if n := self.expect(NAME):
+            self.currentTranslation.append(n.string)
+            return n
+        self.reset(pos)
+        if s := self.expect(STRING):
+            self.currentTranslation.append(s.string)
+            return s
+        return None
 
     def alts(self):
         if a := self.alt():
@@ -69,7 +116,8 @@ class GrammarParser(Parser):
             self.currentRule += f"""
         pos = self.mark()
         if({" and ".join(self.andPart)}):
-            return [{", ".join(self.andReturns)}]
+            # return {self.currentTranslationName}({", ".join(self.andReturns)})
+            return ("{self.currentTranslationName}", [{", ".join(self.andReturns)}])
         self.reset(pos)
             """
             self.andPart = []
@@ -90,7 +138,7 @@ class GrammarParser(Parser):
         pos = self.mark()
         if n := self.expect(NAME):
             self.andPart.append(f"(n{self.nameCount} := self.expect({n.string}))" if n.string.isupper() else f"(n{self.nameCount} := self.{n.string}())")
-            self.andReturns.append(f"('{n.string}', n{self.nameCount})")
+            self.andReturns.append(f"n{self.nameCount}")
             if(n.string.isupper()):
                 self.tokenList.add(n.string)
             self.nameCount += 1
