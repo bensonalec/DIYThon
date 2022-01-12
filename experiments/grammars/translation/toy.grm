@@ -1,6 +1,6 @@
 statement: assignment | expr | if_statement
-expr: expr '+' term | expr '-' term | term 
-term: term '*' atom | term '/' atom | atom 
+expr: expr OP term | term 
+term: atom 
 atom: NAME | NUMBER | '(' expr ')'
 assignment: target '=' expr 
 target: NAME

@@ -12,8 +12,9 @@ class GrammarParser(Parser):
         if r := self.rules():
             pos = self.mark()
             if marker := self.expect(ENDMARKER):
-                self.code += "import Parser from std\n"
+                self.code += "from std import Parser\n"
                 self.code += f"from tokenize import {','.join(self.tokenList)}\n\n"
+                self.code += f"from memo import memoize_left_rec\n"
                 self.code += "class NewParser(Parser):\n"
                 self.code += self.body
 
@@ -40,6 +41,7 @@ class GrammarParser(Parser):
             and self.expect(NEWLINE)
         ):
             self.body += f"""
+    @memoize_left_rec
     def {n.string}(self):
         {self.currentRule}
         return None
