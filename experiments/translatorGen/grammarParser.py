@@ -88,7 +88,7 @@ class GrammarParser(Parser):
         pos = self.mark()
         if n := self.expect(NAME):
             self.andPart.append(f"(n{self.nameCount} := self.expect({n.string}))" if n.string.isupper() else f"(n{self.nameCount} := self.{n.string}())")
-            self.andReturns.append(f"({n.string}, n{self.nameCount})")
+            self.andReturns.append(f"('{n.string}', n{self.nameCount})")
             if(n.string.isupper()):
                 self.tokenList.add(n.string)
             self.nameCount += 1
