@@ -1,7 +1,7 @@
 start: start state | state { _a } 
 state: statement NEWLINE { _a }
 statement: assignment | expr | if_statement { _a }
-expr: expr OP term | term { _a }
+expr: expr OP term | term { _a _b _c | _a }
 term: atom { _a }
 atom: NAME | NUMBER | '(' expr ')' { '(' _a ')' }
 assignment: target '=' expr  { _a ':=' _b }

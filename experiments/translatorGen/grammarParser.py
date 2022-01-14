@@ -71,6 +71,9 @@ class GrammarParser(Parser):
 
     def generateCode(self):
         output = ""
+        output += f"from memo import memoize_left_rec\n"
+        output += f"import tokenize\n"
+        output += f"from std import Parser\n"
         nodes = []
         methods = []
         varNumber = 0
@@ -82,17 +85,18 @@ class GrammarParser(Parser):
                 for translation in rule.Translations:
                     variables = [x for x in translation if x.startswith('_')]
                     currentNode += f'class {rule.Name}:\n'
-                    currentNode += f'\tdef __init__(self, {", ".join([f"{x} = None" for x in variables])}, *rest):\n'
+                    currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}):\n'
                     for var in variables:
                         currentNode += f'\t\tself.{var} = {var}\n'
-                    currentNode += f'\tdef tranlate(self):\n'
-                    currentNode += f'\t\treturn f"{" ".join([f"{{self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+                    currentNode += f'\tdef translate(self):\n'
+                    currentNode += f'\t\treturn f"{" ".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
                 nodes.append(currentNode)
                 #build parsing method code
                 currentMethod += "\t@memoize_left_rec\n"
                 currentMethod += f'\tdef {rule.Name}(self):\n'
                 for alternative in rule.Alts:
                     variables = []
+                    tokenInfos = []
                     currentMethod += '\t\tpos = self.mark()\n'
                     currentMethod += f'\t\tif (True and\n'
                     for item in alternative:
@@ -101,19 +105,17 @@ class GrammarParser(Parser):
                         elif item.isupper():
                             currentMethod += f'\t\t   (n{varNumber} := self.expect(tokenize.{item})) and\n'
                             variables.append(f"n{varNumber}")
+                            tokenInfos.append(f"n{varNumber}")
                             varNumber += 1
                         else:
                             currentMethod += f'\t\t   (n{varNumber} := self.{item}()) and\n'
                             variables.append(f"n{varNumber}")
                             varNumber += 1
                     currentMethod += '\t\t   True):\n'
-                    currentMethod += f'\t\t\treturn {rule.Name}({", ".join([x for x in variables])})\n'
+                    currentMethod += f'\t\t\treturn {rule.Name}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
                     currentMethod += '\t\tself.reset(pos)\n'
                 currentMethod += '\t\treturn None\n'
                 methods.append(currentMethod)
-        output += f"from memo import memoize_left_rec\n"
-        output += f"import tokenize\n"
-        output += f"from std import Parser\n"
         output += "\n".join([x for x in nodes])
         output += "class ToyParser(Parser):\n"
         output += "\n".join([x for x in methods])
