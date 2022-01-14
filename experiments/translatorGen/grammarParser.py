@@ -1,150 +1,120 @@
+from collections import namedtuple
 from tokenize import NAME, ENDMARKER, STRING, NEWLINE
+from typing import NamedTuple
 from std import Parser, Node
+
+Rule = namedtuple("Rule", "Name Alts Translations")
+
 class GrammarParser(Parser):
-    code = ""
-    nameCount = 0
-    body = ""
-    currentRule = ""
-    andPart = []
-    andReturns = []
-    tokenList = set()
-    currentTranslationName = None
-    currentTranslation = []
-    nodes = ""
-
-    def start(self):
-        if r := self.rules():
-            pos = self.mark()
-            if marker := self.expect(ENDMARKER):
-                self.code += "from std import Parser\n"
-                self.code += f"from tokenize import TokenInfo, {','.join(self.tokenList)}\n\n"
-                self.code += f"from memo import memoize_left_rec\n"
-                self.code += self.nodes + "\n"
-                self.code += "class NewParser(Parser):\n"
-                self.code += self.body
-                return Node("start", [r])
-            self.reset(pos)
-        return None
-
-    def rules(self):
+    rules = None
+    def grammar(self):
+        pos = self.mark()
         if r := self.rule():
-            pos = self.mark()
-            if rSin := self.rules():
-                return Node("rules", [r, rSin])
-            self.reset(pos)
-            return Node("rules", [r])
+            rules = [r]
+            while r := self.rule():
+                rules.append(r)
+            if self.expect(ENDMARKER):
+                self.rules = rules
+                return rules
+        self.reset(pos)
         return None
 
     def rule(self):
-        #each rule should produce a function for the Parser, 
-        #and a node class
         pos = self.mark()
-        n = self.expect(NAME)
-        self.currentTranslationName = n.string if n != None else n
-        if (n 
-            and self.expect(":") 
-            and (a := self.alts()) 
-            and self.expect("{")
-            and (t := self.translation())
-            and self.expect("}")
-            and self.expect(NEWLINE)
-        ):
-            self.body += f"""
-    @memoize_left_rec
-    def {n.string}(self):
-        {self.currentRule}
-        return None
-            """
-            self.currentRule = ""
-            nodeVariables = [x for x in self.currentTranslation if x.startswith('_')]
-            self.nodes += f"""
-class {n.string}:
-    def __init__(self, {", ".join([f"{x} = None" for x in nodeVariables])}, *rest):
-        {",".join([f"self.{x}" for x in nodeVariables])} = {",".join([x for x in nodeVariables])}
-        
-    def translate(self):
-        return f"{{{"}{".join([ f"self.{x}.translate() if type(self.{x}) != TokenInfo and self.{x} else self.{x}.string if self.{x} else self.{x}" if x.startswith("_") else x for x in self.currentTranslation])}}}"
-"""
-            self.currentTranslation = []
-            return Node("rule", [n, a, t])
+        if ((name := self.expect(NAME)) and self.expect(":") and (alt := self.alternative())):
+            currentRule = Rule(name.string, [alt], [])
+            tPos = self.mark()
+            while(self.expect("|") and (alt := self.alternative())):
+                currentRule.Alts.append(alt)
+                tPos = self.mark()
+            self.reset(tPos)
+            if t := self.translation():
+                currentRule.Translations.extend(t)
+                if self.expect(NEWLINE):
+                    return currentRule
         self.reset(pos)
         return None
 
     def translation(self):
-        if t := self.transLine():
-            return Node("translation", [t])
-        return None
-
-    def transLine(self):
-        if i := self.transItems():
-            return Node('transLine', [i])
-        return None
-
-    def transItems(self):
-        if i := self.transItem():
-            pos = self.mark()
-            if iSin := self.transItems():
-                return Node("transItems", [i, iSin])
-            self.reset(pos)
-            return Node("transItems", [i])
-        return None
-
-    def transItem(self):
         pos = self.mark()
-        if n := self.expect(NAME):
-            self.currentTranslation.append(n.string)
-            return n
+        if (self.expect("{") and (a := self.alternative())):
+            alts = [a]
+            tPos = self.mark()
+            while(self.expect("|") and (a := self.alternative())):
+                alts.append(a)
+                tPos = self.mark()
+            self.reset(tPos)
+            if self.expect("}"):
+                return alts
         self.reset(pos)
-        if s := self.expect(STRING):
-            self.currentTranslation.append(s.string)
-            return s
-        return None
 
-    def alts(self):
-        if a := self.alt():
-            pos = self.mark()
-            if self.expect("|"):
-                if aSin := self.alts():
-                    return Node("alts", [a, aSin])
-            self.reset(pos)
-            return Node('alts', [a])
-        return None 
-
-    def alt(self):
-        if i := self.items():
-            self.currentRule += f"""
+    def alternative(self):
         pos = self.mark()
-        if({" and ".join(self.andPart)}):
-            return {self.currentTranslationName}({", ".join(self.andReturns)})
-            # return ("{self.currentTranslationName}", [{", ".join(self.andReturns)}])
-        self.reset(pos)
-            """
-            self.andPart = []
-            self.andReturns = []
-            return Node('alt', [i])
-        return None
-
-    def items(self):
         if i := self.item():
-            pos = self.mark()
-            if iSin := self.items():
-                return Node("items", [i, iSin])
-            self.reset(pos)
-            return Node("items", [i])
+            items = [i]
+            while i := self.item():
+                items.append(i)
+            return items
+        self.reset(pos)
         return None
-    
+
     def item(self):
         pos = self.mark()
-        if n := self.expect(NAME):
-            self.andPart.append(f"(n{self.nameCount} := self.expect({n.string}))" if n.string.isupper() else f"(n{self.nameCount} := self.{n.string}())")
-            self.andReturns.append(f"n{self.nameCount}")
-            if(n.string.isupper()):
-                self.tokenList.add(n.string)
-            self.nameCount += 1
-            return n
+        if p := self.expect(NAME):
+            return p.string
         self.reset(pos)
-        if s := self.expect(STRING):
-            self.andPart.append(f"self.expect({s.string})")
-            self.nameCount += 1
-            return s
+        pos = self.mark()
+        if p := self.expect(STRING):
+            return p.string
+        self.reset(pos)
         return None
+
+    def generateCode(self):
+        output = ""
+        nodes = []
+        methods = []
+        varNumber = 0
+        if self.rules:
+            for rule in self.rules:
+                currentNode = ""
+                currentMethod = ""
+                #build node code
+                for translation in rule.Translations:
+                    variables = [x for x in translation if x.startswith('_')]
+                    currentNode += f'class {rule.Name}:\n'
+                    currentNode += f'\tdef __init__(self, {", ".join([f"{x} = None" for x in variables])}, *rest):\n'
+                    for var in variables:
+                        currentNode += f'\t\tself.{var} = {var}\n'
+                    currentNode += f'\tdef tranlate(self):\n'
+                    currentNode += f'\t\treturn f"{" ".join([f"{{self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+                nodes.append(currentNode)
+                #build parsing method code
+                currentMethod += "\t@memoize_left_rec\n"
+                currentMethod += f'\tdef {rule.Name}(self):\n'
+                for alternative in rule.Alts:
+                    variables = []
+                    currentMethod += '\t\tpos = self.mark()\n'
+                    currentMethod += f'\t\tif (True and\n'
+                    for item in alternative:
+                        if item.startswith("'"):
+                            currentMethod += f'\t\t   self.expect({item}) and\n'
+                        elif item.isupper():
+                            currentMethod += f'\t\t   (n{varNumber} := self.expect(tokenize.{item})) and\n'
+                            variables.append(f"n{varNumber}")
+                            varNumber += 1
+                        else:
+                            currentMethod += f'\t\t   (n{varNumber} := self.{item}()) and\n'
+                            variables.append(f"n{varNumber}")
+                            varNumber += 1
+                    currentMethod += '\t\t   True):\n'
+                    currentMethod += f'\t\t\treturn {rule.Name}({", ".join([x for x in variables])})\n'
+                    currentMethod += '\t\tself.reset(pos)\n'
+                currentMethod += '\t\treturn None\n'
+                methods.append(currentMethod)
+        output += f"from memo import memoize_left_rec\n"
+        output += f"import tokenize\n"
+        output += f"from std import Parser\n"
+        output += "\n".join([x for x in nodes])
+        output += "class ToyParser(Parser):\n"
+        output += "\n".join([x for x in methods])
+        print(output)
