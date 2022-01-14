@@ -5,4 +5,4 @@ with open("sample.txt") as fi:
     tokenGen = generate_tokens(fi.read)
     p = NewParser(Tokenizer(tokenGen))
     gram = p.start()
-print(gram)
+print(gram.translate())

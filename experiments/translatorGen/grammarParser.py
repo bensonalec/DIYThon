@@ -22,7 +22,6 @@ class GrammarParser(Parser):
                 self.code += self.nodes + "\n"
                 self.code += "class NewParser(Parser):\n"
                 self.code += self.body
-
                 return Node("start", [r])
             self.reset(pos)
         return None
@@ -116,8 +115,8 @@ class {n.string}:
             self.currentRule += f"""
         pos = self.mark()
         if({" and ".join(self.andPart)}):
-            # return {self.currentTranslationName}({", ".join(self.andReturns)})
-            return ("{self.currentTranslationName}", [{", ".join(self.andReturns)}])
+            return {self.currentTranslationName}({", ".join(self.andReturns)})
+            # return ("{self.currentTranslationName}", [{", ".join(self.andReturns)}])
         self.reset(pos)
             """
             self.andPart = []
