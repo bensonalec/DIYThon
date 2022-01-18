@@ -1,9 +1,9 @@
-start: start state | state { _a } 
-state: statement NEWLINE { _a }
-statement: assignment | expr | if_statement { _a }
+start: start state | state { _a _b | _a } 
+state: statement NEWLINE { _a _b }
+statement: assignment | expr | if_statement { _a | _a | _a}
 expr: expr OP term | term { _a _b _c | _a }
-term: atom { _a }
-atom: NAME | NUMBER | '(' expr ')' { '(' _a ')' }
-assignment: target '=' expr  { _a ':=' _b }
+term: atom { '2' }
+atom: NAME | NUMBER | '(' expr ')' { _a | _a | _a}
+assignment: target '=' expr  { _a '=' _b }
 target: NAME { _a }
 if_statement: 'if' expr ':' statement { 'if' _a ':' _b }

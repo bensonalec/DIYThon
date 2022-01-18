@@ -82,19 +82,20 @@ class GrammarParser(Parser):
                 currentNode = ""
                 currentMethod = ""
                 #build node code
-                for translation in rule.Translations:
+                for ind,translation in enumerate(rule.Translations):
                     variables = [x for x in translation if x.startswith('_')]
-                    currentNode += f'class {rule.Name}:\n'
-                    currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}):\n'
+                    currentNode += f'class {rule.Name}{ind}:\n'
+                    currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
                     for var in variables:
                         currentNode += f'\t\tself.{var} = {var}\n'
+                    currentNode += "\t\tpass\n"
                     currentNode += f'\tdef translate(self):\n'
-                    currentNode += f'\t\treturn f"{" ".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+                    currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
                 nodes.append(currentNode)
                 #build parsing method code
                 currentMethod += "\t@memoize_left_rec\n"
                 currentMethod += f'\tdef {rule.Name}(self):\n'
-                for alternative in rule.Alts:
+                for ind, alternative in enumerate(rule.Alts):
                     variables = []
                     tokenInfos = []
                     currentMethod += '\t\tpos = self.mark()\n'
@@ -112,7 +113,7 @@ class GrammarParser(Parser):
                             variables.append(f"n{varNumber}")
                             varNumber += 1
                     currentMethod += '\t\t   True):\n'
-                    currentMethod += f'\t\t\treturn {rule.Name}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
+                    currentMethod += f'\t\t\treturn {rule.Name}{ind}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
                     currentMethod += '\t\tself.reset(pos)\n'
                 currentMethod += '\t\treturn None\n'
                 methods.append(currentMethod)
