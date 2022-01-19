@@ -1,5 +1,5 @@
 from collections import namedtuple
-from tokenize import NAME, ENDMARKER, STRING, NEWLINE
+from tokenize import NAME, ENDMARKER, STRING, NEWLINE, COMMENT
 from typing import NamedTuple
 from std import Parser, Node
 
@@ -30,8 +30,8 @@ class GrammarParser(Parser):
             self.reset(tPos)
             if t := self.translation():
                 currentRule.Translations.extend(t)
-                if self.expect(NEWLINE):
-                    return currentRule
+                return currentRule
+            
         self.reset(pos)
         return None
 

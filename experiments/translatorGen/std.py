@@ -1,4 +1,5 @@
-from tokenize import TokenInfo
+
+from tokenize import TokenInfo, COMMENT, NEWLINE
 
 class Tokenizer:
     def __init__(self, tokengen):
@@ -19,7 +20,12 @@ class Tokenizer:
 
     def peek_token(self):
         if self.pos == len(self.tokens):
-            self.tokens.append(next(self.tokengen))
+            while True:
+                token = next(self.tokengen)
+                if token.type in (NEWLINE, COMMENT):
+                    continue
+                break
+            self.tokens.append(token)
         return self.tokens[self.pos]
 
 class Node:

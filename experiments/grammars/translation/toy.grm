@@ -1,5 +1,6 @@
-start: start state | state { _a _b | _a } 
-state: statement NEWLINE { _a _b }
+start: start state | state { _a _b | _a } #Comment
+#SLKSDKLSD
+state: statement { _a }
 statement: assignment | expr | if_statement { _a | _a | _a}
 expr: expr OP term | term { _a _b _c | _a }
 term: atom { '2' }
