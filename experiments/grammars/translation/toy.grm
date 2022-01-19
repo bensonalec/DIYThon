@@ -1,9 +1,12 @@
 start: start state | state { _a _b | _a } #Comment
 #SLKSDKLSD
 state: statement { _a }
-statement: assignment | expr | if_statement { _a | _a | _a}
+statement: assignment 
+        | expr 
+        | if_statement 
+        { _a | _a | _a}
 expr: expr OP term | term { _a _b _c | _a }
-term: atom { '2' }
+term: atom { _a }
 atom: NAME | NUMBER | '(' expr ')' { _a | _a | _a}
 assignment: target '=' expr  { _a '=' _b }
 target: NAME { _a }

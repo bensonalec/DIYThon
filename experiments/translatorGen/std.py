@@ -28,6 +28,12 @@ class Tokenizer:
             self.tokens.append(token)
         return self.tokens[self.pos]
 
+    def look_ahead(self, positive, func, *args):
+        mark = self.mark()
+        ok = func(*args) is not None
+        self.reset(mark)
+        return ok == positive
+
 class Node:
     def __init__(self, type, children):
         self.type = type

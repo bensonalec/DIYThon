@@ -82,16 +82,16 @@ class GrammarParser(Parser):
                 currentNode = ""
                 currentMethod = ""
                 #build node code
-                for ind,translation in enumerate(rule.Translations):
-                    variables = [x for x in translation if x.startswith('_')]
-                    currentNode += f'class {rule.Name}{ind}:\n'
-                    currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
-                    for var in variables:
-                        currentNode += f'\t\tself.{var} = {var}\n'
-                    currentNode += "\t\tpass\n"
-                    currentNode += f'\tdef translate(self):\n'
-                    currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
-                nodes.append(currentNode)
+                # for ind,translation in enumerate(rule.Translations):
+                #     variables = [x for x in translation if x.startswith('_')]
+                #     currentNode += f'class {rule.Name}{ind}:\n'
+                #     currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
+                #     for var in variables:
+                #         currentNode += f'\t\tself.{var} = {var}\n'
+                #     currentNode += "\t\tpass\n"
+                #     currentNode += f'\tdef translate(self):\n'
+                #     currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+                # nodes.append(currentNode)
                 #build parsing method code
                 currentMethod += "\t@memoize_left_rec\n"
                 currentMethod += f'\tdef {rule.Name}(self):\n'
