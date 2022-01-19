@@ -21,86 +21,17 @@ class GrammarParser(Parser):
 
     def rule(self):
         pos = self.mark()
-        if ((name := self.expect(NAME)) and self.expect(":") and (alts := self.alts())):
-            currentRule = Rule(name.string, alts, [])
+        if ((name := self.expect(NAME)) and self.expect(":") and (alt := self.alternative())):
+            currentRule = Rule(name.string, [alt], [])
+            tPos = self.mark()
+            while(self.expect("|") and (alt := self.alternative())):
+                currentRule.Alts.append(alt)
+                tPos = self.mark()
+            self.reset(tPos)
             if t := self.translation():
                 currentRule.Translations.extend(t)
                 return currentRule
             
-        self.reset(pos)
-        return None
-
-    def alts(self):
-        pos = self.mark()
-        if (alt := self.alternative()):
-            alts = [alt]
-            tPos = self.mark()
-            while(self.expect("|") and (alt := self.alternative())):
-                alts.append(alt)
-                tPos = self.mark()
-            self.reset(tPos)
-            return alts
-        self.reset(pos)
-        return None
-
-    def alternative(self):
-        pos = self.mark()
-        if i := self.item():
-            items = [i]
-            while i := self.item():
-                items.append(i)
-            return items
-        self.reset(pos)
-        return None
-
-    def item(self):
-        pos = self.mark()
-        if ((self.expect('&')) and (atom := self.atom())):
-            return atom
-        self.reset(pos)
-        pos = self.mark()
-        if ((self.expect('!')) and (atom := self.atom())):
-            print("This")
-            return atom
-        self.reset(pos)
-        pos = self.mark()
-        if ((atom := self.atom()) and self.expect('*')):
-            return atom
-        self.reset(pos)
-        pos = self.mark()
-        if ((atom := self.atom()) and self.expect('+')):
-            return atom
-        self.reset(pos)
-        pos = self.mark()
-        if ((atom := self.atom()) and self.expect('?')):
-            return atom
-        self.reset(pos)
-        pos = self.mark()
-        if self.expect('~'):
-            return '~'
-        self.reset(pos)
-        pos = self.mark()
-        if ((self.expect('[')) and (atom := self.atom()) and (self.expect(']'))):
-            return atom
-        self.reset(pos)
-        pos = self.mark()
-        if atom := self.atom():
-            return atom
-        self.reset(pos)
-        return None
-
-    def atom(self):
-        pos = self.mark()
-        if p := self.expect(NAME):
-            return p.string
-        self.reset(pos)
-        pos = self.mark()
-        if p := self.expect(STRING):
-            return p.string
-        self.reset(pos)
-        pos = self.mark()
-        if (self.expect('(') and (alts := self.alts()) and self.expect(')')):
-            return alts
         self.reset(pos)
         return None
 
@@ -117,6 +48,27 @@ class GrammarParser(Parser):
                 return alts
         self.reset(pos)
 
+    def alternative(self):
+        pos = self.mark()
+        if i := self.item():
+            items = [i]
+            while i := self.item():
+                items.append(i)
+            return items
+        self.reset(pos)
+        return None
+
+    def item(self):
+        pos = self.mark()
+        if p := self.expect(NAME):
+            return p.string
+        self.reset(pos)
+        pos = self.mark()
+        if p := self.expect(STRING):
+            return p.string
+        self.reset(pos)
+        return None
+
     def generateCode(self):
         output = ""
         output += f"from memo import memoize_left_rec\n"
@@ -130,16 +82,16 @@ class GrammarParser(Parser):
                 currentNode = ""
                 currentMethod = ""
                 #build node code
-                for ind,translation in enumerate(rule.Translations):
-                    variables = [x for x in translation if x.startswith('_')]
-                    currentNode += f'class {rule.Name}{ind}:\n'
-                    currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
-                    for var in variables:
-                        currentNode += f'\t\tself.{var} = {var}\n'
-                    currentNode += "\t\tpass\n"
-                    currentNode += f'\tdef translate(self):\n'
-                    currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
-                nodes.append(currentNode)
+                # for ind,translation in enumerate(rule.Translations):
+                #     variables = [x for x in translation if x.startswith('_')]
+                #     currentNode += f'class {rule.Name}{ind}:\n'
+                #     currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
+                #     for var in variables:
+                #         currentNode += f'\t\tself.{var} = {var}\n'
+                #     currentNode += "\t\tpass\n"
+                #     currentNode += f'\tdef translate(self):\n'
+                #     currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+                # nodes.append(currentNode)
                 #build parsing method code
                 currentMethod += "\t@memoize_left_rec\n"
                 currentMethod += f'\tdef {rule.Name}(self):\n'

@@ -1,5 +1,5 @@
 
-from tokenize import TokenInfo, COMMENT, NEWLINE
+from tokenize import TokenInfo, COMMENT, NEWLINE, ERRORTOKEN
 
 class Tokenizer:
     def __init__(self, tokengen):
@@ -22,7 +22,7 @@ class Tokenizer:
         if self.pos == len(self.tokens):
             while True:
                 token = next(self.tokengen)
-                if token.type in (NEWLINE, COMMENT):
+                if token.type in (NEWLINE, COMMENT) or (token.type == ERRORTOKEN and token.string == ' '):
                     continue
                 break
             self.tokens.append(token)

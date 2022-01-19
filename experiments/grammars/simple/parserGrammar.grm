@@ -2,7 +2,7 @@ grammar: rule* ENDMARKER
 rule: NAME ':' alts
 alts: alternative 
     | alternative ('|' alternative)*
-alternative: item*
+alternative: item+
 item: atom
     | '&' atom
     | '!' atom
