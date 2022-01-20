@@ -59,3 +59,45 @@ class Parser:
             return self.tokenizer.get_token()
         return None
 
+
+class Lookahead:
+    def __init__(self, direction, sub):
+        self.direction = direction
+        self.sub = sub
+
+class Multiple:
+    def __init__(self, base, sub):
+        self.base = base
+        self.sub = sub
+
+class Optional:
+    def __init__(self, sub):
+        self.sub = sub
+    def toRule(self, varnumber):
+        return f"({self.sub.toRule(varnumber)} or True)"
+
+class Commit:
+    def __init__(self):
+        pass
+
+class SynthRule:
+    def __init__ (self, sub):
+        self.sub = sub
+
+class AtomString:
+    def __init__(self, sub):
+        self.sub = sub
+    def toRule(self, varnumber):
+        return f"self.expect({self.sub})"
+
+class AtomRule:
+    def __init__(self, sub):
+        self.sub = sub
+    def toRule(self, varnumber):
+        return f"(n{varnumber} := self.{self.sub}())"
+
+class AtomToken:
+    def __init__(self, sub):
+        self.sub = sub
+    def toRule(self, varnumber):
+        return f"(n{varnumber} := self.expect(tokenize.{self.sub}))"

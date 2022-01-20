@@ -1,7 +1,6 @@
 from collections import namedtuple
 from tokenize import NAME, ENDMARKER, STRING, NEWLINE, COMMENT
-from typing import NamedTuple
-from std import Parser, Node
+from std import AtomRule, AtomString, AtomToken, Lookahead, Parser, Multiple, Optional, Commit, SynthRule
 
 Rule = namedtuple("Rule", "Name Alts Translations")
 
@@ -23,16 +22,28 @@ class GrammarParser(Parser):
         pos = self.mark()
         if ((name := self.expect(NAME)) and self.expect(":") and (alts := self.alts())):
             currentRule = Rule(name.string, alts, [])
+            print(currentRule)
             if t := self.translation():
                 currentRule.Translations.extend(t)
+                print(currentRule)
                 return currentRule
-            
+        print("Not found")  
         self.reset(pos)
         return None
 
     def alts(self):
         pos = self.mark()
         if (alt := self.alternative()):
+            alts = [alt]
+            tPos = self.mark()
+            while(self.expect("|") and (alt := self.alternative())):
+                alts.append(alt)
+                tPos = self.mark()
+            self.reset(tPos)
+            return alts
+        self.reset(pos)
+        pos = self.mark()
+        if (self.expect("|") and (alt := self.alternative())):
             alts = [alt]
             tPos = self.mark()
             while(self.expect("|") and (alt := self.alternative())):
@@ -56,32 +67,31 @@ class GrammarParser(Parser):
     def item(self):
         pos = self.mark()
         if ((self.expect('&')) and (atom := self.atom())):
-            return atom
+            return Lookahead(True, atom)
         self.reset(pos)
         pos = self.mark()
         if ((self.expect('!')) and (atom := self.atom())):
-            print("This")
-            return atom
+            return Lookahead(False, atom)
         self.reset(pos)
         pos = self.mark()
         if ((atom := self.atom()) and self.expect('*')):
-            return atom
+            return Multiple(0, atom)
         self.reset(pos)
         pos = self.mark()
         if ((atom := self.atom()) and self.expect('+')):
-            return atom
+            return Multiple(1, atom)
         self.reset(pos)
         pos = self.mark()
         if ((atom := self.atom()) and self.expect('?')):
-            return atom
+            return Optional(atom)
+        self.reset(pos)
+        pos = self.mark()
+        if ((self.expect('[')) and (alt := self.alternative()) and (self.expect(']'))):
+            return Optional(alt)
         self.reset(pos)
         pos = self.mark()
         if self.expect('~'):
-            return '~'
-        self.reset(pos)
-        pos = self.mark()
-        if ((self.expect('[')) and (atom := self.atom()) and (self.expect(']'))):
-            return atom
+            return Commit()
         self.reset(pos)
         pos = self.mark()
         if atom := self.atom():
@@ -92,30 +102,51 @@ class GrammarParser(Parser):
     def atom(self):
         pos = self.mark()
         if p := self.expect(NAME):
-            return p.string
+            return AtomRule(p.string) if p.string.islower() else AtomToken(p.string)
         self.reset(pos)
         pos = self.mark()
         if p := self.expect(STRING):
-            return p.string
+            return AtomString(p.string)
         self.reset(pos)
         pos = self.mark()
         if (self.expect('(') and (alts := self.alts()) and self.expect(')')):
-            return alts
+            return SynthRule(alts)
         self.reset(pos)
         return None
 
     def translation(self):
         pos = self.mark()
-        if (self.expect("{") and (a := self.alternative())):
+        if (self.expect("{") and (a := self.translationAlternative())):
             alts = [a]
             tPos = self.mark()
-            while(self.expect("|") and (a := self.alternative())):
+            while(self.expect("|") and (a := self.translationAlternative())):
                 alts.append(a)
                 tPos = self.mark()
             self.reset(tPos)
             if self.expect("}"):
                 return alts
         self.reset(pos)
+
+    def translationAlternative(self):
+        pos = self.mark()
+        if i := self.translationItem():
+            items = [i]
+            while i := self.translationItem():
+                items.append(i)
+            return items
+        self.reset(pos)
+        return None
+
+    def translationItem(self):
+        pos = self.mark()
+        if p := self.expect(NAME):
+            return p.string
+        self.reset(pos)
+        pos = self.mark()
+        if p := self.expect(STRING):
+            return p.string
+        self.reset(pos)
+        return None
 
     def generateCode(self):
         output = ""
@@ -140,6 +171,7 @@ class GrammarParser(Parser):
                     currentNode += f'\tdef translate(self):\n'
                     currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
                 nodes.append(currentNode)
+
                 #build parsing method code
                 currentMethod += "\t@memoize_left_rec\n"
                 currentMethod += f'\tdef {rule.Name}(self):\n'
@@ -149,17 +181,15 @@ class GrammarParser(Parser):
                     currentMethod += '\t\tpos = self.mark()\n'
                     currentMethod += f'\t\tif (True and\n'
                     for item in alternative:
-                        if item.startswith("'"):
-                            currentMethod += f'\t\t   self.expect({item}) and\n'
-                        elif item.isupper():
-                            currentMethod += f'\t\t   (n{varNumber} := self.expect(tokenize.{item})) and\n'
+                        # print(item.toRule(varNumber))
+                        if type(item) in [AtomRule, AtomToken]:
                             variables.append(f"n{varNumber}")
+                        if type(item) in [AtomToken]:
                             tokenInfos.append(f"n{varNumber}")
-                            varNumber += 1
-                        else:
-                            currentMethod += f'\t\t   (n{varNumber} := self.{item}()) and\n'
-                            variables.append(f"n{varNumber}")
-                            varNumber += 1
+                            pass
+                        ruleString = item.toRule(varNumber)
+                        varNumber += 1
+                        currentMethod += f"\t\t {ruleString} and\n"
                     currentMethod += '\t\t   True):\n'
                     currentMethod += f'\t\t\treturn {rule.Name}{ind}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
                     currentMethod += '\t\tself.reset(pos)\n'
