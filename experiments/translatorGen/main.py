@@ -9,7 +9,6 @@ with open("../grammars/translation/python.grm") as fi:
     p = GrammarParser(Tokenizer(tokenGen))
     gram = p.grammar()
 
-print(p.rules)
 # for rule in p.rules:
 #     print(rule)
-# p.generateCode()
+p.generateCode()

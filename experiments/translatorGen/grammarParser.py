@@ -5,7 +5,8 @@ from std import AtomRule, AtomString, AtomToken, Lookahead, Parser, Multiple, Op
 Rule = namedtuple("Rule", "Name Alts Translations")
 
 class GrammarParser(Parser):
-    rules = None
+    rules = []
+    synthNumber = 0
     def grammar(self):
         pos = self.mark()
         if r := self.rule():
@@ -13,7 +14,7 @@ class GrammarParser(Parser):
             while r := self.rule():
                 rules.append(r)
             if self.expect(ENDMARKER):
-                self.rules = rules
+                self.rules.extend(rules)
                 return rules
         self.reset(pos)
         return None
@@ -22,12 +23,9 @@ class GrammarParser(Parser):
         pos = self.mark()
         if ((name := self.expect(NAME)) and self.expect(":") and (alts := self.alts())):
             currentRule = Rule(name.string, alts, [])
-            print(currentRule)
             if t := self.translation():
                 currentRule.Translations.extend(t)
-                print(currentRule)
                 return currentRule
-        print("Not found")  
         self.reset(pos)
         return None
 
@@ -75,11 +73,11 @@ class GrammarParser(Parser):
         self.reset(pos)
         pos = self.mark()
         if ((atom := self.atom()) and self.expect('*')):
-            return Multiple(0, atom)
+            return Multiple(True, atom)
         self.reset(pos)
         pos = self.mark()
         if ((atom := self.atom()) and self.expect('+')):
-            return Multiple(1, atom)
+            return Multiple(False, atom)
         self.reset(pos)
         pos = self.mark()
         if ((atom := self.atom()) and self.expect('?')):
@@ -110,7 +108,9 @@ class GrammarParser(Parser):
         self.reset(pos)
         pos = self.mark()
         if (self.expect('(') and (alts := self.alts()) and self.expect(')')):
-            return SynthRule(alts)
+            self.rules.append(Rule(f"synthetic_rule_{self.synthNumber}", alts, []))
+            self.synthNumber += 1
+            return SynthRule(alts, self.synthNumber-1)
         self.reset(pos)
         return None
 
@@ -182,14 +182,13 @@ class GrammarParser(Parser):
                     currentMethod += f'\t\tif (True and\n'
                     for item in alternative:
                         # print(item.toRule(varNumber))
-                        if type(item) in [AtomRule, AtomToken]:
+                        if type(item) in [AtomRule, AtomToken, Multiple]:
                             variables.append(f"n{varNumber}")
                         if type(item) in [AtomToken]:
                             tokenInfos.append(f"n{varNumber}")
-                            pass
                         ruleString = item.toRule(varNumber)
                         varNumber += 1
-                        currentMethod += f"\t\t {ruleString} and\n"
+                        currentMethod += f"\t\t {ruleString} is not None and\n"
                     currentMethod += '\t\t   True):\n'
                     currentMethod += f'\t\t\treturn {rule.Name}{ind}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
                     currentMethod += '\t\tself.reset(pos)\n'

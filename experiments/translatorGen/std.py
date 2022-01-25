@@ -28,12 +28,6 @@ class Tokenizer:
             self.tokens.append(token)
         return self.tokens[self.pos]
 
-    def look_ahead(self, positive, func, *args):
-        mark = self.mark()
-        ok = func(*args) is not None
-        self.reset(mark)
-        return ok == positive
-
 class Node:
     def __init__(self, type, children):
         self.type = type
@@ -59,43 +53,92 @@ class Parser:
             return self.tokenizer.get_token()
         return None
 
+    def lookahead(self, positive, func, *args):
+        mark = self.mark()
+        ok = func(*args) is not None
+        self.reset(mark)
+        return ok == positive
+
+    def loop(self, nonempty, func, *args):
+        mark = self.mark()
+        nodes = []
+        while node := func(*args) is not None:
+            nodes.append(node)
+        if len(nodes) >= nonempty:
+            return nodes
+        self.reset(mark)
+        return None
+
 
 class Lookahead:
     def __init__(self, direction, sub):
         self.direction = direction
         self.sub = sub
+    def toRule(self, varnumber):
+        func = "self.expect"
+        if(type(self.sub) not in [AtomToken, AtomString]):
+            func = f"self.{self.sub}"
+        return f"self.lookahead({self.direction}, {func}, {self.sub})"
 
 class Multiple:
     def __init__(self, base, sub):
         self.base = base
         self.sub = sub
+    def toRule(self, varnumber):
+        func = "self.expect"
+        atom = self.sub
+        if(type(self.sub) not in [AtomToken, AtomString]):
+            func = f"self.{self.sub}"
+            atom = ""
+        if(type(self.sub) is SynthRule):
+            func = f"self.synthetic_rule_{self.sub.synthNumber}"
+            atom = ""
+        return f"(n{varnumber} := self.loop({self.base}, {func}, {atom}))"
 
 class Optional:
     def __init__(self, sub):
         self.sub = sub
     def toRule(self, varnumber):
-        return f"({self.sub.toRule(varnumber)} or True)"
+        if type(self.sub) == list:
+            toReturn = "(("
+            itemList = []
+            for item in self.sub:
+                itemList.append(f"{item.toRule(varnumber)}")
+            toReturn += " and ".join(itemList)
+            toReturn += ") or True)"
+            return toReturn
+        else:
+            return f"({self.sub.toRule(varnumber)} or True)"
 
 class Commit:
     def __init__(self):
         pass
+    def toRule(self, varnumber):
+        return f"True"
 
 class SynthRule:
-    def __init__ (self, sub):
+    def __init__ (self, sub, synthNumber):
         self.sub = sub
+        self.synthNumber = synthNumber
 
+    def toRule(self, varnumber):
+        return f"(n{varnumber} := self.synthetic_rule_{self.synthNumber}())"
+    def __repr__(self):
+        return f"synthetic_rule_{self.synthNumber}"
 class AtomString:
     def __init__(self, sub):
         self.sub = sub
     def toRule(self, varnumber):
         return f"self.expect({self.sub})"
-
+    def __repr__(self):
+        return self.sub
 class AtomRule:
     def __init__(self, sub):
         self.sub = sub
     def toRule(self, varnumber):
         return f"(n{varnumber} := self.{self.sub}())"
-
+    def __repr__(self):
+        return f"{self.sub}"
 class AtomToken:
     def __init__(self, sub):
         self.sub = sub
