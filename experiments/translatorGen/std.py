@@ -78,6 +78,8 @@ class Lookahead:
         func = "self.expect"
         if(type(self.sub) not in [AtomToken, AtomString]):
             func = f"self.{self.sub}"
+        if(type(self.sub) is AtomRule):
+            self.sub = ""
         return f"self.lookahead({self.direction}, {func}, {self.sub})"
 
 class Multiple:
@@ -144,3 +146,5 @@ class AtomToken:
         self.sub = sub
     def toRule(self, varnumber):
         return f"(n{varnumber} := self.expect(tokenize.{self.sub}))"
+    def __repr__(self):
+        return f"tokenize.{self.sub}"

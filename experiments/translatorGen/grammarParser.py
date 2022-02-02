@@ -108,7 +108,7 @@ class GrammarParser(Parser):
         self.reset(pos)
         pos = self.mark()
         if (self.expect('(') and (alts := self.alts()) and self.expect(')')):
-            self.rules.append(Rule(f"synthetic_rule_{self.synthNumber}", alts, []))
+            self.rules.append(Rule(f"synthetic_rule_{self.synthNumber}", alts, ["_"]))
             self.synthNumber += 1
             return SynthRule(alts, self.synthNumber-1)
         self.reset(pos)
@@ -163,7 +163,7 @@ class GrammarParser(Parser):
                 #build node code
                 for ind,translation in enumerate(rule.Translations):
                     variables = [x for x in translation if x.startswith('_')]
-                    currentNode += f'class {rule.Name}{ind}:\n'
+                    currentNode += f'class {rule.Name}{"0" if not rule.Name.startswith("synthetic_rule_") else ""}:\n'
                     currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
                     for var in variables:
                         currentNode += f'\t\tself.{var} = {var}\n'
@@ -190,7 +190,7 @@ class GrammarParser(Parser):
                         varNumber += 1
                         currentMethod += f"\t\t {ruleString} is not None and\n"
                     currentMethod += '\t\t   True):\n'
-                    currentMethod += f'\t\t\treturn {rule.Name}{ind}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
+                    currentMethod += f'\t\t\treturn {rule.Name}{"0" if not rule.Name.startswith("synthetic_rule_") else ""}({", ".join([x if x not in tokenInfos else f"{x}.string" for x in variables])})\n'
                     currentMethod += '\t\tself.reset(pos)\n'
                 currentMethod += '\t\treturn None\n'
                 methods.append(currentMethod)
