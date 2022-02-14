@@ -1,0 +1,16 @@
+grammar: rule* ENDMARKER
+rule: NAME ':' alts
+alts: alternative 
+    | alternative ('|' alternative)*
+alternative: item+
+item: atom
+    | '&' atom
+    | '!' atom
+    | atom '*'
+    | atom '+'
+    | atom '?'
+    | '~'
+    | '[' alts ']'
+atom: NAME
+    | STRING
+    | '(' alts ')'
