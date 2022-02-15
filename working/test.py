@@ -66,16 +66,37 @@ rules = gram.rules.items()
 # Repeat 0
 # Repeat 1
 # Lookaheads
-#TODO: Build translation generation infra
-# NOTE: For now, get this as simple as OG version
 varnum = 0
+parserClass = ""
+nodeClasses = ""
 for _, rule in rules:
     variables = []
     tokenInfos = []
+    currentNode = ""
+    for translation in [x.action for x in rule.rhs.alts if x.action != None]:
+        translation = translation.split(" ")
+        variables = [x for x in translation if x.startswith('_')]
+        currentNode += f'class {rule.name}{"0" if not rule.name.startswith("synthetic_rule_") else ""}:\n'
+        currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
+        for var in variables:
+            currentNode += f'\t\tself.{var} = {var}\n'
+        currentNode += "\t\tpass\n"
+        currentNode += f'\tdef translate(self):\n'
+        currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+    nodeClasses += currentNode
+
     currentMethod = ""
     currentMethod += f"\t{'@memoize_left_rec' if rule.left_recursive else '@memoize'}\n"
     currentMethod += f'\tdef {rule.name}(self):\n'
     currentMethod += rule.rhs.to_rule(varnum, False)
     currentMethod += '\t\treturn None\n'
 
-    print(currentMethod)
+    parserClass += currentMethod
+
+output = ""
+output += f"from memo import memoize_left_rec\n"
+output += f"import tokenize\n"
+output += f"from std import Parser\n"
+output += nodeClasses
+output += "class ToyParser(Parser):\n"
+output += parserClass

@@ -232,13 +232,16 @@ class Rhs:
         for alt in self.alts:
             currentMethod += '\t\tpos = self.mark()\n'
             currentMethod += f'\t\tif (True and\n'
+            variables = []
             for item in alt.items:
                 ruleString = item.to_rule(varnum)
-                varnum += 1
                 currentMethod += f"\t\t {ruleString} is not None and\n"
+                if f"n{varnum} " in ruleString:
+                    variables.append(f"n{varnum}")
+                varnum += 1
 
             currentMethod += '\t\t   True):\n'
-            currentMethod += f'\t\t\treturn "Not True"\n'
+            currentMethod += f'\t\t\treturn {alt.rule_name}{alt.alt_index if not alt.rule_name.startswith("synthetic_rule_") else ""}({", ".join([x for x in variables])})\n'
             currentMethod += '\t\tself.reset(pos)\n'
 
         return currentMethod
