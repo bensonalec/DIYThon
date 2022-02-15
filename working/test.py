@@ -56,7 +56,26 @@ with open("./grammars/translation/python.grm") as fi:
     p = GeneratedParser(Tokenizer(tokenGen))
     gram = p.start()
 
-
-print(gram)
+p.synthetic_rules = {rule.name: rule for rule in p.synthetic_rules}
+gram.rules = gram.rules |  p.synthetic_rules
 compute_left_recursives(gram.rules)
-print(gram)
+rules = gram.rules.items()
+
+#code to generate parser
+#TODO: Finish implementing to_rules for all appropriate nodes
+# Repeat 0
+# Repeat 1
+# Lookaheads
+#TODO: Build translation generation infra
+# NOTE: For now, get this as simple as OG version
+varnum = 0
+for _, rule in rules:
+    variables = []
+    tokenInfos = []
+    currentMethod = ""
+    currentMethod += f"\t{'@memoize_left_rec' if rule.left_recursive else '@memoize'}\n"
+    currentMethod += f'\tdef {rule.name}(self):\n'
+    currentMethod += rule.rhs.to_rule(varnum, False)
+    currentMethod += '\t\treturn None\n'
+
+    print(currentMethod)

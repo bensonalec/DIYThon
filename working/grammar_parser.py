@@ -41,7 +41,8 @@ from grammar import (
 )
 
 class GeneratedParser(Parser):
-
+    synthetic_rules = []
+    synth_num = 0
     @memoize
     def start(self) -> Optional[Grammar]:
         # start: grammar $
@@ -525,7 +526,9 @@ class GeneratedParser(Parser):
             and
             (literal_1 := self.expect(']'))
         ):
-            return Opt ( alts )
+            self.synthetic_rules.append(Rule(f"synthetic_rule_{self.synth_num}", None, alts))
+            self.synth_num += 1
+            return Opt ( alts, self.synth_num )
         self.reset(mark)
         if cut: return None
         cut = False
@@ -591,7 +594,9 @@ class GeneratedParser(Parser):
             and
             (literal_1 := self.expect(')'))
         ):
-            return Group ( alts )
+            self.synthetic_rules.append(Rule(f"synthetic_rule_{self.synth_num}", None, alts))
+            self.synth_num += 1
+            return Group ( alts, self.synth_num )
         self.reset(mark)
         if cut: return None
         cut = False

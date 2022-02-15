@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from abc import abstractmethod
+from tokenize import String
 from typing import (
     AbstractSet,
     Any,
@@ -165,6 +166,11 @@ class NameLeaf(Leaf):
 
     def initial_names(self) -> AbstractSet[str]:
         return {self.value}
+    def to_rule(self, varnum):
+        if str(self.value).isupper():
+            return f"(n{varnum} := self.expect(tokenize.{self.value}))"
+        else:
+            return f"(n{varnum} := self.{self.value}())"
 
 
 class StringLeaf(Leaf):
@@ -180,7 +186,11 @@ class StringLeaf(Leaf):
     def initial_names(self) -> AbstractSet[str]:
         return set()
 
+    def to_rule(self, varnum):
+        return f"self.expect({self.value})"
 
+
+#TODO: Figure out how this should really be working
 class Rhs:
     def __init__(self, alts: List[Alt]):
         self.alts = alts
@@ -215,6 +225,23 @@ class Rhs:
         for alt in self.alts:
             alt.collect_todo(gen)
 
+    def to_rule(self, varnum, fromGroup=True, synthNumber=None):
+        if fromGroup:
+            return f"(n{varnum} := self.synthetic_rule_{synthNumber}())"
+        currentMethod = ""
+        for alt in self.alts:
+            currentMethod += '\t\tpos = self.mark()\n'
+            currentMethod += f'\t\tif (True and\n'
+            for item in alt.items:
+                ruleString = item.to_rule(varnum)
+                varnum += 1
+                currentMethod += f"\t\t {ruleString} is not None and\n"
+
+            currentMethod += '\t\t   True):\n'
+            currentMethod += f'\t\t\treturn "Not True"\n'
+            currentMethod += '\t\tself.reset(pos)\n'
+
+        return currentMethod
 
 class Alt:
     def __init__(self, items: List[NamedItem], *, icut: int = -1, action: Optional[str] = None):
@@ -288,11 +315,11 @@ class NamedItem:
 
     def initial_names(self) -> AbstractSet[str]:
         return self.item.initial_names()
+    
+    def to_rule(self, varnum):
+        return self.item.to_rule(varnum)
 
-    def collect_todo(self, gen: ParserGenerator) -> None:
-        gen.callmakervisitor.visit(self.item)
-
-
+#TODO: Get Lookahead in a state it can actually be used in the parser, for now we'll not worry
 class Lookahead:
     def __init__(self, node: Plain, sign: str):
         self.node = node
@@ -309,7 +336,7 @@ class Lookahead:
 
     def initial_names(self) -> AbstractSet[str]:
         return set()
-
+        
 
 class PositiveLookahead(Lookahead):
     def __init__(self, node: Plain):
@@ -317,6 +344,13 @@ class PositiveLookahead(Lookahead):
 
     def __repr__(self) -> str:
         return f"PositiveLookahead({self.node!r})"
+
+    def to_rule(self, varnum):
+        func = "self.expect"
+        if type(self.node) != StringLeaf and str(self.node).islower():
+            func = f"self.{self.node}"
+            self.node = ""
+        return f"self.lookahead({self.sign}, {func}, {self.node})"
 
 
 class NegativeLookahead(Lookahead):
@@ -326,10 +360,18 @@ class NegativeLookahead(Lookahead):
     def __repr__(self) -> str:
         return f"NegativeLookahead({self.node!r})"
 
+    def to_rule(self, varnum):
+        func = "self.expect"
+        if type(self.node) != StringLeaf and str(self.node).islower():
+            func = f"self.{self.node}"
+            self.node = ""
+        return f"self.lookahead({self.sign}, {func}, {self.node})"
+
 
 class Opt:
-    def __init__(self, node: Item):
+    def __init__(self, node: Item, synthNumber: int = None):
         self.node = node
+        self.synthNumber = synthNumber
 
     def __str__(self) -> str:
         s = str(self.node)
@@ -351,6 +393,10 @@ class Opt:
     def initial_names(self) -> AbstractSet[str]:
         return self.node.initial_names()
 
+    def to_rule(self, varnum):
+        if type(self.node) == Rhs:
+            return f"({self.node.to_rule(varnum, True, self.synthNumber)} or True)"
+        return f"({self.node.to_rule(varnum)} or True)"
 
 class Repeat:
     """Shared base class for x* and x+."""
@@ -369,7 +415,6 @@ class Repeat:
     def initial_names(self) -> AbstractSet[str]:
         return self.node.initial_names()
 
-
 class Repeat0(Repeat):
     def __str__(self) -> str:
         s = str(self.node)
@@ -385,6 +430,8 @@ class Repeat0(Repeat):
     def nullable_visit(self, rules: Dict[str, Rule]) -> bool:
         return True
 
+    def to_rule(self, varnum):
+        return f"NotImplemented({(type(self.node))})"
 
 class Repeat1(Repeat):
     def __str__(self) -> str:
@@ -401,7 +448,10 @@ class Repeat1(Repeat):
     def nullable_visit(self, rules: Dict[str, Rule]) -> bool:
         return False
 
+    def to_rule(self, varnum):
+        return f"NotImplemented({(type(self.node))})"
 
+# NOTE: Theoretically never gets used?
 class Gather(Repeat):
     def __init__(self, separator: Plain, node: Plain):
         self.separator = separator
@@ -416,10 +466,10 @@ class Gather(Repeat):
     def nullable_visit(self, rules: Dict[str, Rule]) -> bool:
         return False
 
-
 class Group:
-    def __init__(self, rhs: Rhs):
+    def __init__(self, rhs: Rhs, synthNum: int = None):
         self.rhs = rhs
+        self.synthNum = synthNum
 
     def __str__(self) -> str:
         return f"({self.rhs})"
@@ -436,6 +486,8 @@ class Group:
     def initial_names(self) -> AbstractSet[str]:
         return self.rhs.initial_names()
 
+    def to_rule(self, varnum):
+        return self.rhs.to_rule(varnum, True, self.synthNum)
 
 class Cut:
     def __init__(self) -> None:
@@ -462,6 +514,8 @@ class Cut:
     def initial_names(self) -> AbstractSet[str]:
         return set()
 
+    def to_rule(self, varnum):
+        return f"True"
 
 Plain = Union[Leaf, Group]
 Item = Union[Plain, Opt, Repeat, Lookahead, Rhs, Cut]
