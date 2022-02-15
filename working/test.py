@@ -66,6 +66,7 @@ rules = gram.rules.items()
 # Repeat 0
 # Repeat 1
 # Lookaheads
+#TODO: Make sure synthetic rules are translating as well
 varnum = 0
 parserClass = ""
 nodeClasses = ""
