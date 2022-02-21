@@ -722,6 +722,6 @@ class GeneratedParser(Parser):
     _keywords: Set[str] = set()
 
 
-if __name__ == '__main__':
-    from pegen.parser import simple_parser_main
-    simple_parser_main(GeneratedParser)
+# if __name__ == '__main__':
+#     from pegen.parser import simple_parser_main
+#     simple_parser_main(GeneratedParser)

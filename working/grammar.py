@@ -122,7 +122,7 @@ class Rule:
             rhs = rhs.alts[0].items[0].item.rhs
         return rhs
 
-    def collect_todo(self, gen: ParserGenerator) -> None:
+    def collect_todo(self, gen) -> None:
         rhs = self.flatten()
         rhs.collect_todo(gen)
 
@@ -221,7 +221,7 @@ class Rhs:
             names |= alt.initial_names()
         return names
 
-    def collect_todo(self, gen: ParserGenerator) -> None:
+    def collect_todo(self, gen) -> None:
         for alt in self.alts:
             alt.collect_todo(gen)
 
@@ -288,7 +288,7 @@ class Alt:
                 break
         return names
 
-    def collect_todo(self, gen: ParserGenerator) -> None:
+    def collect_todo(self, gen) -> None:
         for item in self.items:
             item.collect_todo(gen)
 
@@ -350,10 +350,20 @@ class PositiveLookahead(Lookahead):
 
     def to_rule(self, varnum):
         func = "self.expect"
+        if str(self.node).isupper():
+            atom = "tokenize." + str(self.node)
+        else:
+            atom = str(self.node)
         if type(self.node) != StringLeaf and str(self.node).islower():
             func = f"self.{self.node}"
-            self.node = ""
-        return f"self.lookahead({self.sign}, {func}, {self.node})"
+            atom = ""
+        if type(self.node) == Group:
+            func = f"self.synthetic_rule_{self.node.synthNum}"
+            atom = ""
+        if type(self.node) == NameLeaf and self.node.value.islower():
+            func = f"self.{self.node.value}"
+            atom = ""
+        return f"self.lookahead(True, {func}, {atom})"
 
 
 class NegativeLookahead(Lookahead):
@@ -365,10 +375,20 @@ class NegativeLookahead(Lookahead):
 
     def to_rule(self, varnum):
         func = "self.expect"
+        if str(self.node).isupper():
+            atom = "tokenize." + str(self.node)
+        else:
+            atom = str(self.node)
         if type(self.node) != StringLeaf and str(self.node).islower():
             func = f"self.{self.node}"
-            self.node = ""
-        return f"self.lookahead({self.sign}, {func}, {self.node})"
+            atom = ""
+        if type(self.node) == Group:
+            func = f"self.synthetic_rule_{self.node.synthNum}"
+            atom = ""
+        if type(self.node) == NameLeaf and self.node.value.islower():
+            func = f"self.{self.node.value}"
+            atom = ""
+        return f"self.lookahead(False, {func}, {atom})"
 
 
 class Opt:
@@ -434,7 +454,18 @@ class Repeat0(Repeat):
         return True
 
     def to_rule(self, varnum):
-        return f"NotImplemented({(type(self.node))})"
+        func = "self.expect"
+        atom = "tokenize." + str(self.node)
+        if type(self.node) != StringLeaf and str(self.node).islower():
+            func = f"self.{self.node}"
+            atom = ""
+        if type(self.node) == Group:
+            func = f"self.synthetic_rule_{self.node.synthNum}"
+            atom = ""
+        if type(self.node) == NameLeaf and self.node.value.islower():
+            func = f"self.{self.node.value}"
+            atom = ""
+        return f"(n{varnum} := self.loop(True, {func}, {atom}))"
 
 class Repeat1(Repeat):
     def __str__(self) -> str:
@@ -452,7 +483,17 @@ class Repeat1(Repeat):
         return False
 
     def to_rule(self, varnum):
-        return f"NotImplemented({(type(self.node))})"
+        func = "self.expect"
+        atom = "tokenize." + str(self.node)
+        if type(self.node) != StringLeaf and str(self.node).islower():
+            func = f"self.{self.node.to_rule(varnum)}"
+            atom = ""
+        if type(self.node) == Group:
+            func = f"self.synthetic_rule_{self.node.synthNum}"
+            atom = ""
+        if type(self.node) == NameLeaf and self.node.value.islower():
+            func = f"self.{self.node.value}"
+        return f"(n{varnum} := self.loop(False, {func}, {atom}))"
 
 # NOTE: Theoretically never gets used?
 class Gather(Repeat):

@@ -61,12 +61,22 @@ gram.rules = gram.rules |  p.synthetic_rules
 compute_left_recursives(gram.rules)
 rules = gram.rules.items()
 
-#code to generate parser
-#TODO: Finish implementing to_rules for all appropriate nodes
-# Repeat 0
-# Repeat 1
-# Lookaheads
-#TODO: Make sure synthetic rules are translating as well
+#Todo, in order of high priority to low
+#TODO: Implement generation of alt nodes
+#TODO: Test that it can actually parse various files
+#TODO: Improve translation infrastructure
+#   Probably want something that can say "anything inside gets tabbed this much"
+#   Figure out where users most reasonably want to describe the translations (i.e after each alternative, or at the end of the rule)
+#   Implement some kind of "optional" part of the translation, this might be hard and more worth just rewriting the rule
+#   Figure out how repitions can be caught and translated
+#TODO: Write appropriate translations for Python
+#TODO: Get 2 sample extensions working
+#TODO: Get everything together for the IRB
+#   Finish course
+#   Actual paperwork
+#   Describe the actual experiment, the extensions being implemented, and the questions asked
+#TODO: Write the design and implementation part of the actual thesis
+#TODO: Implement Visualization Tool
 varnum = 0
 parserClass = ""
 nodeClasses = ""
@@ -74,9 +84,21 @@ for _, rule in rules:
     variables = []
     tokenInfos = []
     currentNode = ""
-    for translation in [x.action for x in rule.rhs.alts if x.action != None]:
+    for ind,translation in enumerate([x.action for x in rule.rhs.alts if x.action != None]):
         translation = translation.split(" ")
         variables = [x for x in translation if x.startswith('_')]
+        currentNode += f'class {rule.name}{ind if not rule.name.startswith("synthetic_rule_") else ""}:\n'
+        currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
+        for var in variables:
+            currentNode += f'\t\tself.{var} = {var}\n'
+        currentNode += "\t\tpass\n"
+        currentNode += f'\tdef translate(self):\n'
+        currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+    nodeClasses += currentNode
+    currentNode = ""
+    for translation in [x.action for x in rule.rhs.alts if x.rule_name.startswith("synthetic_rule")]:
+        translation = ["_a"]
+        variables = ["_a"]
         currentNode += f'class {rule.name}{"0" if not rule.name.startswith("synthetic_rule_") else ""}:\n'
         currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
         for var in variables:
@@ -85,7 +107,6 @@ for _, rule in rules:
         currentNode += f'\tdef translate(self):\n'
         currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
     nodeClasses += currentNode
-
     currentMethod = ""
     currentMethod += f"\t{'@memoize_left_rec' if rule.left_recursive else '@memoize'}\n"
     currentMethod += f'\tdef {rule.name}(self):\n'
@@ -95,9 +116,10 @@ for _, rule in rules:
     parserClass += currentMethod
 
 output = ""
-output += f"from memo import memoize_left_rec\n"
+output += f"from parser import memoize, memoize_left_rec, Parser\n"
 output += f"import tokenize\n"
-output += f"from std import Parser\n"
 output += nodeClasses
 output += "class ToyParser(Parser):\n"
 output += parserClass
+
+print(output)

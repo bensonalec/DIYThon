@@ -1,6 +1,5 @@
-from memo import memoize_left_rec
+from parser import memoize, memoize_left_rec, Parser
 import tokenize
-from std import Parser
 class file0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -37,6 +36,42 @@ class type_expressions0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class type_expressions1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class type_expressions2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class type_expressions3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class type_expressions4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class type_expressions5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class type_expressions6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class statements0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -49,7 +84,31 @@ class statement0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class statement1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class statement_newline0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class statement_newline1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class statement_newline2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class statement_newline3:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -61,13 +120,133 @@ class simple_stmts0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmts1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class simple_stmt0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt7:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt8:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt9:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt10:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt11:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class simple_stmt12:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class compound_stmt0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compound_stmt7:
 	def __init__(self, _b, *rest):
 		self._b = _b
 		pass
@@ -79,7 +258,97 @@ class assignment0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class assignment1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class assignment2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class assignment3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class augassign0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign7:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign8:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign9:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign10:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign11:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class augassign12:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -121,6 +390,12 @@ class import_stmt0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class import_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class import_name0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -133,7 +408,25 @@ class import_from0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class import_from1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class import_from_targets0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class import_from_targets1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class import_from_targets2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -169,13 +462,31 @@ class dotted_name0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class dotted_name1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class if_stmt0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class if_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class elif_stmt0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class elif_stmt1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -199,7 +510,31 @@ class for_stmt0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class for_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class with_stmt0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class with_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class with_stmt2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class with_stmt3:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -211,13 +546,31 @@ class with_item0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class with_item1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class try_stmt0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class try_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class except_block0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class except_block1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -241,6 +594,12 @@ class subject_expr0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class subject_expr1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class case_block0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -259,7 +618,19 @@ class patterns0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class patterns1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class pattern0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class pattern1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -283,7 +654,79 @@ class closed_pattern0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class closed_pattern7:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class literal_pattern0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_pattern1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_pattern2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_pattern3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_pattern4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_pattern5:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -295,7 +738,43 @@ class literal_expr0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_expr1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_expr2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_expr3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_expr4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class literal_expr5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class complex_number0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class complex_number1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -307,7 +786,19 @@ class signed_number0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class signed_number1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class signed_real_number0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class signed_real_number1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -361,6 +852,12 @@ class name_or_attr0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class name_or_attr1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class group_pattern0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -368,6 +865,12 @@ class group_pattern0:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class sequence_pattern0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class sequence_pattern1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -391,13 +894,43 @@ class maybe_star_pattern0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class maybe_star_pattern1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_pattern0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_pattern1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class mapping_pattern0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class mapping_pattern1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class mapping_pattern2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class mapping_pattern3:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -422,6 +955,24 @@ class double_star_pattern0:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class class_pattern0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class class_pattern1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class class_pattern2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class class_pattern3:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -457,7 +1008,19 @@ class raise_stmt0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class raise_stmt1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class function_def0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class function_def1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -469,7 +1032,19 @@ class function_def_raw0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class function_def_raw1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class func_type_comment0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class func_type_comment1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -487,7 +1062,37 @@ class parameters0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class parameters1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class parameters2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class parameters3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class parameters4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class slash_no_default0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class slash_no_default1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -499,7 +1104,25 @@ class slash_with_default0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class slash_with_default1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_etc0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_etc1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_etc2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -517,13 +1140,31 @@ class param_no_default0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class param_no_default1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class param_with_default0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class param_with_default1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class param_maybe_default0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class param_maybe_default1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -559,6 +1200,12 @@ class class_def0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class class_def1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class class_def_raw0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -571,13 +1218,37 @@ class block0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class block1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_expressions0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_expressions1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_expressions2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_expression0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_expression1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -595,6 +1266,12 @@ class star_named_expression0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_named_expression1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class assignment_expression0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -607,7 +1284,19 @@ class named_expression0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class named_expression1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class annotated_rhs0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class annotated_rhs1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -619,7 +1308,31 @@ class expressions0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class expressions1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class expressions2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class expression0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class expression1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class expression2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -643,7 +1356,37 @@ class lambda_parameters0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_parameters1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_parameters2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_parameters3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_parameters4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class lambda_slash_no_default0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_slash_no_default1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -655,7 +1398,25 @@ class lambda_slash_with_default0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_slash_with_default1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class lambda_star_etc0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_star_etc1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_star_etc2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -673,13 +1434,31 @@ class lambda_param_no_default0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_param_no_default1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class lambda_param_with_default0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_param_with_default1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class lambda_param_maybe_default0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class lambda_param_maybe_default1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -697,7 +1476,19 @@ class disjunction0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class disjunction1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class conjunction0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class conjunction1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -709,13 +1500,79 @@ class inversion0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class inversion1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class comparison0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class comparison1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class compare_op_bitwise_or_pair0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair7:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair8:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class compare_op_bitwise_or_pair9:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -787,7 +1644,19 @@ class bitwise_or0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class bitwise_or1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class bitwise_xor0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class bitwise_xor1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -799,7 +1668,25 @@ class bitwise_and0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class bitwise_and1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class shift_expr0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class shift_expr1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class shift_expr2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -811,7 +1698,49 @@ class sum0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class sum1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class sum2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class term0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class term1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class term2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class term3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class term4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class term5:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -823,7 +1752,31 @@ class factor0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class factor1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class factor2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class factor3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class power0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class power1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -835,7 +1788,37 @@ class await_primary0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class await_primary1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class primary0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class primary1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class primary2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class primary3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class primary4:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -847,13 +1830,79 @@ class slices0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class slices1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class slice0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class slice1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class atom0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom7:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom8:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class atom9:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -913,6 +1962,12 @@ class dict0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class dict1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class dictcomp0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -926,6 +1981,12 @@ class double_starred_kvpairs0:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class double_starred_kvpair0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class double_starred_kvpair1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -949,7 +2010,19 @@ class for_if_clause0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class for_if_clause1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class yield_expr0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class yield_expr1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -967,7 +2040,25 @@ class args0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class args1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class kwargs0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class kwargs1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class kwargs2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -985,13 +2076,31 @@ class kwarg_or_starred0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class kwarg_or_starred1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class kwarg_or_double_starred0:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class kwarg_or_double_starred1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_targets0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_targets1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1009,7 +2118,19 @@ class star_targets_tuple_seq0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_targets_tuple_seq1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_target0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_target1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1021,7 +2142,37 @@ class target_with_star_atom0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class target_with_star_atom1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class target_with_star_atom2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class star_atom0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_atom1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_atom2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class star_atom3:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1033,7 +2184,25 @@ class single_target0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class single_target1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class single_target2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class single_subscript_attribute_target0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class single_subscript_attribute_target1:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1051,7 +2220,37 @@ class del_target0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class del_target1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class del_target2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class del_t_atom0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class del_t_atom1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class del_t_atom2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class del_t_atom3:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1063,7 +2262,43 @@ class t_primary0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class t_primary1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class t_primary2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class t_primary3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class t_primary4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class t_lookahead0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class t_lookahead1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class t_lookahead2:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1075,7 +2310,1177 @@ class invalid_double_starred_kvpairs0:
 		pass
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class invalid_double_starred_kvpairs1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class invalid_double_starred_kvpairs2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class invalid_kvpair0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class invalid_kvpair1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class invalid_kvpair2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_0:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_1:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_2:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_3:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_4:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_5:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_6:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_7:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_8:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_9:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_10:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_11:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_12:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_13:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_14:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_14:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_15:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_16:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_17:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_17:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_18:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_19:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_19:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_20:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_21:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_22:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_23:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_24:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_25:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_25:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_26:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_26:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_27:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_27:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_28:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_29:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_30:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_31:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_32:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_33:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_34:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_35:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_36:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_37:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_38:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_39:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_40:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_41:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_42:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_43:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_44:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_45:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_46:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_47:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_48:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_49:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_50:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_51:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_52:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_52:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_52:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_53:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_54:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_55:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_56:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_57:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_58:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_58:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_59:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_59:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_60:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_60:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_60:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_61:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_61:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_61:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_62:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_63:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_64:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_65:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_66:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_66:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_67:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_68:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_69:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_70:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_71:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_72:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_73:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_74:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_75:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_76:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_77:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_78:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_79:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_80:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_81:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_82:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_83:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_84:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_85:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_86:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_87:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_88:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_89:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_90:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_91:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_92:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_93:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_94:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_95:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_96:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_97:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_98:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_99:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_100:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_101:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_102:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_103:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_104:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_105:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_106:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_107:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_108:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_109:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_110:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_111:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_112:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_113:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_114:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_114:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_114:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_115:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_115:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_116:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_116:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_116:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_116:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_117:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_118:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_119:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_120:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_120:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_121:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_121:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_122:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_123:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_124:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_125:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_126:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_127:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_128:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_129:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_130:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_130:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_131:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_131:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_132:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_132:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_133:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_133:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_134:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_135:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_136:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_137:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_138:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_139:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_140:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_141:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_142:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_143:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_144:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_145:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_146:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_147:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_148:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_149:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_150:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_151:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_152:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_153:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_154:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_155:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_156:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_157:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_158:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_159:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_160:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_161:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_161:
+	def __init__(self, _a, *rest):
+		self._a = _a
+		pass
+	def translate(self):
+		return f"{self._a.translate() if type(self._a) != str else self._a}"
+class synthetic_rule_162:
 	def __init__(self, _a, *rest):
 		self._a = _a
 		pass
@@ -1106,10 +3511,10 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expressions()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n1 := self.loop(True, self.expect, tokenize.NEWLINE)) is not None and
 		 (n2 := self.expect(tokenize.ENDMARKER)) is not None and
 		   True):
-			return eval0(n0, n2)
+			return eval0(n0, n1, n2)
 		self.reset(pos)
 		return None
 	@memoize
@@ -1121,10 +3526,10 @@ class ToyParser(Parser):
 		 self.expect(')') is not None and
 		 self.expect('->') is not None and
 		 (n4 := self.expression()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n5 := self.loop(True, self.expect, tokenize.NEWLINE)) is not None and
 		 (n6 := self.expect(tokenize.ENDMARKER)) is not None and
 		   True):
-			return func_type0(n1, n4, n6)
+			return func_type0(n1, n4, n5, n6)
 		self.reset(pos)
 		return None
 	@memoize
@@ -1203,9 +3608,9 @@ class ToyParser(Parser):
 	def statements(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(False, self.statement, )) is not None and
 		   True):
-			return statements0()
+			return statements0(n0)
 		self.reset(pos)
 		return None
 	@memoize
@@ -1256,7 +3661,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.simple_stmt()) is not None and
-		 self.lookahead(!, self.expect, ';') is not None and
+		 self.lookahead(False, self.expect, ';') is not None and
 		 (n2 := self.expect(tokenize.NEWLINE)) is not None and
 		   True):
 			return simple_stmts0(n0, n2)
@@ -1424,12 +3829,12 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n8 := self.loop(False, self.synthetic_rule_17, )) is not None and
 		 (n9 := self.synthetic_rule_18()) is not None and
-		 self.lookahead(!, self.expect, '=') is not None and
+		 self.lookahead(False, self.expect, '=') is not None and
 		 ((n11 := self.synthetic_rule_19()) or True) is not None and
 		   True):
-			return assignment2(n9, n11)
+			return assignment2(n8, n9, n11)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -1568,7 +3973,7 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect('del') is not None and
 		 (n1 := self.del_targets()) is not None and
-		 self.lookahead(&, self.expect, (';' | NEWLINE)) is not None and
+		 self.lookahead(True, self.synthetic_rule_26, ) is not None and
 		   True):
 			return del_stmt0(n1)
 		self.reset(pos)
@@ -1603,21 +4008,21 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 self.expect('from') is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_27, )) is not None and
 		 (n2 := self.dotted_name()) is not None and
 		 self.expect('import') is not None and
 		 (n4 := self.import_from_targets()) is not None and
 		   True):
-			return import_from0(n2, n4)
+			return import_from0(n1, n2, n4)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect('from') is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n6 := self.loop(False, self.synthetic_rule_28, )) is not None and
 		 self.expect('import') is not None and
 		 (n8 := self.import_from_targets()) is not None and
 		   True):
-			return import_from1(n8)
+			return import_from1(n6, n8)
 		self.reset(pos)
 		return None
 	@memoize
@@ -1634,7 +4039,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n4 := self.import_from_as_names()) is not None and
-		 self.lookahead(!, self.expect, ',') is not None and
+		 self.lookahead(False, self.expect, ',') is not None and
 		   True):
 			return import_from_targets1(n4)
 		self.reset(pos)
@@ -1858,7 +4263,7 @@ class ToyParser(Parser):
 		 (n0 := self.expression()) is not None and
 		 self.expect('as') is not None and
 		 (n2 := self.star_target()) is not None and
-		 self.lookahead(&, self.expect, (',' | ')' | ':')) is not None and
+		 self.lookahead(True, self.synthetic_rule_53, ) is not None and
 		   True):
 			return with_item0(n0, n2)
 		self.reset(pos)
@@ -1885,11 +4290,11 @@ class ToyParser(Parser):
 		 self.expect('try') is not None and
 		 self.expect(':') is not None and
 		 (n6 := self.block()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n7 := self.loop(False, self.except_block, )) is not None and
 		 ((n8 := self.synthetic_rule_54()) or True) is not None and
 		 ((n9 := self.synthetic_rule_55()) or True) is not None and
 		   True):
-			return try_stmt1(n6, n8, n9)
+			return try_stmt1(n6, n7, n8, n9)
 		self.reset(pos)
 		return None
 	@memoize
@@ -1933,10 +4338,10 @@ class ToyParser(Parser):
 		 self.expect(':') is not None and
 		 (n3 := self.expect(tokenize.NEWLINE)) is not None and
 		 (n4 := self.expect(tokenize.INDENT)) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n5 := self.loop(False, self.case_block, )) is not None and
 		 (n6 := self.expect(tokenize.DEDENT)) is not None and
 		   True):
-			return match_stmt0(n1, n3, n4, n6)
+			return match_stmt0(n1, n3, n4, n5, n6)
 		self.reset(pos)
 		return None
 	@memoize
@@ -2085,7 +4490,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.signed_number()) is not None and
-		 self.lookahead(!, self.expect, ('+' | '-')) is not None and
+		 self.lookahead(False, self.synthetic_rule_59, ) is not None and
 		   True):
 			return literal_pattern0(n0)
 		self.reset(pos)
@@ -2125,7 +4530,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.signed_number()) is not None and
-		 self.lookahead(!, self.expect, ('+' | '-')) is not None and
+		 self.lookahead(False, self.synthetic_rule_60, ) is not None and
 		   True):
 			return literal_expr0(n0)
 		self.reset(pos)
@@ -2242,9 +4647,9 @@ class ToyParser(Parser):
 	def pattern_capture_target(self):
 		pos = self.mark()
 		if (True and
-		 self.lookahead(!, self.expect, "_") is not None and
+		 self.lookahead(False, self.expect, "_") is not None and
 		 (n1 := self.expect(tokenize.NAME)) is not None and
-		 self.lookahead(!, self.expect, ('.' | '(' | '=')) is not None and
+		 self.lookahead(False, self.synthetic_rule_61, ) is not None and
 		   True):
 			return pattern_capture_target0(n1)
 		self.reset(pos)
@@ -2263,7 +4668,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.attr()) is not None and
-		 self.lookahead(!, self.expect, ('.' | '(' | '=')) is not None and
+		 self.lookahead(False, self.synthetic_rule_62, ) is not None and
 		   True):
 			return value_pattern0(n0)
 		self.reset(pos)
@@ -2599,7 +5004,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n0 := self.expect(tokenize.NEWLINE)) is not None and
 		 (n1 := self.expect(tokenize.TYPE_COMMENT)) is not None and
-		 self.lookahead(&, self.expect, (NEWLINE INDENT)) is not None and
+		 self.lookahead(True, self.synthetic_rule_80, ) is not None and
 		   True):
 			return func_type_comment0(n0, n1)
 		self.reset(pos)
@@ -2624,34 +5029,34 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.slash_no_default()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n1 := self.loop(True, self.param_no_default, )) is not None and
+		 (n2 := self.loop(True, self.param_with_default, )) is not None and
 		 ((n3 := self.synthetic_rule_81()) or True) is not None and
 		   True):
-			return parameters0(n0, n3)
+			return parameters0(n0, n1, n2, n3)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 (n4 := self.slash_with_default()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n5 := self.loop(True, self.param_with_default, )) is not None and
 		 ((n6 := self.synthetic_rule_82()) or True) is not None and
 		   True):
-			return parameters1(n4, n6)
+			return parameters1(n4, n5, n6)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n7 := self.loop(False, self.param_no_default, )) is not None and
+		 (n8 := self.loop(True, self.param_with_default, )) is not None and
 		 ((n9 := self.synthetic_rule_83()) or True) is not None and
 		   True):
-			return parameters2(n9)
+			return parameters2(n7, n8, n9)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n10 := self.loop(False, self.param_with_default, )) is not None and
 		 ((n11 := self.synthetic_rule_84()) or True) is not None and
 		   True):
-			return parameters3(n11)
+			return parameters3(n10, n11)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -2664,40 +5069,40 @@ class ToyParser(Parser):
 	def slash_no_default(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(False, self.param_no_default, )) is not None and
 		 self.expect('/') is not None and
 		 self.expect(',') is not None and
 		   True):
-			return slash_no_default0()
+			return slash_no_default0(n0)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n3 := self.loop(False, self.param_no_default, )) is not None and
 		 self.expect('/') is not None and
-		 self.lookahead(&, self.expect, ')') is not None and
+		 self.lookahead(True, self.expect, ')') is not None and
 		   True):
-			return slash_no_default1()
+			return slash_no_default1(n3)
 		self.reset(pos)
 		return None
 	@memoize
 	def slash_with_default(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(True, self.param_no_default, )) is not None and
+		 (n1 := self.loop(False, self.param_with_default, )) is not None and
 		 self.expect('/') is not None and
 		 self.expect(',') is not None and
 		   True):
-			return slash_with_default0()
+			return slash_with_default0(n0, n1)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n4 := self.loop(True, self.param_no_default, )) is not None and
+		 (n5 := self.loop(False, self.param_with_default, )) is not None and
 		 self.expect('/') is not None and
-		 self.lookahead(&, self.expect, ')') is not None and
+		 self.lookahead(True, self.expect, ')') is not None and
 		   True):
-			return slash_with_default1()
+			return slash_with_default1(n4, n5)
 		self.reset(pos)
 		return None
 	@memoize
@@ -2706,19 +5111,19 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect('*') is not None and
 		 (n1 := self.param_no_default()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n2 := self.loop(True, self.param_maybe_default, )) is not None and
 		 ((n3 := self.synthetic_rule_85()) or True) is not None and
 		   True):
-			return star_etc0(n1, n3)
+			return star_etc0(n1, n2, n3)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect('*') is not None and
 		 self.expect(',') is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n6 := self.loop(False, self.param_maybe_default, )) is not None and
 		 ((n7 := self.synthetic_rule_86()) or True) is not None and
 		   True):
-			return star_etc1(n7)
+			return star_etc1(n6, n7)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -2751,7 +5156,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n3 := self.param()) is not None and
 		 ((n4 := self.expect(tokenize.TYPE_COMMENT)) or True) is not None and
-		 self.lookahead(&, self.expect, ')') is not None and
+		 self.lookahead(True, self.expect, ')') is not None and
 		   True):
 			return param_no_default1(n3, n4)
 		self.reset(pos)
@@ -2772,7 +5177,7 @@ class ToyParser(Parser):
 		 (n4 := self.param()) is not None and
 		 (n5 := self.default()) is not None and
 		 ((n6 := self.expect(tokenize.TYPE_COMMENT)) or True) is not None and
-		 self.lookahead(&, self.expect, ')') is not None and
+		 self.lookahead(True, self.expect, ')') is not None and
 		   True):
 			return param_with_default1(n4, n5, n6)
 		self.reset(pos)
@@ -2793,7 +5198,7 @@ class ToyParser(Parser):
 		 (n4 := self.param()) is not None and
 		 ((n5 := self.default()) or True) is not None and
 		 ((n6 := self.expect(tokenize.TYPE_COMMENT)) or True) is not None and
-		 self.lookahead(&, self.expect, ')') is not None and
+		 self.lookahead(True, self.expect, ')') is not None and
 		   True):
 			return param_maybe_default1(n4, n5, n6)
 		self.reset(pos)
@@ -2832,9 +5237,9 @@ class ToyParser(Parser):
 	def decorators(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n0 := self.loop(False, self.synthetic_rule_87, )) is not None and
 		   True):
-			return decorators0()
+			return decorators0(n0)
 		self.reset(pos)
 		return None
 	@memoize
@@ -2889,10 +5294,10 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.star_expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(False, self.synthetic_rule_90, )) is not None and
 		 ((n2 := self.synthetic_rule_91()) or True) is not None and
 		   True):
-			return star_expressions0(n0, n2)
+			return star_expressions0(n0, n1, n2)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -2973,7 +5378,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n1 := self.expression()) is not None and
-		 self.lookahead(!, self.expect, ':=') is not None and
+		 self.lookahead(False, self.expect, ':=') is not None and
 		   True):
 			return named_expression1(n1)
 		self.reset(pos)
@@ -2998,10 +5403,10 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(False, self.synthetic_rule_95, )) is not None and
 		 ((n2 := self.synthetic_rule_96()) or True) is not None and
 		   True):
-			return expressions0(n0, n2)
+			return expressions0(n0, n1, n2)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -3068,34 +5473,34 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.lambda_slash_no_default()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n1 := self.loop(True, self.lambda_param_no_default, )) is not None and
+		 (n2 := self.loop(True, self.lambda_param_with_default, )) is not None and
 		 ((n3 := self.synthetic_rule_98()) or True) is not None and
 		   True):
-			return lambda_parameters0(n0, n3)
+			return lambda_parameters0(n0, n1, n2, n3)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 (n4 := self.lambda_slash_with_default()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n5 := self.loop(True, self.lambda_param_with_default, )) is not None and
 		 ((n6 := self.synthetic_rule_99()) or True) is not None and
 		   True):
-			return lambda_parameters1(n4, n6)
+			return lambda_parameters1(n4, n5, n6)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n7 := self.loop(False, self.lambda_param_no_default, )) is not None and
+		 (n8 := self.loop(True, self.lambda_param_with_default, )) is not None and
 		 ((n9 := self.synthetic_rule_100()) or True) is not None and
 		   True):
-			return lambda_parameters2(n9)
+			return lambda_parameters2(n7, n8, n9)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n10 := self.loop(False, self.lambda_param_with_default, )) is not None and
 		 ((n11 := self.synthetic_rule_101()) or True) is not None and
 		   True):
-			return lambda_parameters3(n11)
+			return lambda_parameters3(n10, n11)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -3108,40 +5513,40 @@ class ToyParser(Parser):
 	def lambda_slash_no_default(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(False, self.lambda_param_no_default, )) is not None and
 		 self.expect('/') is not None and
 		 self.expect(',') is not None and
 		   True):
-			return lambda_slash_no_default0()
+			return lambda_slash_no_default0(n0)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n3 := self.loop(False, self.lambda_param_no_default, )) is not None and
 		 self.expect('/') is not None and
-		 self.lookahead(&, self.expect, ':') is not None and
+		 self.lookahead(True, self.expect, ':') is not None and
 		   True):
-			return lambda_slash_no_default1()
+			return lambda_slash_no_default1(n3)
 		self.reset(pos)
 		return None
 	@memoize
 	def lambda_slash_with_default(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(True, self.lambda_param_no_default, )) is not None and
+		 (n1 := self.loop(False, self.lambda_param_with_default, )) is not None and
 		 self.expect('/') is not None and
 		 self.expect(',') is not None and
 		   True):
-			return lambda_slash_with_default0()
+			return lambda_slash_with_default0(n0, n1)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n4 := self.loop(True, self.lambda_param_no_default, )) is not None and
+		 (n5 := self.loop(False, self.lambda_param_with_default, )) is not None and
 		 self.expect('/') is not None and
-		 self.lookahead(&, self.expect, ':') is not None and
+		 self.lookahead(True, self.expect, ':') is not None and
 		   True):
-			return lambda_slash_with_default1()
+			return lambda_slash_with_default1(n4, n5)
 		self.reset(pos)
 		return None
 	@memoize
@@ -3150,19 +5555,19 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect('*') is not None and
 		 (n1 := self.lambda_param_no_default()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n2 := self.loop(True, self.lambda_param_maybe_default, )) is not None and
 		 ((n3 := self.synthetic_rule_102()) or True) is not None and
 		   True):
-			return lambda_star_etc0(n1, n3)
+			return lambda_star_etc0(n1, n2, n3)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect('*') is not None and
 		 self.expect(',') is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n6 := self.loop(False, self.lambda_param_maybe_default, )) is not None and
 		 ((n7 := self.synthetic_rule_103()) or True) is not None and
 		   True):
-			return lambda_star_etc1(n7)
+			return lambda_star_etc1(n6, n7)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -3193,7 +5598,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n2 := self.lambda_param()) is not None and
-		 self.lookahead(&, self.expect, ':') is not None and
+		 self.lookahead(True, self.expect, ':') is not None and
 		   True):
 			return lambda_param_no_default1(n2)
 		self.reset(pos)
@@ -3212,7 +5617,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n3 := self.lambda_param()) is not None and
 		 (n4 := self.default()) is not None and
-		 self.lookahead(&, self.expect, ':') is not None and
+		 self.lookahead(True, self.expect, ':') is not None and
 		   True):
 			return lambda_param_with_default1(n3, n4)
 		self.reset(pos)
@@ -3231,7 +5636,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n3 := self.lambda_param()) is not None and
 		 ((n4 := self.default()) or True) is not None and
-		 self.lookahead(&, self.expect, ':') is not None and
+		 self.lookahead(True, self.expect, ':') is not None and
 		   True):
 			return lambda_param_maybe_default1(n3, n4)
 		self.reset(pos)
@@ -3250,9 +5655,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.conjunction()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(False, self.synthetic_rule_104, )) is not None and
 		   True):
-			return disjunction0(n0)
+			return disjunction0(n0, n1)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -3266,9 +5671,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.inversion()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(False, self.synthetic_rule_105, )) is not None and
 		   True):
-			return conjunction0(n0)
+			return conjunction0(n0, n1)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -3298,9 +5703,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.bitwise_or()) is not None and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n1 := self.loop(False, self.compare_op_bitwise_or_pair, )) is not None and
 		   True):
-			return comparison0(n0)
+			return comparison0(n0, n1)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -3734,7 +6139,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.slice()) is not None and
-		 self.lookahead(!, self.expect, ',') is not None and
+		 self.lookahead(False, self.expect, ',') is not None and
 		   True):
 			return slices0(n0)
 		self.reset(pos)
@@ -3831,9 +6236,9 @@ class ToyParser(Parser):
 	def strings(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(False, self.expect, tokenize.STRING)) is not None and
 		   True):
-			return strings0()
+			return strings0(n0)
 		self.reset(pos)
 		return None
 	@memoize
@@ -3988,9 +6393,9 @@ class ToyParser(Parser):
 	def for_if_clauses(self):
 		pos = self.mark()
 		if (True and
-		 NotImplemented(<class 'grammar.NameLeaf'>) is not None and
+		 (n0 := self.loop(False, self.for_if_clause, )) is not None and
 		   True):
-			return for_if_clauses0()
+			return for_if_clauses0(n0)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4003,9 +6408,9 @@ class ToyParser(Parser):
 		 self.expect('in') is not None and
 		 True is not None and
 		 (n5 := self.disjunction()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n6 := self.loop(True, self.synthetic_rule_127, )) is not None and
 		   True):
-			return for_if_clause0(n0, n2, n5)
+			return for_if_clause0(n0, n2, n5, n6)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -4014,9 +6419,9 @@ class ToyParser(Parser):
 		 self.expect('in') is not None and
 		 True is not None and
 		 (n11 := self.disjunction()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n12 := self.loop(True, self.synthetic_rule_128, )) is not None and
 		   True):
-			return for_if_clause1(n8, n11)
+			return for_if_clause1(n8, n11, n12)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4043,7 +6448,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n0 := self.args()) is not None and
 		 ((n1 := self.synthetic_rule_130()) or True) is not None and
-		 self.lookahead(&, self.expect, ')') is not None and
+		 self.lookahead(True, self.expect, ')') is not None and
 		   True):
 			return arguments0(n0, n1)
 		self.reset(pos)
@@ -4137,17 +6542,17 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.star_target()) is not None and
-		 self.lookahead(!, self.expect, ',') is not None and
+		 self.lookahead(False, self.expect, ',') is not None and
 		   True):
 			return star_targets0(n0)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 (n2 := self.star_target()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n3 := self.loop(True, self.synthetic_rule_144, )) is not None and
 		 ((n4 := self.synthetic_rule_145()) or True) is not None and
 		   True):
-			return star_targets1(n2, n4)
+			return star_targets1(n2, n3, n4)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4165,10 +6570,10 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.star_target()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(False, self.synthetic_rule_149, )) is not None and
 		 ((n2 := self.synthetic_rule_150()) or True) is not None and
 		   True):
-			return star_targets_tuple_seq0(n0, n2)
+			return star_targets_tuple_seq0(n0, n1, n2)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
@@ -4201,7 +6606,7 @@ class ToyParser(Parser):
 		 (n0 := self.t_primary()) is not None and
 		 self.expect('.') is not None and
 		 (n2 := self.expect(tokenize.NAME)) is not None and
-		 self.lookahead(!, self.t_lookahead, ) is not None and
+		 self.lookahead(False, self.t_lookahead, ) is not None and
 		   True):
 			return target_with_star_atom0(n0, n2)
 		self.reset(pos)
@@ -4211,7 +6616,7 @@ class ToyParser(Parser):
 		 self.expect('[') is not None and
 		 (n6 := self.slices()) is not None and
 		 self.expect(']') is not None and
-		 self.lookahead(!, self.t_lookahead, ) is not None and
+		 self.lookahead(False, self.t_lookahead, ) is not None and
 		   True):
 			return target_with_star_atom1(n4, n6)
 		self.reset(pos)
@@ -4285,7 +6690,7 @@ class ToyParser(Parser):
 		 (n0 := self.t_primary()) is not None and
 		 self.expect('.') is not None and
 		 (n2 := self.expect(tokenize.NAME)) is not None and
-		 self.lookahead(!, self.t_lookahead, ) is not None and
+		 self.lookahead(False, self.t_lookahead, ) is not None and
 		   True):
 			return single_subscript_attribute_target0(n0, n2)
 		self.reset(pos)
@@ -4295,7 +6700,7 @@ class ToyParser(Parser):
 		 self.expect('[') is not None and
 		 (n6 := self.slices()) is not None and
 		 self.expect(']') is not None and
-		 self.lookahead(!, self.t_lookahead, ) is not None and
+		 self.lookahead(False, self.t_lookahead, ) is not None and
 		   True):
 			return single_subscript_attribute_target1(n4, n6)
 		self.reset(pos)
@@ -4317,7 +6722,7 @@ class ToyParser(Parser):
 		 (n0 := self.t_primary()) is not None and
 		 self.expect('.') is not None and
 		 (n2 := self.expect(tokenize.NAME)) is not None and
-		 self.lookahead(!, self.t_lookahead, ) is not None and
+		 self.lookahead(False, self.t_lookahead, ) is not None and
 		   True):
 			return del_target0(n0, n2)
 		self.reset(pos)
@@ -4327,7 +6732,7 @@ class ToyParser(Parser):
 		 self.expect('[') is not None and
 		 (n6 := self.slices()) is not None and
 		 self.expect(']') is not None and
-		 self.lookahead(!, self.t_lookahead, ) is not None and
+		 self.lookahead(False, self.t_lookahead, ) is not None and
 		   True):
 			return del_target1(n4, n6)
 		self.reset(pos)
@@ -4378,7 +6783,7 @@ class ToyParser(Parser):
 		 (n0 := self.t_primary()) is not None and
 		 self.expect('.') is not None and
 		 (n2 := self.expect(tokenize.NAME)) is not None and
-		 self.lookahead(&, self.t_lookahead, ) is not None and
+		 self.lookahead(True, self.t_lookahead, ) is not None and
 		   True):
 			return t_primary0(n0, n2)
 		self.reset(pos)
@@ -4388,7 +6793,7 @@ class ToyParser(Parser):
 		 self.expect('[') is not None and
 		 (n6 := self.slices()) is not None and
 		 self.expect(']') is not None and
-		 self.lookahead(&, self.t_lookahead, ) is not None and
+		 self.lookahead(True, self.t_lookahead, ) is not None and
 		   True):
 			return t_primary1(n4, n6)
 		self.reset(pos)
@@ -4396,7 +6801,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n9 := self.t_primary()) is not None and
 		 (n10 := self.genexp()) is not None and
-		 self.lookahead(&, self.t_lookahead, ) is not None and
+		 self.lookahead(True, self.t_lookahead, ) is not None and
 		   True):
 			return t_primary2(n9, n10)
 		self.reset(pos)
@@ -4406,14 +6811,14 @@ class ToyParser(Parser):
 		 self.expect('(') is not None and
 		 ((n14 := self.synthetic_rule_159()) or True) is not None and
 		 self.expect(')') is not None and
-		 self.lookahead(&, self.t_lookahead, ) is not None and
+		 self.lookahead(True, self.t_lookahead, ) is not None and
 		   True):
 			return t_primary3(n12, n14)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 (n17 := self.atom()) is not None and
-		 self.lookahead(&, self.t_lookahead, ) is not None and
+		 self.lookahead(True, self.t_lookahead, ) is not None and
 		   True):
 			return t_primary4(n17)
 		self.reset(pos)
@@ -4462,7 +6867,7 @@ class ToyParser(Parser):
 		if (True and
 		 (n7 := self.expression()) is not None and
 		 self.expect(':') is not None and
-		 self.lookahead(&, self.expect, ('}' | ',')) is not None and
+		 self.lookahead(True, self.synthetic_rule_162, ) is not None and
 		   True):
 			return invalid_double_starred_kvpairs2(n7)
 		self.reset(pos)
@@ -4472,7 +6877,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 self.lookahead(!, self.expect, (':')) is not None and
+		 self.lookahead(False, self.synthetic_rule_163, ) is not None and
 		   True):
 			return invalid_kvpair0(n0)
 		self.reset(pos)
@@ -4526,9 +6931,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_3, )) is not None and
 		   True):
-			return synthetic_rule_3(n0)
+			return synthetic_rule_3(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4546,9 +6951,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_5, )) is not None and
 		   True):
-			return synthetic_rule_5(n0)
+			return synthetic_rule_5(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4566,9 +6971,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_7, )) is not None and
 		   True):
-			return synthetic_rule_7(n0)
+			return synthetic_rule_7(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4586,9 +6991,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_9, )) is not None and
 		   True):
-			return synthetic_rule_9(n0)
+			return synthetic_rule_9(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4606,9 +7011,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.simple_stmt()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_11, )) is not None and
 		   True):
-			return synthetic_rule_11(n0)
+			return synthetic_rule_11(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4721,9 +7126,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expect(tokenize.NAME)) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_21, )) is not None and
 		   True):
-			return synthetic_rule_21(n0)
+			return synthetic_rule_21(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4741,9 +7146,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expect(tokenize.NAME)) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_23, )) is not None and
 		   True):
-			return synthetic_rule_23(n0)
+			return synthetic_rule_23(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4825,9 +7230,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.import_from_as_name()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_30, )) is not None and
 		   True):
-			return synthetic_rule_30(n0)
+			return synthetic_rule_30(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4855,9 +7260,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.dotted_as_name()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_33, )) is not None and
 		   True):
-			return synthetic_rule_33(n0)
+			return synthetic_rule_33(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4948,9 +7353,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.with_item()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_43, )) is not None and
 		   True):
-			return synthetic_rule_43(n0)
+			return synthetic_rule_43(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4968,9 +7373,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.with_item()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_45, )) is not None and
 		   True):
-			return synthetic_rule_45(n0)
+			return synthetic_rule_45(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -4997,9 +7402,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.with_item()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_48, )) is not None and
 		   True):
-			return synthetic_rule_48(n0)
+			return synthetic_rule_48(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5017,9 +7422,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.with_item()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_50, )) is not None and
 		   True):
-			return synthetic_rule_50(n0)
+			return synthetic_rule_50(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5095,9 +7500,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.closed_pattern()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_57, )) is not None and
 		   True):
-			return synthetic_rule_57(n0)
+			return synthetic_rule_57(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5187,9 +7592,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.maybe_star_pattern()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_63, )) is not None and
 		   True):
-			return synthetic_rule_63(n0)
+			return synthetic_rule_63(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5207,9 +7612,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.key_value_pattern()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_65, )) is not None and
 		   True):
-			return synthetic_rule_65(n0)
+			return synthetic_rule_65(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5242,9 +7647,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.pattern()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_68, )) is not None and
 		   True):
-			return synthetic_rule_68(n0)
+			return synthetic_rule_68(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5262,9 +7667,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.keyword_pattern()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_70, )) is not None and
 		   True):
-			return synthetic_rule_70(n0)
+			return synthetic_rule_70(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5471,9 +7876,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.star_named_expression()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_92, )) is not None and
 		   True):
-			return synthetic_rule_92(n0)
+			return synthetic_rule_92(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5620,9 +8025,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.slice()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_108, )) is not None and
 		   True):
-			return synthetic_rule_108(n0)
+			return synthetic_rule_108(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5789,7 +8194,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n1 := self.expression()) is not None and
-		 self.lookahead(!, self.expect, ':=') is not None and
+		 self.lookahead(False, self.expect, ':=') is not None and
 		   True):
 			return synthetic_rule_121(n1)
 		self.reset(pos)
@@ -5818,9 +8223,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.double_starred_kvpair()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_124, )) is not None and
 		   True):
-			return synthetic_rule_124(n0)
+			return synthetic_rule_124(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5881,7 +8286,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n1 := self.expression()) is not None and
-		 self.lookahead(!, self.expect, ':=') is not None and
+		 self.lookahead(False, self.expect, ':=') is not None and
 		   True):
 			return synthetic_rule_130(n1)
 		self.reset(pos)
@@ -5897,7 +8302,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n1 := self.expression()) is not None and
-		 self.lookahead(!, self.expect, ':=') is not None and
+		 self.lookahead(False, self.expect, ':=') is not None and
 		   True):
 			return synthetic_rule_131(n1)
 		self.reset(pos)
@@ -5914,7 +8319,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n2 := self.synthetic_rule_132()) is not None and
-		 self.lookahead(!, self.expect, '=') is not None and
+		 self.lookahead(False, self.expect, '=') is not None and
 		   True):
 			return synthetic_rule_132(n2)
 		self.reset(pos)
@@ -5930,10 +8335,10 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n1 := self.synthetic_rule_131()) is not None and
-		 self.lookahead(!, self.expect, '=') is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 self.lookahead(False, self.expect, '=') is not None and
+		 (n3 := self.loop(True, self.synthetic_rule_133, )) is not None and
 		   True):
-			return synthetic_rule_133(n1)
+			return synthetic_rule_133(n1, n3)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5961,9 +8366,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.kwarg_or_starred()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_136, )) is not None and
 		   True):
-			return synthetic_rule_136(n0)
+			return synthetic_rule_136(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -5981,9 +8386,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.kwarg_or_double_starred()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_138, )) is not None and
 		   True):
-			return synthetic_rule_138(n0)
+			return synthetic_rule_138(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -6001,9 +8406,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.kwarg_or_starred()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_140, )) is not None and
 		   True):
-			return synthetic_rule_140(n0)
+			return synthetic_rule_140(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -6021,9 +8426,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.kwarg_or_double_starred()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_142, )) is not None and
 		   True):
-			return synthetic_rule_142(n0)
+			return synthetic_rule_142(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -6060,9 +8465,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.star_target()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_146, )) is not None and
 		   True):
-			return synthetic_rule_146(n0)
+			return synthetic_rule_146(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -6097,7 +8502,7 @@ class ToyParser(Parser):
 	def synthetic_rule_150(self):
 		pos = self.mark()
 		if (True and
-		 self.lookahead(!, self.expect, '*') is not None and
+		 self.lookahead(False, self.expect, '*') is not None and
 		 (n1 := self.star_target()) is not None and
 		   True):
 			return synthetic_rule_150(n1)
@@ -6136,9 +8541,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.del_target()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_154, )) is not None and
 		   True):
-			return synthetic_rule_154(n0)
+			return synthetic_rule_154(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
@@ -6192,9 +8597,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.double_starred_kvpair()) is not None and
-		 NotImplemented(<class 'grammar.Group'>) is not None and
+		 (n1 := self.loop(True, self.synthetic_rule_160, )) is not None and
 		   True):
-			return synthetic_rule_160(n0)
+			return synthetic_rule_160(n0, n1)
 		self.reset(pos)
 		return None
 	@memoize
