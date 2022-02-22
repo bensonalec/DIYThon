@@ -1,7 +1,0 @@
-start: (expr NEWLINE)*
-expr: expr '<<''<' term {f"({expr} << {term}) | ({expr} >> (16 - {term}))"}
-    | expr '>>''>' term {f"({expr} >> {term}) | ({expr} << (16 - {term})) & 0xDDDDDF"}
-    | expr '<<' term {f"{expr} << {term}"}
-    | expr '>>' term {f"{expr} >> {term}"}
-    | term {term}
-term: NUMBER {number.string}
