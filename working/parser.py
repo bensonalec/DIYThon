@@ -185,7 +185,40 @@ class Parser:
         self.reset_reach = self._tokenizer.reset_reach
 
     _keywords: Set[str] = set()
-
+    _keywords = [
+                    "and",
+                    "as",
+                    "assert",
+                    "break",
+                    "class",
+                    "continue",
+                    "def",
+                    "del",
+                    "elif",
+                    "else",
+                    "except",
+                    "False",
+                    "finally",
+                    "for",
+                    "from",
+                    "global",
+                    "if",
+                    "import",
+                    "in",
+                    "lambda",
+                    "None",
+                    "nonlocal",
+                    "not",
+                    "or",
+                    "pass",
+                    "raise",
+                    "return",
+                    "True",
+                    "try",
+                    "while",
+                    "with",
+                    "yield",
+    ]
     @abstractmethod
     def start(self) -> Any:
         raise NotImplementedError
@@ -232,6 +265,8 @@ class Parser:
     def expect(self, type: str) -> Optional[tokenize.TokenInfo]:
         self.check_for_dummy(type)
         tok = self._tokenizer.peek()
+        if tok.string in self._keywords:
+            return None
         if tok.string == type:
             if tok.string in self._keywords:
                 return None
@@ -244,8 +279,6 @@ class Parser:
                 return self._tokenizer.getnext()
         if tok.type == token.OP and tok.string == type:
             return self._tokenizer.getnext()
-        # print(tok)
-        # print(type)
         return None
 
     @memoize

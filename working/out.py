@@ -157,11 +157,10 @@ class simple_stmt4:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class simple_stmt5:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'pass'}"
 class simple_stmt6:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -181,17 +180,15 @@ class simple_stmt8:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class simple_stmt9:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'break'}"
 class simple_stmt10:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'continue'}"
 class simple_stmt11:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -1855,23 +1852,20 @@ class atom0:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class atom1:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'True'}"
 class atom2:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'False'}"
 class atom3:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'None'}"
 class atom4:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -1903,11 +1897,10 @@ class atom8:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class atom9:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'...'}"
 class strings0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -3706,7 +3699,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('pass') is not None and
+		 self.expect_keyword('pass') is not None and
 		   True):
 			return simple_stmt5()
 		self.reset(pos)
@@ -3730,13 +3723,13 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('break') is not None and
+		 self.expect_keyword('break') is not None and
 		   True):
 			return simple_stmt9()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('continue') is not None and
+		 self.expect_keyword('continue') is not None and
 		   True):
 			return simple_stmt10()
 		self.reset(pos)
@@ -3928,7 +3921,7 @@ class ToyParser(Parser):
 	def global_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('global') is not None and
+		 self.expect_keyword('global') is not None and
 		 (n1 := self.synthetic_rule_21()) is not None and
 		   True):
 			return global_stmt0(n1)
@@ -3938,7 +3931,7 @@ class ToyParser(Parser):
 	def nonlocal_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('nonlocal') is not None and
+		 self.expect_keyword('nonlocal') is not None and
 		 (n1 := self.synthetic_rule_23()) is not None and
 		   True):
 			return nonlocal_stmt0(n1)
@@ -3957,7 +3950,7 @@ class ToyParser(Parser):
 	def assert_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('assert') is not None and
+		 self.expect_keyword('assert') is not None and
 		 (n1 := self.expression()) is not None and
 		 ((n2 := self.synthetic_rule_24()) or True) is not None and
 		   True):
@@ -3968,7 +3961,7 @@ class ToyParser(Parser):
 	def del_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('del') is not None and
+		 self.expect_keyword('del') is not None and
 		 (n1 := self.del_targets()) is not None and
 		 self.positive_lookahead(self.synthetic_rule_25, ) is not None and
 		   True):
@@ -3994,7 +3987,7 @@ class ToyParser(Parser):
 	def import_name(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('import') is not None and
+		 self.expect_keyword('import') is not None and
 		 (n1 := self.dotted_as_names()) is not None and
 		   True):
 			return import_name0(n1)
@@ -4004,19 +3997,19 @@ class ToyParser(Parser):
 	def import_from(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('from') is not None and
+		 self.expect_keyword('from') is not None and
 		 (n1 := self.loop(False, self.synthetic_rule_26, )) is not None and
 		 (n2 := self.dotted_name()) is not None and
-		 self.expect('import') is not None and
+		 self.expect_keyword('import') is not None and
 		 (n4 := self.import_from_targets()) is not None and
 		   True):
 			return import_from0(n1, n2, n4)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('from') is not None and
+		 self.expect_keyword('from') is not None and
 		 (n6 := self.loop(True, self.synthetic_rule_27, )) is not None and
-		 self.expect('import') is not None and
+		 self.expect_keyword('import') is not None and
 		 (n8 := self.import_from_targets()) is not None and
 		   True):
 			return import_from1(n6, n8)
@@ -4106,7 +4099,7 @@ class ToyParser(Parser):
 	def if_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('if') is not None and
+		 self.expect_keyword('if') is not None and
 		 (n1 := self.named_expression()) is not None and
 		 self.expect(':') is not None and
 		 (n3 := self.block()) is not None and
@@ -4116,7 +4109,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('if') is not None and
+		 self.expect_keyword('if') is not None and
 		 (n6 := self.named_expression()) is not None and
 		 self.expect(':') is not None and
 		 (n8 := self.block()) is not None and
@@ -4129,7 +4122,7 @@ class ToyParser(Parser):
 	def elif_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('elif') is not None and
+		 self.expect_keyword('elif') is not None and
 		 (n1 := self.named_expression()) is not None and
 		 self.expect(':') is not None and
 		 (n3 := self.block()) is not None and
@@ -4139,7 +4132,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('elif') is not None and
+		 self.expect_keyword('elif') is not None and
 		 (n6 := self.named_expression()) is not None and
 		 self.expect(':') is not None and
 		 (n8 := self.block()) is not None and
@@ -4152,7 +4145,7 @@ class ToyParser(Parser):
 	def else_block(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('else') is not None and
+		 self.expect_keyword('else') is not None and
 		 self.expect(':') is not None and
 		 (n2 := self.block()) is not None and
 		   True):
@@ -4163,7 +4156,7 @@ class ToyParser(Parser):
 	def while_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('while') is not None and
+		 self.expect_keyword('while') is not None and
 		 (n1 := self.named_expression()) is not None and
 		 self.expect(':') is not None and
 		 (n3 := self.block()) is not None and
@@ -4176,9 +4169,9 @@ class ToyParser(Parser):
 	def for_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('for') is not None and
+		 self.expect_keyword('for') is not None and
 		 (n1 := self.star_targets()) is not None and
-		 self.expect('in') is not None and
+		 self.expect_keyword('in') is not None and
 		 True is not None and
 		 (n4 := self.star_expressions()) is not None and
 		 self.expect(':') is not None and
@@ -4191,9 +4184,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n9 := self.expect('ASYNC')) is not None and
-		 self.expect('for') is not None and
+		 self.expect_keyword('for') is not None and
 		 (n11 := self.star_targets()) is not None and
-		 self.expect('in') is not None and
+		 self.expect_keyword('in') is not None and
 		 True is not None and
 		 (n14 := self.star_expressions()) is not None and
 		 self.expect(':') is not None and
@@ -4208,7 +4201,7 @@ class ToyParser(Parser):
 	def with_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('with') is not None and
+		 self.expect_keyword('with') is not None and
 		 self.expect('(') is not None and
 		 (n2 := self.synthetic_rule_43()) is not None and
 		 (self.expect(',') or True) is not None and
@@ -4220,7 +4213,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('with') is not None and
+		 self.expect_keyword('with') is not None and
 		 (n8 := self.synthetic_rule_45()) is not None and
 		 self.expect(':') is not None and
 		 ((n10 := self.synthetic_rule_46()) or True) is not None and
@@ -4231,7 +4224,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n12 := self.expect('ASYNC')) is not None and
-		 self.expect('with') is not None and
+		 self.expect_keyword('with') is not None and
 		 self.expect('(') is not None and
 		 (n15 := self.synthetic_rule_48()) is not None and
 		 (self.expect(',') or True) is not None and
@@ -4244,7 +4237,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n20 := self.expect('ASYNC')) is not None and
-		 self.expect('with') is not None and
+		 self.expect_keyword('with') is not None and
 		 (n22 := self.synthetic_rule_50()) is not None and
 		 self.expect(':') is not None and
 		 ((n24 := self.synthetic_rule_51()) or True) is not None and
@@ -4258,7 +4251,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expression()) is not None and
-		 self.expect('as') is not None and
+		 self.expect_keyword('as') is not None and
 		 (n2 := self.star_target()) is not None and
 		 self.positive_lookahead(self.synthetic_rule_52, ) is not None and
 		   True):
@@ -4275,7 +4268,7 @@ class ToyParser(Parser):
 	def try_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('try') is not None and
+		 self.expect_keyword('try') is not None and
 		 self.expect(':') is not None and
 		 (n2 := self.block()) is not None and
 		 (n3 := self.finally_block()) is not None and
@@ -4284,7 +4277,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('try') is not None and
+		 self.expect_keyword('try') is not None and
 		 self.expect(':') is not None and
 		 (n6 := self.block()) is not None and
 		 (n7 := self.loop(True, self.except_block, )) is not None and
@@ -4298,7 +4291,7 @@ class ToyParser(Parser):
 	def except_block(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('except') is not None and
+		 self.expect_keyword('except') is not None and
 		 (n1 := self.expression()) is not None and
 		 ((n2 := self.synthetic_rule_55()) or True) is not None and
 		 self.expect(':') is not None and
@@ -4308,7 +4301,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('except') is not None and
+		 self.expect_keyword('except') is not None and
 		 self.expect(':') is not None and
 		 (n7 := self.block()) is not None and
 		   True):
@@ -4319,7 +4312,7 @@ class ToyParser(Parser):
 	def finally_block(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('finally') is not None and
+		 self.expect_keyword('finally') is not None and
 		 self.expect(':') is not None and
 		 (n2 := self.block()) is not None and
 		   True):
@@ -4375,7 +4368,7 @@ class ToyParser(Parser):
 	def guard(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('if') is not None and
+		 self.expect_keyword('if') is not None and
 		 (n1 := self.named_expression()) is not None and
 		   True):
 			return guard0(n1)
@@ -4416,7 +4409,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.or_pattern()) is not None and
-		 self.expect('as') is not None and
+		 self.expect_keyword('as') is not None and
 		 (n2 := self.pattern_capture_target()) is not None and
 		   True):
 			return as_pattern0(n0, n2)
@@ -4505,19 +4498,19 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('None') is not None and
+		 self.expect_keyword('None') is not None and
 		   True):
 			return literal_pattern3()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('True') is not None and
+		 self.expect_keyword('True') is not None and
 		   True):
 			return literal_pattern4()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('False') is not None and
+		 self.expect_keyword('False') is not None and
 		   True):
 			return literal_pattern5()
 		self.reset(pos)
@@ -4545,19 +4538,19 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('None') is not None and
+		 self.expect_keyword('None') is not None and
 		   True):
 			return literal_expr3()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('True') is not None and
+		 self.expect_keyword('True') is not None and
 		   True):
 			return literal_expr4()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('False') is not None and
+		 self.expect_keyword('False') is not None and
 		   True):
 			return literal_expr5()
 		self.reset(pos)
@@ -4924,7 +4917,7 @@ class ToyParser(Parser):
 	def return_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('return') is not None and
+		 self.expect_keyword('return') is not None and
 		 ((n1 := self.synthetic_rule_71()) or True) is not None and
 		   True):
 			return return_stmt0(n1)
@@ -4934,7 +4927,7 @@ class ToyParser(Parser):
 	def raise_stmt(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('raise') is not None and
+		 self.expect_keyword('raise') is not None and
 		 (n1 := self.expression()) is not None and
 		 ((n2 := self.synthetic_rule_72()) or True) is not None and
 		   True):
@@ -4942,7 +4935,7 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('raise') is not None and
+		 self.expect_keyword('raise') is not None and
 		   True):
 			return raise_stmt1()
 		self.reset(pos)
@@ -4967,7 +4960,7 @@ class ToyParser(Parser):
 	def function_def_raw(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('def') is not None and
+		 self.expect_keyword('def') is not None and
 		 (n1 := self.expect('NAME')) is not None and
 		 self.expect('(') is not None and
 		 ((n3 := self.synthetic_rule_73()) or True) is not None and
@@ -4982,7 +4975,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n9 := self.expect('ASYNC')) is not None and
-		 self.expect('def') is not None and
+		 self.expect_keyword('def') is not None and
 		 (n11 := self.expect('NAME')) is not None and
 		 self.expect('(') is not None and
 		 ((n13 := self.synthetic_rule_76()) or True) is not None and
@@ -5259,7 +5252,7 @@ class ToyParser(Parser):
 	def class_def_raw(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('class') is not None and
+		 self.expect_keyword('class') is not None and
 		 (n1 := self.expect('NAME')) is not None and
 		 ((n2 := self.synthetic_rule_88()) or True) is not None and
 		 self.expect(':') is not None and
@@ -5424,9 +5417,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.disjunction()) is not None and
-		 self.expect('if') is not None and
+		 self.expect_keyword('if') is not None and
 		 (n2 := self.disjunction()) is not None and
-		 self.expect('else') is not None and
+		 self.expect_keyword('else') is not None and
 		 (n4 := self.expression()) is not None and
 		   True):
 			return expression0(n0, n2, n4)
@@ -5448,7 +5441,7 @@ class ToyParser(Parser):
 	def lambdef(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('lambda') is not None and
+		 self.expect_keyword('lambda') is not None and
 		 ((n1 := self.synthetic_rule_96()) or True) is not None and
 		 self.expect(':') is not None and
 		 (n3 := self.expression()) is not None and
@@ -5683,7 +5676,7 @@ class ToyParser(Parser):
 	def inversion(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('not') is not None and
+		 self.expect_keyword('not') is not None and
 		 (n1 := self.inversion()) is not None and
 		   True):
 			return inversion0(n1)
@@ -5838,8 +5831,8 @@ class ToyParser(Parser):
 	def notin_bitwise_or(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('not') is not None and
-		 self.expect('in') is not None and
+		 self.expect_keyword('not') is not None and
+		 self.expect_keyword('in') is not None and
 		 (n2 := self.bitwise_or()) is not None and
 		   True):
 			return notin_bitwise_or0(n2)
@@ -5849,7 +5842,7 @@ class ToyParser(Parser):
 	def in_bitwise_or(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('in') is not None and
+		 self.expect_keyword('in') is not None and
 		 (n1 := self.bitwise_or()) is not None and
 		   True):
 			return in_bitwise_or0(n1)
@@ -5860,7 +5853,7 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 self.expect('is') is not None and
-		 self.expect('not') is not None and
+		 self.expect_keyword('not') is not None and
 		 (n2 := self.bitwise_or()) is not None and
 		   True):
 			return isnot_bitwise_or0(n2)
@@ -6176,19 +6169,19 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('True') is not None and
+		 self.expect_keyword('True') is not None and
 		   True):
 			return atom1()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('False') is not None and
+		 self.expect_keyword('False') is not None and
 		   True):
 			return atom2()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('None') is not None and
+		 self.expect_keyword('None') is not None and
 		   True):
 			return atom3()
 		self.reset(pos)
@@ -6400,9 +6393,9 @@ class ToyParser(Parser):
 		pos = self.mark()
 		if (True and
 		 (n0 := self.expect('ASYNC')) is not None and
-		 self.expect('for') is not None and
+		 self.expect_keyword('for') is not None and
 		 (n2 := self.star_targets()) is not None and
-		 self.expect('in') is not None and
+		 self.expect_keyword('in') is not None and
 		 True is not None and
 		 (n5 := self.disjunction()) is not None and
 		 (n6 := self.loop(False, self.synthetic_rule_126, )) is not None and
@@ -6411,9 +6404,9 @@ class ToyParser(Parser):
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('for') is not None and
+		 self.expect_keyword('for') is not None and
 		 (n8 := self.star_targets()) is not None and
-		 self.expect('in') is not None and
+		 self.expect_keyword('in') is not None and
 		 True is not None and
 		 (n11 := self.disjunction()) is not None and
 		 (n12 := self.loop(False, self.synthetic_rule_127, )) is not None and
@@ -6425,15 +6418,15 @@ class ToyParser(Parser):
 	def yield_expr(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('yield') is not None and
-		 self.expect('from') is not None and
+		 self.expect_keyword('yield') is not None and
+		 self.expect_keyword('from') is not None and
 		 (n2 := self.expression()) is not None and
 		   True):
 			return yield_expr0(n2)
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
-		 self.expect('yield') is not None and
+		 self.expect_keyword('yield') is not None and
 		 ((n4 := self.synthetic_rule_128()) or True) is not None and
 		   True):
 			return yield_expr1(n4)
@@ -7236,7 +7229,7 @@ class ToyParser(Parser):
 	def synthetic_rule_31(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('as') is not None and
+		 self.expect_keyword('as') is not None and
 		 (n1 := self.expect('NAME')) is not None and
 		   True):
 			return synthetic_rule_31(n1)
@@ -7266,7 +7259,7 @@ class ToyParser(Parser):
 	def synthetic_rule_34(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('as') is not None and
+		 self.expect_keyword('as') is not None and
 		 (n1 := self.expect('NAME')) is not None and
 		   True):
 			return synthetic_rule_34(n1)
@@ -7476,7 +7469,7 @@ class ToyParser(Parser):
 	def synthetic_rule_55(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('as') is not None and
+		 self.expect_keyword('as') is not None and
 		 (n1 := self.expect('NAME')) is not None and
 		   True):
 			return synthetic_rule_55(n1)
@@ -7682,7 +7675,7 @@ class ToyParser(Parser):
 	def synthetic_rule_72(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('from') is not None and
+		 self.expect_keyword('from') is not None and
 		 (n1 := self.expression()) is not None and
 		   True):
 			return synthetic_rule_72(n1)
@@ -7973,7 +7966,7 @@ class ToyParser(Parser):
 	def synthetic_rule_103(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('or') is not None and
+		 self.expect_keyword('or') is not None and
 		 (n1 := self.conjunction()) is not None and
 		   True):
 			return synthetic_rule_103(n1)
@@ -7983,7 +7976,7 @@ class ToyParser(Parser):
 	def synthetic_rule_104(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('and') is not None and
+		 self.expect_keyword('and') is not None and
 		 (n1 := self.inversion()) is not None and
 		   True):
 			return synthetic_rule_104(n1)
@@ -8238,7 +8231,7 @@ class ToyParser(Parser):
 	def synthetic_rule_126(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('if') is not None and
+		 self.expect_keyword('if') is not None and
 		 (n1 := self.disjunction()) is not None and
 		   True):
 			return synthetic_rule_126(n1)
@@ -8248,7 +8241,7 @@ class ToyParser(Parser):
 	def synthetic_rule_127(self):
 		pos = self.mark()
 		if (True and
-		 self.expect('if') is not None and
+		 self.expect_keyword('if') is not None and
 		 (n1 := self.disjunction()) is not None and
 		   True):
 			return synthetic_rule_127(n1)

@@ -32,12 +32,12 @@ simple_stmt:
     | return_stmt { _a } 
     | import_stmt { _a } 
     | raise_stmt { _a } 
-    | 'pass' { _a } 
+    | 'pass' { 'pass' } 
     | del_stmt { _a } 
     | yield_stmt { _a } 
     | assert_stmt { _a } 
-    | 'break' { _a } 
-    | 'continue' { _a } 
+    | 'break' { 'break' } 
+    | 'continue' { 'continue' } 
     | global_stmt { _a } 
     | nonlocal_stmt { _a }
 compound_stmt:
@@ -498,15 +498,15 @@ slice:
     | named_expression { _a }
 atom:
     | NAME { _a } 
-    | 'True' { _a } 
-    | 'False' { _a } 
-    | 'None' { _a } 
+    | 'True' { 'True' } 
+    | 'False' { 'False' } 
+    | 'None' { 'None' } 
     | strings { _a } 
     | NUMBER { _a } 
     | (tuple | group | genexp) { _a } 
     | (list | listcomp) { _a } 
     | (dict | set | dictcomp | setcomp) { _a } 
-    | '...' { _a }
+    | '...' { '...' }
 
 strings: STRING+ { _a }
 list:

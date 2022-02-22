@@ -63,7 +63,7 @@ rules = gram.rules.items()
 
 #Todo, in order of high priority to low
 #TODO: Test that it can actually parse various files
-#NOTE: Need to handle imports, context managers
+#NOTE: Need to handle imports (basically need to implement keywords and expect_keyword)
 #TODO: Improve translation infrastructure
 #   Probably want something that can say "anything inside gets tabbed this much"
 #   Figure out where users most reasonably want to describe the translations (i.e after each alternative, or at the end of the rule)

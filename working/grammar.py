@@ -16,6 +16,40 @@ from typing import (
     Union,
 )
 
+keywords = [
+    "'and'",
+    "'as'",
+    "'assert'",
+    "'break'",
+    "'class'",
+    "'continue'",
+    "'def'",
+    "'del'",
+    "'elif'",
+    "'else'",
+    "'except'",
+    "'False'",
+    "'finally'",
+    "'for'",
+    "'from'",
+    "'global'",
+    "'if'",
+    "'import'",
+    "'in'",
+    "'lambda'",
+    "'None'",
+    "'nonlocal'",
+    "'not'",
+    "'or'",
+    "'pass'",
+    "'raise'",
+    "'return'",
+    "'True'",
+    "'try'",
+    "'while'",
+    "'with'",
+    "'yield'",
+]
 
 class GrammarError(Exception):
     pass
@@ -168,7 +202,7 @@ class NameLeaf(Leaf):
         return {self.value}
     def to_rule(self, varnum):
         if str(self.value).isupper():
-            return f"(n{varnum} := self.expect('{self.value}'))"
+            return f"(n{varnum} := self.{'expect' if self.value not in keywords else 'expect_keyword'}('{self.value}'))"
         else:
             return f"(n{varnum} := self.{self.value}())"
 
@@ -187,7 +221,7 @@ class StringLeaf(Leaf):
         return set()
 
     def to_rule(self, varnum):
-        return f"self.expect({self.value})"
+        return f"self.{'expect_keyword' if self.value in keywords else 'expect'}({self.value})"
 
 
 #TODO: Figure out how this should really be working
@@ -350,7 +384,10 @@ class PositiveLookahead(Lookahead):
         return f"PositiveLookahead({self.node!r})"
 
     def to_rule(self, varnum):
-        func = "self.expect"
+        try:
+            func = f"self.{'expect' if self.node.value not in keywords else 'expect_keyword'}"
+        except AttributeError:
+            func = "self.expect"
         if str(self.node).isupper():
             atom = f"'{str(self.node)}'"
         else:
@@ -375,7 +412,10 @@ class NegativeLookahead(Lookahead):
         return f"NegativeLookahead({self.node!r})"
 
     def to_rule(self, varnum):
-        func = "self.expect"
+        try:
+            func = f"self.{'expect' if self.node.value not in keywords else 'expect_keyword'}"
+        except AttributeError:
+            func = "self.expect"
         if str(self.node).isupper():
             atom = f"'{str(self.node)}'"
         else:
@@ -455,7 +495,10 @@ class Repeat0(Repeat):
         return True
 
     def to_rule(self, varnum):
-        func = "self.expect"
+        try:
+            func = f"self.{'expect' if self.node.value not in keywords else 'expect_keyword'}"
+        except AttributeError:
+            func = "self.expect"
         atom = f"'{str(self.node)}'"
         if type(self.node) != StringLeaf and str(self.node).islower():
             func = f"self.{self.node}"
@@ -484,7 +527,10 @@ class Repeat1(Repeat):
         return False
 
     def to_rule(self, varnum):
-        func = "self.expect"
+        try:
+            func = f"self.{'expect' if self.node.value not in keywords else 'expect_keyword'}"
+        except AttributeError:
+            func = "self.expect"
         atom = f"'{str(self.node)}'"
         if type(self.node) != StringLeaf and str(self.node).islower():
             func = f"self.{self.node.to_rule(varnum)}"
