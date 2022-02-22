@@ -1,4 +1,4 @@
-from tokenize import generate_tokens
+from tokenize import TokenInfo, generate_tokens
 from tokenizer import Tokenizer
 from out import ToyParser
 
@@ -13,17 +13,19 @@ print(gram)
 
 i = gram
 def dive(i):
-        while(i):
+        if type(i) == TokenInfo:
+            print("Base case")
+            print(i)
+            return
+        else:
             if type(i) == list:
                 for x in i:
+                    print(i)
                     dive(x)
-            else:
-                print(i)
-                print("U")
-            try:
-                i = i._a
-            except:
-                print(i)
-                break
+                return
+            i = i._a
+            print(i)
+            dive(i)
+            return
 # print(gram)
-dive(i)
+# dive(i)

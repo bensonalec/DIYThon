@@ -607,7 +607,7 @@ t_primary:
     | t_primary genexp &t_lookahead { _a } 
     | t_primary '(' [arguments] ')' &t_lookahead { _a } 
     | atom &t_lookahead { _a }
-t_lookahead: '(' { _a }  | '[' { _a }  | '.' { _a }
+t_lookahead: '(' { '(' }  | '[' { '[' }  | '.' { '.' }
 
 invalid_double_starred_kvpairs:
     | (double_starred_kvpair (',' double_starred_kvpair)*) ',' invalid_kvpair { _a } 

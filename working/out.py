@@ -2287,23 +2287,20 @@ class t_primary4:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class t_lookahead0:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'('}"
 class t_lookahead1:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'['}"
 class t_lookahead2:
-	def __init__(self, _a, *rest):
-		self._a = _a
+	def __init__(self,  *rest):
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{'.'}"
 class invalid_double_starred_kvpairs0:
 	def __init__(self, _a, *rest):
 		self._a = _a
