@@ -63,10 +63,12 @@ rules = gram.rules.items()
 
 #Todo, in order of high priority to low
 #TODO: Test that it can actually parse various files
-#NOTE: Need to handle imports (basically need to implement keywords and expect_keyword)
+#NOTE: For now will probably continue onwards, but it has trouble with various features:
+#   NOTE: Item destructuring (i.e in an enumerated loop)
+#   NOTE: Function input (2 or more input to a function)
+# Handle synthetic rules that should be passed input 
 #TODO: Improve translation infrastructure
 #   Probably want something that can say "anything inside gets tabbed this much"
-#   Figure out where users most reasonably want to describe the translations (i.e after each alternative, or at the end of the rule)
 #   Implement some kind of "optional" part of the translation, this might be hard and more worth just rewriting the rule
 #   Figure out how repitions can be caught and translated
 #TODO: Write appropriate translations for Python

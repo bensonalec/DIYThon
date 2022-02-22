@@ -7432,19 +7432,19 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect(',') is not None and
 		   True):
-			return synthetic_rule_52()
+			return synthetic_rule_52(',')
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect(')') is not None and
 		   True):
-			return synthetic_rule_52()
+			return synthetic_rule_52(')')
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect(':') is not None and
 		   True):
-			return synthetic_rule_52()
+			return synthetic_rule_52(':')
 		self.reset(pos)
 		return None
 	@memoize
@@ -7877,7 +7877,7 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect(',') is not None and
 		   True):
-			return synthetic_rule_93()
+			return synthetic_rule_93(',')
 		self.reset(pos)
 		return None
 	@memoize
@@ -8262,7 +8262,7 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect(',') is not None and
 		   True):
-			return synthetic_rule_129()
+			return synthetic_rule_129(',')
 		self.reset(pos)
 		return None
 	@memoize
