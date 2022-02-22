@@ -3,27 +3,8 @@ from tokenizer import Tokenizer
 from grammar_parser import GeneratedParser
 import sccutils 
 
-#Todo, in order of high priority to low
-#TODO: Get everything together for the IRB
-#   Finish course
-#   Actual paperwork
-#   Describe the actual experiment, the extensions being implemented, and the questions asked
-#TODO: Write the design and implementation part of the actual thesis
-#TODO:Handle synthetic rules that should be passed input 
-
-#TODO: Test that it can actually parse various files
-#NOTE: For now will probably continue onwards, but it has trouble with various features:
-#   NOTE: Item destructuring (i.e in an enumerated loop)
-#   NOTE: Function input (2 or more input to a function)
-#TODO: Improve translation infrastructure
-#   Probably want something that can say "anything inside gets tabbed this much"
-#   Implement some kind of "optional" part of the translation, this might be hard and more worth just rewriting the rule
-#   Figure out how repitions can be caught and translated
-#TODO: Get 2 sample extensions working
-#TODO: Write appropriate translations for Python
-#TODO: Implement Visualization Tool
-def generate_parser(output_file_name, grammar):
-    with open(grammar) as fi:
+def generate_parser(output_file_name, grammar_file_location):
+    with open(grammar_file_location) as fi:
         tokenGen = generate_tokens(fi.readline)
         p = GeneratedParser(Tokenizer(tokenGen))
         gram = p.start()
