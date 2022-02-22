@@ -62,7 +62,6 @@ compute_left_recursives(gram.rules)
 rules = gram.rules.items()
 
 #Todo, in order of high priority to low
-#TODO: Implement generation of alt nodes
 #TODO: Test that it can actually parse various files
 #TODO: Improve translation infrastructure
 #   Probably want something that can say "anything inside gets tabbed this much"

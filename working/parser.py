@@ -244,6 +244,8 @@ class Parser:
                 return self._tokenizer.getnext()
         if tok.type == token.OP and tok.string == type:
             return self._tokenizer.getnext()
+        # print(tok)
+        # print(type)
         return None
 
     @memoize
@@ -265,6 +267,16 @@ class Parser:
         ok = func(*args)
         self.reset(mark)
         return not ok
+
+    def loop(self, nonempty, func, *args):
+        mark = self.mark()
+        nodes = []
+        while (node := func(*args)) is not None:
+            nodes.append(node)
+        if len(nodes) >= nonempty:
+            return nodes
+        self.reset(mark)
+        return None
 
     def make_syntax_error(self, filename: str = "<unknown>") -> SyntaxError:
         tok = self._tokenizer.diagnose()
