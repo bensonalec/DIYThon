@@ -617,4 +617,4 @@ invalid_double_starred_kvpairs:
 invalid_kvpair:
     | expression !(':') { _a } 
     | expression ':' '*' bitwise_or { _a } 
-    | expression ':' { _a }
+    | expression ':' { _a _b _c _d 'lmao' }

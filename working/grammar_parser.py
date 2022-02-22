@@ -527,8 +527,9 @@ class GeneratedParser(Parser):
             (literal_1 := self.expect(']'))
         ):
             self.synthetic_rules.append(Rule(f"synthetic_rule_{self.synth_num}", None, alts))
+            tempSynth = self.synth_num
             self.synth_num += 1
-            return Opt ( alts, self.synth_num - 1 )
+            return Opt ( alts, tempSynth )
         self.reset(mark)
         if cut: return None
         cut = False
@@ -595,8 +596,9 @@ class GeneratedParser(Parser):
             (literal_1 := self.expect(')'))
         ):
             self.synthetic_rules.append(Rule(f"synthetic_rule_{self.synth_num}", None, alts))
+            tempSynth = self.synth_num
             self.synth_num += 1
-            return Group ( alts, self.synth_num - 1 )
+            return Group ( alts, tempSynth )
         self.reset(mark)
         if cut: return None
         cut = False

@@ -1,5 +1,4 @@
 from parser import memoize, memoize_left_rec, Parser
-import tokenize
 class file0:
 	def __init__(self, _a, *rest):
 		self._a = _a
@@ -2325,1157 +2324,829 @@ class invalid_kvpair1:
 	def translate(self):
 		return f"{self._a.translate() if type(self._a) != str else self._a}"
 class invalid_kvpair2:
-	def __init__(self, _a, *rest):
+	def __init__(self, _a, _b, _c, _d, *rest):
 		self._a = _a
+		self._b = _b
+		self._c = _c
+		self._d = _d
 		pass
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return f"{self._a.translate() if type(self._a) != str else self._a}{self._b.translate() if type(self._b) != str else self._b}{self._c.translate() if type(self._c) != str else self._c}{self._d.translate() if type(self._d) != str else self._d}{'lmao'}"
 class synthetic_rule_0:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_1:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_2:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_3:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_4:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_5:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_6:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_7:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_8:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_9:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_10:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_11:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_12:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_13:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_14:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_14:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_15:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_16:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_17:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_17:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_18:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_19:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_19:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_20:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_21:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_22:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_23:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_24:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_25:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_25:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_26:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_26:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_27:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_27:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_28:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_29:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_30:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_31:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_32:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_33:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_34:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_35:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_36:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_37:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_38:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_39:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_40:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_41:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_42:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_43:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_44:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_45:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_46:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_47:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_48:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_49:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_50:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_51:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_52:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_52:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_52:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_53:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_54:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_55:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_56:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_57:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_58:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_58:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_59:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_59:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_60:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_60:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_60:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_61:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_61:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_61:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_62:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_63:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_64:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_65:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_66:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_66:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_67:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_68:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_69:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_70:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_71:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_72:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_73:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_74:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_75:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_76:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_77:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_78:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_79:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_80:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_81:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_82:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_83:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_84:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_85:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_86:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_87:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_88:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_89:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_90:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_91:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_92:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_93:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_94:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_95:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_96:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_97:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_98:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_99:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_100:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_101:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_102:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_103:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_104:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_105:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_106:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_107:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_108:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_109:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_110:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_111:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_112:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_113:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_114:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_114:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_114:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_115:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_115:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_116:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_116:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_116:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_116:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_117:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_118:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_119:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_120:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_120:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_121:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_121:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_122:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_123:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_124:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_125:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_126:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_127:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_128:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_129:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_130:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_130:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_131:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_131:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_132:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_132:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_133:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_133:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_134:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_135:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_136:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_137:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_138:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_139:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_140:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_141:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_142:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_143:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_144:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_145:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_146:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_147:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_148:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_149:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_150:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_151:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_152:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_153:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_154:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_155:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_156:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_157:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_158:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_159:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_160:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_161:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
-class synthetic_rule_161:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
-	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class synthetic_rule_162:
-	def __init__(self, _a, *rest):
-		self._a = _a
-		pass
+	def __init__(self, *rest):
+		self.rest = rest
 	def translate(self):
-		return f"{self._a.translate() if type(self._a) != str else self._a}"
+		return self.rest
 class ToyParser(Parser):
 	@memoize
 	def file(self):
@@ -7432,19 +7103,19 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect(',') is not None and
 		   True):
-			return synthetic_rule_52(',')
+			return synthetic_rule_52()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect(')') is not None and
 		   True):
-			return synthetic_rule_52(')')
+			return synthetic_rule_52()
 		self.reset(pos)
 		pos = self.mark()
 		if (True and
 		 self.expect(':') is not None and
 		   True):
-			return synthetic_rule_52(':')
+			return synthetic_rule_52()
 		self.reset(pos)
 		return None
 	@memoize
@@ -7877,7 +7548,7 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect(',') is not None and
 		   True):
-			return synthetic_rule_93(',')
+			return synthetic_rule_93()
 		self.reset(pos)
 		return None
 	@memoize
@@ -8262,7 +7933,7 @@ class ToyParser(Parser):
 		if (True and
 		 self.expect(',') is not None and
 		   True):
-			return synthetic_rule_129(',')
+			return synthetic_rule_129()
 		self.reset(pos)
 		return None
 	@memoize
@@ -8616,4 +8287,3 @@ class ToyParser(Parser):
 			return synthetic_rule_162()
 		self.reset(pos)
 		return None
-
