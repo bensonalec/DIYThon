@@ -227,7 +227,8 @@ class Rhs:
 
     def to_rule(self, varnum, fromGroup=True, synthNumber=None):
         if fromGroup:
-            return f"(n{varnum} := self.synthetic_rule_{synthNumber-1}())"
+            #NOTE: For some reason the -1 here is important?
+            return f"(n{varnum} := self.synthetic_rule_{synthNumber}())"
         currentMethod = ""
         for alt in self.alts:
             currentMethod += '\t\tpos = self.mark()\n'
