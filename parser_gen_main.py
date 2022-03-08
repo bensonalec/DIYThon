@@ -29,15 +29,11 @@ def generate_parser(output_file_name, grammar_file_location):
         else:
             for ind,translation in enumerate([x.action for x in rule.rhs.alts if x.action != None]):
                 # print(translation)
-                translation = translation.split(" ")
-                variables = [x for x in translation if x.startswith('_')]
                 currentNode += f'class {rule.name}{ind}:\n'
-                currentNode += f'\tdef __init__(self, {", ".join([f"{x}" for x in variables])}{"," if len(variables) > 0 else ""} *rest):\n'
-                for var in variables:
-                    currentNode += f'\t\tself.{var} = {var}\n'
-                currentNode += "\t\tpass\n"
+                currentNode += f'\tdef __init__(self, *rest):\n'
+                currentNode += '\t\tself.rest = rest\n'
                 currentNode += f'\tdef translate(self):\n'
-                currentNode += f'\t\treturn f"{"".join([f"{{self.{x}.translate() if type(self.{x}) != str else self.{x}}}" if x in variables else f"{{{x}}}" for x in translation])}"\n'
+                currentNode += f"\t\treturn tr.translate('{translation}', *self.rest)\n"
         nodeClasses += currentNode
 
         currentMethod = ""
@@ -50,6 +46,7 @@ def generate_parser(output_file_name, grammar_file_location):
 
     output = ""
     output += f"from parser import memoize, memoize_left_rec, Parser\n"
+    output += "import translate as tr\n"
     output += nodeClasses
     output += "class ToyParser(Parser):\n"
     output += parserClass

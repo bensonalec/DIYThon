@@ -1,4 +1,4 @@
-file: [statements] ENDMARKER { _a } 
+file: [statements] ENDMARKER { _a _b _c "HEllo" } 
 interactive: statement_newline { _a }
 eval: expressions NEWLINE* ENDMARKER { _a }
 func_type: '(' [type_expressions] ')' '->' expression NEWLINE* ENDMARKER { _a } 
@@ -32,12 +32,12 @@ simple_stmt:
     | return_stmt { _a } 
     | import_stmt { _a } 
     | raise_stmt { _a } 
-    | 'pass' { 'pass' } 
+    | 'pass' { "pass" } 
     | del_stmt { _a } 
     | yield_stmt { _a } 
     | assert_stmt { _a } 
-    | 'break' { 'break' } 
-    | 'continue' { 'continue' } 
+    | 'break' { "break" } 
+    | 'continue' { "continue" } 
     | global_stmt { _a } 
     | nonlocal_stmt { _a }
 compound_stmt:
@@ -498,15 +498,15 @@ slice:
     | named_expression { _a }
 atom:
     | NAME { _a } 
-    | 'True' { 'True' } 
-    | 'False' { 'False' } 
-    | 'None' { 'None' } 
+    | 'True' { "True" } 
+    | 'False' { "False" } 
+    | 'None' { "None" } 
     | strings { _a } 
     | NUMBER { _a } 
     | (tuple | group | genexp) { _a } 
     | (list | listcomp) { _a } 
     | (dict | set | dictcomp | setcomp) { _a } 
-    | '...' { '...' }
+    | '...' { "..." }
 
 strings: STRING+ { _a }
 list:
@@ -568,53 +568,56 @@ star_targets:
 star_targets_list_seq: (star_target (',' star_target)*) [','] { _a }
 star_targets_tuple_seq:
     | star_target (',' star_target )+ [','] { _a } 
-    | star_target ',' { _a }
+    | star_target ',' { _a "," }
 star_target:
-    | '*' (!'*' star_target) { _a } 
+    | '*' (!'*' star_target) { "*" _a } 
     | target_with_star_atom { _a }
 target_with_star_atom:
-    | t_primary '.' NAME !t_lookahead { _a } 
-    | t_primary '[' slices ']' !t_lookahead { _a } 
+    | t_primary '.' NAME !t_lookahead { _a "." _b } 
+    | t_primary '[' slices ']' !t_lookahead { _a "[" _b "]" } 
     | star_atom { _a }
 star_atom:
     | NAME { _a } 
-    | '(' target_with_star_atom ')' { _a } 
-    | '(' [star_targets_tuple_seq] ')' { _a } 
-    | '[' [star_targets_list_seq] ']' { _a }
+    | '(' target_with_star_atom ')' { "(" _a ")" } 
+    | '(' [star_targets_tuple_seq] ')' { "(" _a ")" } 
+    | '[' [star_targets_list_seq] ']' { "[" _a "]" }
 
 single_target:
     | single_subscript_attribute_target { _a } 
     | NAME { _a } 
-    | '(' single_target ')' { _a }
+    | '(' single_target ')' { "(" _a ")" }
 single_subscript_attribute_target:
-    | t_primary '.' NAME !t_lookahead { _a } 
-    | t_primary '[' slices ']' !t_lookahead { _a }
+    | t_primary '.' NAME !t_lookahead { _a "." _b } 
+    | t_primary '[' slices ']' !t_lookahead { _a "[" _b "]" }
 
 del_targets: (del_target (',' del_target)*) [','] { _a }
 del_target:
-    | t_primary '.' NAME !t_lookahead { _a } 
-    | t_primary '[' slices ']' !t_lookahead { _a } 
+    | t_primary '.' NAME !t_lookahead { _a "." _b } 
+    | t_primary '[' slices ']' !t_lookahead { _a "[" _b "]" } 
     | del_t_atom { _a }
 del_t_atom:
     | NAME { _a } 
-    | '(' del_target ')' { _a } 
-    | '(' [del_targets] ')' { _a } 
-    | '[' [del_targets] ']' { _a }
+    | '(' del_target ')' { "(" _a ")" } 
+    | '(' [del_targets] ')' { "(" _a ")" } 
+    | '[' [del_targets] ']' { "[" _a "]" }
 
 t_primary:
-    | t_primary '.' NAME &t_lookahead { _a } 
-    | t_primary '[' slices ']' &t_lookahead { _a } 
+    | t_primary '.' NAME &t_lookahead { _a "." _b} 
+    | t_primary '[' slices ']' &t_lookahead { _a "[" _b "]" } 
     | t_primary genexp &t_lookahead { _a } 
-    | t_primary '(' [arguments] ')' &t_lookahead { _a } 
+    | t_primary '(' [arguments] ')' &t_lookahead { _a "(" _b ")" } 
     | atom &t_lookahead { _a }
-t_lookahead: '(' { '(' }  | '[' { '[' }  | '.' { '.' }
+t_lookahead: 
+    | '(' { "(" }  
+    | '[' { "[" }  
+    | '.' { "." }
 
 invalid_double_starred_kvpairs:
     | (double_starred_kvpair (',' double_starred_kvpair)*) ',' invalid_kvpair { _a } 
-    | expression ':' '*' bitwise_or { _a } 
-    | expression ':' &('}'|',') { _a }
+    | expression ':' '*' bitwise_or { _a ":" "*" _b } 
+    | expression ':' &('}'|',') { _a ":" }
 
 invalid_kvpair:
     | expression !(':') { _a } 
-    | expression ':' '*' bitwise_or { _a } 
-    | expression ':' { _a _b _c _d 'lmao' }
+    | expression ':' '*' bitwise_or { _a ":" "*" } 
+    | expression ':' { _a ":" }
