@@ -7,8 +7,6 @@ class translation_tokenizer:
     def __init__(self, translation_definition):
         buf = io.StringIO(translation_definition)
         self.tokens = list(generate_tokens(buf.read))
-        print(self.tokens)
-        # self.tokens = peekable(generate_tokens(buf.read))
         self.index = 0
 
     def peek(self):
@@ -51,23 +49,6 @@ class translation_parser:
         self.translatedArgs = []
         for ar in args:
             self.translatedArgs.append(translateVar(ar))
-        # for ar in args:
-        #     #if the object is a synthetic rule, then keep diving through it until no more synthetic rules
-        #     try: 
-        #         translated_arg = ar.translate()
-        #         if type(ar) in [tuple, list]:
-        #             translated_tmp = []
-        #             for x in translated_arg:
-        #                 try:
-        #                     translated_tmp.append(x.translate())
-        #                 except AttributeError:
-        #                     translated_tmp.append(x)
-        #         else:
-        #             translated_tmp = translated_arg
-        #         self.translatedArgs.append(translated_tmp)
-        #     except AttributeError:
-        #         print("Attribute error", ar)
-        #         self.translatedArgs.append(ar)
 
     def parse(self, end_marker=ENDMARKER):
         # print("Parsing", self.translatedArgs)

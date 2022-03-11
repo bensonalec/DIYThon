@@ -1,29 +1,30 @@
 file: [statements] ENDMARKER { OPTIONAL _a ENDOPTIONAL } 
 interactive: statement_newline { _a }
-eval: expressions NEWLINE* ENDMARKER { _a }
-func_type: '(' [type_expressions] ')' '->' expression NEWLINE* ENDMARKER { _a } 
+eval: expressions NEWLINE* ENDMARKER { _a "\n" }
+func_type: '(' [type_expressions] ')' '->' expression NEWLINE* ENDMARKER { "(" OPTIONAL _a ENDOPTIONAL ")->" _b "\n" } 
 fstring: star_expressions { _a }
 
 # type_expressions allow */** but ignore them
 type_expressions:
-    | (expression (',' expression)*) ',' '*' expression ',' '**' expression { _a }
-    | (expression (',' expression)*) ',' '*' expression { _a }
-    | (expression (',' expression)*) ',' '**' expression { _a } 
-    | '*' expression ',' '**' expression { _a } 
-    | '*' expression { _a }
-    | '**' expression { _a }
-    | (expression (',' expression)*) { _a } 
+    | (expression (',' expression)*) ',' '*' expression ',' '**' expression { _a[0] STARTLOOP "," _a[1] ENDLOOP ", *" _b ", **" _c }
+    | (expression (',' expression)*) ',' '*' expression { _a[0] STARTLOOP "," _a[1] ENDLOOP ", *" _b }
+    | (expression (',' expression)*) ',' '**' expression { _a[0] STARTLOOP "," _a[1] ENDLOOP ", **" _b } 
+    | '*' expression ',' '**' expression { "*" _a ", **" _b } 
+    | '*' expression { "*" _a }
+    | '**' expression { "**" _a }
+    | (expression (',' expression)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP } 
 
 statements: statement+ { STARTLOOP _a ENDLOOP }
-statement: compound_stmt { _a }  | simple_stmts { _a } 
+statement: compound_stmt { _a }  
+    | simple_stmts { _a } 
 statement_newline: 
-    | compound_stmt NEWLINE { _a } 
+    | compound_stmt NEWLINE { _a _b } 
     | simple_stmts { _a } 
     | NEWLINE { _a } 
     | ENDMARKER { _a }
 simple_stmts:
-    | simple_stmt !';' NEWLINE { _a }   # Not needed, there for speedup
-    | (simple_stmt (';' simple_stmt)*) [';'] NEWLINE { _a }
+    | simple_stmt !';' NEWLINE { _a "\n" }   # Not needed, there for speedup
+    | (simple_stmt (';' simple_stmt)*) [';'] NEWLINE { _a[0] STARTLOOP ";" _a[1] ENDLOOP ";" "\n" }
 # NOTE: assignment MUST precede expression, else parsing a simple assignment
 # will throw a SyntaxError.
 simple_stmt:
@@ -52,97 +53,99 @@ compound_stmt:
 
 # NOTE: annotated_rhs may start with 'yield'; yield_expr must start with 'yield'
 assignment:
-    | NAME ':' expression ['=' annotated_rhs ] { _a } 
-    | ('(' single_target ')' | single_subscript_attribute_target) ':' expression ['=' annotated_rhs ] { _a } 
-    | (star_targets '=' )+ (yield_expr | star_expressions) !'=' [TYPE_COMMENT] { _a } 
-    | single_target augassign ~ (yield_expr | star_expressions) { _a }
+    | NAME ':' expression ['=' annotated_rhs ] { _a ":" _b } 
+    | ('(' single_target ')' | single_subscript_attribute_target) ':' expression ['=' annotated_rhs ] { "(" _a[0] ")" ":" _b OPTIONAL "=" _c ENDOPTIONAL } 
+    | (star_targets '=' )+ (yield_expr | star_expressions) !'=' [TYPE_COMMENT] { STARTLOOP _a[0] "=" ENDLOOP _b OPTIONAL _c ENDOPTIONAL} 
+    | single_target augassign ~ (yield_expr | star_expressions) { _a _b }
 augassign:
-    | '+=' { _a } 
-    | '-=' { _a } 
-    | '*=' { _a } 
-    | '@=' { _a } 
-    | '/=' { _a } 
-    | '%=' { _a } 
-    | '&=' { _a } 
-    | '|=' { _a } 
-    | '^=' { _a } 
-    | '<<=' { _a } 
-    | '>>=' { _a } 
-    | '**=' { _a } 
-    | '//=' {_a}
+    | '+=' { "+=" } 
+    | '-=' { "-=" } 
+    | '*=' { "*=" } 
+    | '@=' { "@=" } 
+    | '/=' { "/=" } 
+    | '%=' { "%=" } 
+    | '&=' { "&=" } 
+    | '|=' { "|=" } 
+    | '^=' { "^=" } 
+    | '<<=' { "<<=" } 
+    | '>>=' { ">>=" } 
+    | '**=' { "**=" } 
+    | '//=' { "//=" }
 
-global_stmt: 'global' (NAME (',' NAME)*) { _a }
-nonlocal_stmt: 'nonlocal' (NAME (',' NAME)*) { _a }
+global_stmt: 'global' (NAME (',' NAME)*) { "global " _a[0] STARTLOOP "," _a[1] ENDLOOP }
+nonlocal_stmt: 'nonlocal' (NAME (',' NAME)*) { "nonlocal " _a[0] STARTLOOP "," _a[1] ENDLOOP }
 
 yield_stmt: yield_expr { _a }
 
-assert_stmt: 'assert' expression [',' expression ] { _a } 
+assert_stmt: 'assert' expression [',' expression ] { "assert" _a OPTIONAL "," _b ENDOPTIONAL } 
 
 del_stmt:
-    | 'del' del_targets &(';' | NEWLINE) { _a }
-import_stmt: import_name { _a } | import_from { _a }
-import_name: 'import' dotted_as_names { _a }
+    | 'del' del_targets &(';' | NEWLINE) { "del " _a }
+import_stmt: import_name { _a } 
+    | import_from { _a }
+import_name: 'import' dotted_as_names { "import " _a }
 # note below: the ('.' | '...') is necessary because '...' is tokenized as ELLIPSIS
+#TODO: Will want to revisit these rules later
 import_from:
     | 'from' ('.' | '...')* dotted_name 'import' import_from_targets { _a }  
-    | 'from' ('.' | '...')+ 'import' import_from_targets { _a }
+    | 'from' ('.' | '...')+ 'import' import_from_targets { "from " _a }
 import_from_targets:
-    | '(' import_from_as_names [','] ')' { _a } 
+    | '(' import_from_as_names [','] ')' { "(" _a "," ")" } 
     | import_from_as_names !',' { _a } 
-    | '*' { _a }
+    | '*' { "*" }
 import_from_as_names:
-    | (import_from_as_name (',' import_from_as_name)*) { _a }
+    | (import_from_as_name (',' import_from_as_name)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP }
 import_from_as_name:
-    | NAME ['as' NAME ] { _a }
+    | NAME ['as' NAME ] { _a  OPTIONAL "as" _b ENDOPTIONAL}
 dotted_as_names:
-    | (dotted_as_name (',' dotted_as_name)*) { _a }
+    | (dotted_as_name (',' dotted_as_name)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP }
 dotted_as_name:
-    | dotted_name ['as' NAME ] { _a }
+    | dotted_name ['as' NAME ] { _a OPTIONAL "as" _b ENDOPTIONAL }
 dotted_name:
-    | dotted_name '.' NAME { _a } 
+    | dotted_name '.' NAME { _a "." _b } 
     | NAME { _a }
 
 if_stmt:
-    | 'if' named_expression ':' block elif_stmt { _a } 
-    | 'if' named_expression ':' block [else_block] { _a } 
+    | 'if' named_expression ':' block elif_stmt { "if " _a ":" _b _c } 
+    | 'if' named_expression ':' block [else_block] { "if " _a ":" _b OPTIONAL _c ENDOPTIONAL } 
 elif_stmt:
-    | 'elif' named_expression ':' block elif_stmt { _a } 
-    | 'elif' named_expression ':' block [else_block] { _a }
+    | 'elif' named_expression ':' block elif_stmt { "elif " _a ":" _b _c } 
+    | 'elif' named_expression ':' block [else_block] { "elif " _a ":" _b OPTIONAL _c ENDOPTIONAL }
 else_block:
-    | 'else' ':' block { _a }
+    | 'else' ':' block { "else: " _a }
 
 while_stmt:
-    | 'while' named_expression ':' block [else_block] { _a } 
+    | 'while' named_expression ':' block [else_block] { "while " _a ":" _b OPTIONAL _c ENDOPTIONAL } 
 
 for_stmt:
-    | 'for' star_targets 'in' ~ star_expressions ':' [TYPE_COMMENT] block [else_block] { _a } 
-    | ASYNC 'for' star_targets 'in' ~ star_expressions ':' [TYPE_COMMENT] block [else_block] { _a } 
+    | 'for' star_targets 'in' ~ star_expressions ':' [TYPE_COMMENT] block [else_block] { "for " _a " in " _b ":" OPTIONAL _c ENDOPTIONAL _d OPTIONAL _e ENDOPTIONAL } 
+    | ASYNC 'for' star_targets 'in' ~ star_expressions ':' [TYPE_COMMENT] block [else_block] { "async for " _a " in " _b ":" OPTIONAL _c ENDOPTIONAL _d OPTIONAL _e ENDOPTIONAL} 
 with_stmt:
-    | 'with' '(' (with_item (',' with_item)*) ','? ')' ':' block { _a } 
-    | 'with' (with_item (',' with_item)*) ':' [TYPE_COMMENT] block { _a } 
-    | ASYNC 'with' '(' (with_item (',' with_item)*) ','? ')' ':' block { _a } 
-    | ASYNC 'with' (with_item (',' with_item)*) ':' [TYPE_COMMENT] block { _a }
+    | 'with' '(' (with_item (',' with_item)*) ','? ')' ':' block { "with (" _a[0] STARTLOOP "," _a[1] ENDLOOP "," ")" ":" _b } 
+    | 'with' (with_item (',' with_item)*) ':' [TYPE_COMMENT] block { "with " _a[0] STARTLOOP "," _a[1] ENDLOOP ":" OPTIONAL _b ENDOPTIONAL _c } 
+    | ASYNC 'with' '(' (with_item (',' with_item)*) ','? ')' ':' block { "async with ( " _a[0] STARTLOOP "," _a[1] ENDLOOP "," ")" ":" _b } 
+    | ASYNC 'with' (with_item (',' with_item)*) ':' [TYPE_COMMENT] block { "async with " _a[0] STARTLOOP "," _a[1] ENDLOOP ":" OPTIONAL _b ENDOPTIONAL _c }
 with_item:
-    | expression 'as' star_target &(',' | ')' | ':') { _a } 
+    | expression 'as' star_target &(',' | ')' | ':') { _a " as " _b } 
     | expression { _a }
 
 try_stmt:
-    | 'try' ':' block finally_block { _a } 
-    | 'try' ':' block except_block+ [else_block] [finally_block] { _a } 
+    | 'try' ':' block finally_block { "try: " _a _b } 
+    | 'try' ':' block except_block+ [else_block] [finally_block] { "try :" _a STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL OPTIONAL _d ENDOPTIONAL } 
 except_block:
-    | 'except' expression ['as' NAME ] ':' block { _a } 
-    | 'except' ':' block { _a }
+    | 'except' expression ['as' NAME ] ':' block { "except" _a OPTIONAL "as" _b ENDOPTIONAL ":" _c } 
+    | 'except' ':' block { "except :" _a }
 finally_block:
-    | 'finally' ':' block { _a }
+    | 'finally' ':' block { "finally" ": " _a }
 
 match_stmt:
-    | "match" subject_expr ':' NEWLINE INDENT case_block+ DEDENT { _a } 
+    | "match" subject_expr ':' NEWLINE INDENT case_block+ DEDENT { "match "_a ":" "\n" TABBED STARTLOOP _b ENDLOOP ENDTABBED } 
 subject_expr:
-    | star_named_expression ',' star_named_expressions? { _a } 
+    | star_named_expression ',' star_named_expressions? { _a "," OPTIONAL _b ENDOPTIONAL } 
     | named_expression { _a }
 case_block:
-    | "case" patterns guard? ':' block { _a } 
-guard: 'if' named_expression { _a }
+    | "case" patterns guard? ':' block { "case " OPTIONAL _a ENDOPTIONAL ": " _b } 
+guard: 'if' named_expression { "if " _a }
 
 patterns:
     | open_sequence_pattern { _a } 
@@ -151,9 +154,9 @@ pattern:
     | as_pattern { _a } 
     | or_pattern { _a }
 as_pattern:
-    | or_pattern 'as' pattern_capture_target { _a }
+    | or_pattern 'as' pattern_capture_target { _a " as " _b }
 or_pattern:
-    | (closed_pattern ('|' closed_pattern)*) { _a }
+    | (closed_pattern ('|' closed_pattern)*) { _a[0] STARTLOOP _a[1] ENDLOOP }
 closed_pattern:
     | literal_pattern { _a } 
     | capture_pattern { _a } 
@@ -169,30 +172,30 @@ literal_pattern:
     | signed_number !('+' | '-') { _a } 
     | complex_number { _a } 
     | strings { _a } 
-    | 'None' { _a } 
-    | 'True' { _a } 
-    | 'False' { _a }
+    | 'None' { "None" } 
+    | 'True' { "True" } 
+    | 'False' { "False" }
 
 # Literal expressions are used to restrict permitted mapping pattern keys
 literal_expr:
     | signed_number !('+' | '-') { _a } 
     | complex_number { _a } 
     | strings { _a } 
-    | 'None' { _a } 
-    | 'True' { _a } 
-    | 'False' { _a }
+    | 'None' { "None" } 
+    | 'True' { "True" } 
+    | 'False' { "False" }
 
 complex_number:
-    | signed_real_number '+' imaginary_number { _a } 
-    | signed_real_number '-' imaginary_number { _a }  
+    | signed_real_number '+' imaginary_number { _a  "+" _b} 
+    | signed_real_number '-' imaginary_number { _a "-" _b}  
 
 signed_number:
     | NUMBER { _a } 
-    | '-' NUMBER { _a }
+    | '-' NUMBER { "-" _a }
 
 signed_real_number:
     | real_number { _a } 
-    | '-' real_number { _a }
+    | '-' real_number { "-" _a }
 
 real_number:
     | NUMBER { _a }
@@ -207,100 +210,100 @@ pattern_capture_target:
     | !"_" NAME !('.' | '(' | '=') { _a }
 
 wildcard_pattern:
-    | "_" { _a }
+    | "_" { "_" }
 
 value_pattern:
     | attr !('.' | '(' | '=') { _a }
 attr:
-    | name_or_attr '.' NAME { _a }
+    | name_or_attr '.' NAME { _a "." _b }
 name_or_attr:
     | attr { _a } 
     | NAME { _a }
 
 group_pattern:
-    | '(' pattern ')' { _a }
+    | '(' pattern ')' { "(" _a ")" }
 
 sequence_pattern:
-    | '[' maybe_sequence_pattern? ']' { _a } 
-    | '(' open_sequence_pattern? ')' { _a }
+    | '[' maybe_sequence_pattern? ']' { "[" OPTIONAL _a ENDOPTIONAL "]" } 
+    | '(' open_sequence_pattern? ')' { "(" OPTIONAL _a ENDOPTIONAL ")" }
 open_sequence_pattern:
-    | maybe_star_pattern ',' maybe_sequence_pattern? { _a }
+    | maybe_star_pattern ',' maybe_sequence_pattern? { _a "," OPTIONAL _b ENDOPTIONAL }
 maybe_sequence_pattern:
-    | (maybe_star_pattern (',' maybe_star_pattern)*) ','? { _a }
+    | (maybe_star_pattern (',' maybe_star_pattern)*) ','? { _a[0] STARTLOOP "," _a[1] ENDLOOP "," }
 maybe_star_pattern:
     | star_pattern { _a } 
     | pattern { _a }
 star_pattern:
-    | '*' pattern_capture_target { _a }  
-    | '*' wildcard_pattern { _a }
+    | '*' pattern_capture_target { "*" _a }  
+    | '*' wildcard_pattern { "*" _a }
 
 mapping_pattern:
-    | '{' '}' { _a } 
-    | '{' double_star_pattern ','? '}' { _a } 
-    | '{' items_pattern ',' double_star_pattern ','? '}' { _a } 
-    | '{' items_pattern ','? '}' { _a }
+    | '{' '}' { "{ }" } 
+    | '{' double_star_pattern ','? '}' { "{" _a "," "}" } 
+    | '{' items_pattern ',' double_star_pattern ','? '}' { "{" _a "," _b "," "}" } 
+    | '{' items_pattern ','? '}' { "{" _a "," "}" }
 items_pattern:
-    | (key_value_pattern (',' key_value_pattern)*) { _a }
+    | (key_value_pattern (',' key_value_pattern)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP }
 key_value_pattern:
-    | (literal_expr | attr) ':' pattern { _a }
+    | (literal_expr | attr) ':' pattern { _a ":" _b }
 double_star_pattern:
-    | '**' pattern_capture_target { _a }
+    | '**' pattern_capture_target { "**" _a }
 
 class_pattern:
-    | name_or_attr '(' ')' { _a } 
-    | name_or_attr '(' positional_patterns ','? ')' { _a } 
-    | name_or_attr '(' keyword_patterns ','? ')' { _a } 
-    | name_or_attr '(' positional_patterns ',' keyword_patterns ','? ')' { _a }
+    | name_or_attr '(' ')' { _a "(" ")" } 
+    | name_or_attr '(' positional_patterns ','? ')' { _a "(" _b "," ")" } 
+    | name_or_attr '(' keyword_patterns ','? ')' { _a "(" _b "," ")" } 
+    | name_or_attr '(' positional_patterns ',' keyword_patterns ','? ')' { _a "(" _b "," _c "," ")" }
 positional_patterns:
-    | (pattern (',' pattern)*) { _a }
+    | (pattern (',' pattern)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP }
 keyword_patterns:
-    | (keyword_pattern (',' keyword_pattern)*) { _a }
+    | (keyword_pattern (',' keyword_pattern)*) { _a[0] STARTLOOP "," a[1] ENDLOOP }
 keyword_pattern:
-    | NAME '=' pattern { _a }
+    | NAME '=' pattern { _a "=" _b }
 
 return_stmt:
-    | 'return' [star_expressions] { _a }
+    | 'return' [star_expressions] { "return " OPTIONAL _a ENDOPTIONAL }
 
 raise_stmt:
-    | 'raise' expression ['from' expression ] { _a } 
-    | 'raise' { _a }
+    | 'raise' expression ['from' expression ] { "raise " _a OPTIONAL "from" _b ENDOPTIONAL } 
+    | 'raise' { "raise" }
 
 function_def:
-    | decorators function_def_raw { _a } 
+    | decorators function_def_raw { _a _b } 
     | function_def_raw { _a }
 
 function_def_raw:
-    | 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { _a } 
-    | ASYNC 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { _a }
+    | 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { "def " _a " (" OPTIONAL _b ENDOPTIONAL ")"  OPTIONAL "->" _c ENDOPTIONAL ":" OPTIONAL _d ENDOPTIONAL _e} 
+    | ASYNC 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { "async def " _a "(" OPTIONAL _b ENDOPTIONAL ")" OPTIONAL "->" _c ENDOPTIONAL ":" OPTIONAL _d ENDOPTIONAL _e }
 func_type_comment:
-    | NEWLINE TYPE_COMMENT &(NEWLINE INDENT) { _a } # Must be followed by indented block
+    | NEWLINE TYPE_COMMENT &(NEWLINE INDENT) { "\n" _a } # Must be followed by indented block
     | TYPE_COMMENT { _a }
 
 params:
     | parameters { _a }
 
 parameters:
-    | slash_no_default param_no_default* param_with_default* [star_etc] { _a } 
-    | slash_with_default param_with_default* [star_etc] { _a } 
-    | param_no_default+ param_with_default* [star_etc] { _a } 
-    | param_with_default+ [star_etc] { _a } 
+    | slash_no_default param_no_default* param_with_default* [star_etc] { _a STARTLOOP _b ENDLOOP STARTLOOP _c ENDLOOP OPTIONAL _d ENDOPTIONAL } 
+    | slash_with_default param_with_default* [star_etc] { _a STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL } 
+    | param_no_default+ param_with_default* [star_etc] { STARTLOOP _a ENDLOOP STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL } 
+    | param_with_default+ [star_etc] { STARTLOOP _a ENDLOOP OPTIONAL _b ENDOPTIONAL } 
     | star_etc  { _a }
 
 # Some duplication here because we can't write (',' | &')'),
 # which is because we don't support empty alternatives (yet).
 #
 slash_no_default:
-    | param_no_default+ '/' ',' { _a } 
-    | param_no_default+ '/' &')' { _a }
+    | param_no_default+ '/' ',' { STARTLOOP _a ENDLOOP "/" "," } 
+    | param_no_default+ '/' &')' { STARTLOOP _a ENDLOOP "/" }
 slash_with_default:
-    | param_no_default* param_with_default+ '/' ',' { _a } 
-    | param_no_default* param_with_default+ '/' &')' { _a }
+    | param_no_default* param_with_default+ '/' ',' { STARTLOOP _a ENDLOOP STARTLOOP _b ENDLOOP "/" "," } 
+    | param_no_default* param_with_default+ '/' &')' { STARTLOOP _a ENDLOOP STARTLOOP _b ENDLOOP "/" }
 
 star_etc:
-    | '*' param_no_default param_maybe_default* [kwds] { _a } 
-    | '*' ',' param_maybe_default+ [kwds] { _a } 
+    | '*' param_no_default param_maybe_default* [kwds] { "*" _a STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL } 
+    | '*' ',' param_maybe_default+ [kwds] { "*" ","  STARTLOOP _a ENDLOOP OPTIONAL _b ENDOPTIONAL } 
     | kwds { _a }
-kwds: '**' param_no_default { _a }
+kwds: '**' param_no_default { "**" _a }
 
 # One parameter.  This *includes* a following comma and type comment.
 #
@@ -315,64 +318,65 @@ kwds: '**' param_no_default { _a }
 # The latter form is for a final parameter without trailing comma.
 #
 param_no_default:
-    | param ',' TYPE_COMMENT? { _a } 
-    | param TYPE_COMMENT? &')' { _a }
+    | param ',' TYPE_COMMENT? { _a "," OPTIONAL _b ENDOPTIONAL } 
+    | param TYPE_COMMENT? &')' { _a OPTIONAL _b ENDOPTIONAL }
 param_with_default:
-    | param default ',' TYPE_COMMENT? { _a } 
-    | param default TYPE_COMMENT? &')' { _a }
+    | param default ',' TYPE_COMMENT? { _a _b "," OPTIONAL _c ENDOPTIONAL } 
+    | param default TYPE_COMMENT? &')' { _a _b OPTIONAL _c ENDOPTIONAL }
 param_maybe_default:
-    | param default? ',' TYPE_COMMENT? { _a } 
-    | param default? TYPE_COMMENT? &')' { _a }
-param: NAME annotation? { _a }
+    | param default? ',' TYPE_COMMENT? { _a OPTIONAL _b ENDOPTIONAL "," OPTIONAL _c ENDOPTIONAL } 
+    | param default? TYPE_COMMENT? &')' { _a OPTIONAL _b ENDOPTIONAL OPTIONAL _c ENDOPTIONAL }
+param: NAME annotation? { _a OPTIONAL _b ENDOPTIONAL }
 
-annotation: ':' expression { _a }
-default: '=' expression { _a }
+annotation: ':' expression { ": " _a }
+default: '=' expression { "= " _a }
 
-decorators: ('@' named_expression NEWLINE )+ { _a }
+decorators: ('@' named_expression NEWLINE )+ { "@" _a "\n" }
 
 class_def:
-    | decorators class_def_raw { _a } 
+    | decorators class_def_raw { _a _b } 
     | class_def_raw { _a }
 class_def_raw:
-    | 'class' NAME ['(' [arguments] ')' ] ':' block { _a }
+    | 'class' NAME ['(' [arguments] ')' ] ':' block { "class " _a OPTIONAL "(" OPTIONAL _b ENDOPTIONAL ")" ":" _c }
 
 block:
-    | NEWLINE INDENT statements DEDENT { _a } 
+    | NEWLINE INDENT statements DEDENT { "\n" TABBED _a ENDTABBED } 
     | simple_stmts { _a }
 star_expressions:
-    | star_expression (',' star_expression )+ [','] { _a } 
-    | star_expression ',' { _a } 
+    | star_expression (',' star_expression )+ [','] { _a STARTLOOP "," _b ENDLOOP "," } 
+    | star_expression ',' { _a "," } 
     | star_expression { _a }
 star_expression:
     | '*' bitwise_or { "*" _a } 
     | expression { _a }
 
-star_named_expressions: (star_named_expression (',' star_named_expression)*) [','] { _a }
+star_named_expressions: (star_named_expression (',' star_named_expression)*) [','] { _a[0] STARTLOOP "," _a[1][0] ENDLOOP "," }
 star_named_expression:
-    | '*' bitwise_or { _a } 
+    | '*' bitwise_or { "*" _a } 
     | named_expression { _a }
 
 
 assignment_expression:
-    | NAME ':=' ~ expression { _a }
+    | NAME ':=' ~ expression { _a " := " _b }
 
 named_expression:
     | assignment_expression { _a } 
     | expression !':=' { _a }
 
-annotated_rhs: yield_expr { _a }  | star_expressions { _a }
+annotated_rhs: yield_expr { _a }  
+    | star_expressions { _a }
 
 expressions:
-    | expression (',' expression )+ [','] { _a } 
-    | expression ',' { _a } 
+    | expression (',' expression )+ [','] { _a STARTLOOP "," _b ENDLOOP "," } 
+    | expression ',' { _a "," } 
     | expression { _a }
 expression:
-    | disjunction 'if' disjunction 'else' expression { _a } 
+    | disjunction 'if' disjunction 'else' expression { _a " if " _b " else " _c} 
     | disjunction { _a } 
     | lambdef { _a }
 
 lambdef:
-    | 'lambda' [lambda_params] ':' expression { _a }
+    | 'lambda' [lambda_params] ':' expression { "lambda " OPTIONAL _a ENDOPTIONAL " : " _b }
 
 lambda_params:
     | lambda_parameters { _a }
@@ -380,49 +384,48 @@ lambda_params:
 # lambda_parameters etc. duplicates parameters but without annotations
 # or type comments, and if there's no comma after a parameter, we expect
 # a colon, not a close parenthesis.  (For more, see parameters above.)
-#
 lambda_parameters:
-    | lambda_slash_no_default lambda_param_no_default* lambda_param_with_default* [lambda_star_etc] { _a } 
-    | lambda_slash_with_default lambda_param_with_default* [lambda_star_etc] { _a } 
-    | lambda_param_no_default+ lambda_param_with_default* [lambda_star_etc] { _a } 
-    | lambda_param_with_default+ [lambda_star_etc] { _a } 
+    | lambda_slash_no_default lambda_param_no_default* lambda_param_with_default* [lambda_star_etc] { _a STARTLOOP _b ENDLOOP STARTLOOP _c ENDLOOP OPTIONAL _d ENDOPTIONAL } 
+    | lambda_slash_with_default lambda_param_with_default* [lambda_star_etc] { _a STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL } 
+    | lambda_param_no_default+ lambda_param_with_default* [lambda_star_etc] { STARTLOOP _a ENDLOOP STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL } 
+    | lambda_param_with_default+ [lambda_star_etc] { STARTLOOP _a ENDLOOP OPTIONAL _b ENDOPTIONAL } 
     | lambda_star_etc { _a }
 
 lambda_slash_no_default:
-    | lambda_param_no_default+ '/' ',' { _a } 
-    | lambda_param_no_default+ '/' &':' { _a }
+    | lambda_param_no_default+ '/' ',' { STARTLOOP _a ENDLOOP "/" "," } 
+    | lambda_param_no_default+ '/' &':' { STARTLOOP _a ENDLOOP "/" }
 lambda_slash_with_default:
-    | lambda_param_no_default* lambda_param_with_default+ '/' ',' { _a } 
-    | lambda_param_no_default* lambda_param_with_default+ '/' &':' { _a }
+    | lambda_param_no_default* lambda_param_with_default+ '/' ',' { STARTLOOP _a ENDLOOP STARTLOOP _b ENDLOOP "/" "," } 
+    | lambda_param_no_default* lambda_param_with_default+ '/' &':' { STARTLOOP _a ENDLOOP STARTLOOP _b ENDLOOP "/" }
 
 lambda_star_etc:
-    | '*' lambda_param_no_default lambda_param_maybe_default* [lambda_kwds] { _a } 
-    | '*' ',' lambda_param_maybe_default+ [lambda_kwds] { _a } 
+    | '*' lambda_param_no_default lambda_param_maybe_default* [lambda_kwds] { "*" _a STARTLOOP _b ENDLOOP OPTIONAL _c ENDOPTIONAL  } 
+    | '*' ',' lambda_param_maybe_default+ [lambda_kwds] { "*" "," STARTLOOP _a ENDLOOP OPTIONAL _b ENDOPTIONAL } 
     | lambda_kwds { _a }
-lambda_kwds: '**' lambda_param_no_default { _a }
+lambda_kwds: '**' lambda_param_no_default { "**" _a }
 
 lambda_param_no_default:
-    | lambda_param ',' { _a } 
+    | lambda_param ',' { _a "," } 
     | lambda_param &':' { _a }
 lambda_param_with_default:
-    | lambda_param default ',' { _a } 
-    | lambda_param default &':' { _a }
+    | lambda_param default ',' { _a _b "," } 
+    | lambda_param default &':' { _a _b }
 lambda_param_maybe_default:
-    | lambda_param default? ',' { _a } 
-    | lambda_param default? &':' { _a }
+    | lambda_param default? ',' { _a OPTIONAL _b ENDOPTIONAL "," } 
+    | lambda_param default? &':' { _a OPTIONAL _b ENDOPTIONAL }
 lambda_param: NAME { _a }
 
 disjunction:
-    | conjunction ('or' conjunction )+ { _a } 
+    | conjunction ('or' conjunction )+ { _a STARTLOOP "or" _b ENDLOOP } 
     | conjunction { _a }
 conjunction:
-    | inversion ('and' inversion )+ { _a } 
+    | inversion ('and' inversion )+ { _a STARTLOOP "and " _b ENDLOOP } 
     | inversion { _a }
 inversion:
-    | 'not' inversion { _a } 
+    | 'not' inversion { "not " _a } 
     | comparison { _a }
 comparison:
-    | bitwise_or compare_op_bitwise_or_pair+ { _a } 
+    | bitwise_or compare_op_bitwise_or_pair+ { STARTLOOP _a ENDLOOP } 
     | bitwise_or { _a }
 compare_op_bitwise_or_pair:
     | eq_bitwise_or { _a } 
@@ -435,66 +438,66 @@ compare_op_bitwise_or_pair:
     | in_bitwise_or { _a } 
     | isnot_bitwise_or { _a } 
     | is_bitwise_or { _a }
-eq_bitwise_or: '==' bitwise_or { _a }
+eq_bitwise_or: '==' bitwise_or { "== " _a }
 noteq_bitwise_or:
-    | ('!=' ) bitwise_or { _a }
-lte_bitwise_or: '<=' bitwise_or { _a }
-lt_bitwise_or: '<' bitwise_or { _a }
-gte_bitwise_or: '>=' bitwise_or { _a }
-gt_bitwise_or: '>' bitwise_or { _a }
-notin_bitwise_or: 'not' 'in' bitwise_or { _a }
-in_bitwise_or: 'in' bitwise_or { _a }
-isnot_bitwise_or: 'is' 'not' bitwise_or { _a }
-is_bitwise_or: 'is' bitwise_or { _a }
+    | ('!=' ) bitwise_or { "!= " _a }
+lte_bitwise_or: '<=' bitwise_or { "<= " _a }
+lt_bitwise_or: '<' bitwise_or { "< " _a }
+gte_bitwise_or: '>=' bitwise_or { ">= " _a }
+gt_bitwise_or: '>' bitwise_or { "> "_a }
+notin_bitwise_or: 'not' 'in' bitwise_or { "not in " _a }
+in_bitwise_or: 'in' bitwise_or { "in " _a }
+isnot_bitwise_or: 'is' 'not' bitwise_or { "is not " _a }
+is_bitwise_or: 'is' bitwise_or { "is "_a }
 
 bitwise_or:
-    | bitwise_or '|' bitwise_xor { _a } 
+    | bitwise_or '|' bitwise_xor { _a "|" _b } 
     | bitwise_xor { _a }
 bitwise_xor:
-    | bitwise_xor '^' bitwise_and { _a } 
+    | bitwise_xor '^' bitwise_and { _a "^" _b } 
     | bitwise_and { _a }
 bitwise_and:
-    | bitwise_and '&' shift_expr { _a } 
+    | bitwise_and '&' shift_expr { _a "&" _b } 
     | shift_expr { _a }
 shift_expr:
-    | shift_expr '<<' sum { _a } 
-    | shift_expr '>>' sum { _a } 
+    | shift_expr '<<' sum { _a "<<" _b } 
+    | shift_expr '>>' sum { _a ">>" _b } 
     | sum { _a }
 
 sum:
     | sum '+' term { _a " + " _b } 
-    | sum '-' term { _a } 
+    | sum '-' term { _a " - " _b } 
     | term { _a }
 term:
-    | term '*' factor { _a } 
-    | term '/' factor { _a } 
-    | term '//' factor { _a } 
-    | term '%' factor { _a } 
-    | term '@' factor { _a } 
+    | term '*' factor { _a " * " _b } 
+    | term '/' factor { _a " / " _b } 
+    | term '//' factor { _a " // " _b } 
+    | term '%' factor { _a " % " _b } 
+    | term '@' factor { _a " @ " _b} 
     | factor { _a }
 factor:
-    | '+' factor { _a } 
-    | '-' factor { _a } 
-    | '~' factor { _a } 
+    | '+' factor { "+" _a } 
+    | '-' factor { "-" _a } 
+    | '~' factor { "~" _a } 
     | power { _a }
 power:
-    | await_primary '**' factor { _a } 
+    | await_primary '**' factor { _a "**" _b } 
     | await_primary { _a }
 await_primary:
     | AWAIT primary { "await" _a } 
     | primary { _a }
 primary:
-    | primary '.' NAME { _a } 
-    | primary genexp { _a } 
-    | primary '(' [arguments] ')' { _a } 
-    | primary '[' slices ']' { _a } 
+    | primary '.' NAME { _a "." _b } 
+    | primary genexp { _a " " _b } 
+    | primary '(' [arguments] ')' { _a "(" OPTIONAL _a ENDOPTIONAL ")" } 
+    | primary '[' slices ']' { _a "[" _b "]" } 
     | atom { _a }
 
 slices:
     | slice !',' { _a } 
-    | (slice (',' slice)*) [','] { _a }
+    | (slice (',' slice)*) [','] { _a[0] STARTLOOP "," _a[0][0] ENDLOOP "," }
 slice:
-    | [expression] ':' [expression] [':' [expression] ] { _a } 
+    | [expression] ':' [expression] [':' [expression] ] { OPTIONAL _a ENDOPTIONAL ":" OPTIONAL _b ENDOPTIONAL OPTIONAL ":" OPTIONAL _c ENDOPTIONAL ENDOPTIONAL } 
     | named_expression { _a }
 atom:
     | NAME { _a } 
@@ -508,66 +511,66 @@ atom:
     | (dict | set | dictcomp | setcomp) { _a } 
     | '...' { "..." }
 
-strings: STRING+ { _a }
+strings: STRING+ { STARTLOOP _a ENDLOOP }
 list:
-    | '[' [star_named_expressions] ']' { _a }
+    | '[' [star_named_expressions] ']' { "[" OPTIONAL _a ENDOPTIONAL "]" }
 listcomp:
-    | '[' named_expression for_if_clauses ']' { _a }
+    | '[' named_expression for_if_clauses ']' { "[" _a " " _b "]" }
 tuple:
-    | '(' [star_named_expression ',' [star_named_expressions]  ] ')' { _a }
+    | '(' [star_named_expression ',' [star_named_expressions]  ] ')' { "(" OPTIONAL _a "," OPTIONAL _b ENDOPTIONAL ENDOPTIONAL ")" }
 group:
-    | '(' (yield_expr | named_expression) ')' { _a }
+    | '(' (yield_expr | named_expression) ')' { "(" _a ")" }
 genexp:
-    | '(' ( assignment_expression | expression !':=') for_if_clauses ')' { _a }
-set: '{' star_named_expressions '}' { _a }
+    | '(' ( assignment_expression | expression !':=') for_if_clauses ')' { "(" _a " " _b ")" }
+set: '{' star_named_expressions '}' { "{" _a "}" }
 setcomp:
-    | '{' named_expression for_if_clauses '}' { _a }
+    | '{' named_expression for_if_clauses '}' { "{" _a "}" }
 dict:
-    | '{' [double_starred_kvpairs] '}' { _a } 
-    | '{' invalid_double_starred_kvpairs '}'{ _a }
+    | '{' [double_starred_kvpairs] '}' { "{" OPTIONAL _a ENDOPTIONAL "}"} 
+    | '{' invalid_double_starred_kvpairs '}'{ "{" _a "}" }
 
 dictcomp:
-    | '{' kvpair for_if_clauses '}' { _a }
-double_starred_kvpairs: (double_starred_kvpair (',' double_starred_kvpair)*) [','] { _a }
+    | '{' kvpair for_if_clauses '}' { "{ " _a _b " }" }
+double_starred_kvpairs: (double_starred_kvpair (',' double_starred_kvpair)*) [','] { _a[0] STARTLOOP "," _a[1][0] ENDLOOP ","}
 double_starred_kvpair:
-    | '**' bitwise_or { _a } 
+    | '**' bitwise_or { "** " _a } 
     | kvpair { _a }
-kvpair: expression ':' expression { _a }
+kvpair: expression ':' expression { _a " : " _b }
 for_if_clauses:
-    | for_if_clause+ { _a }
+    | for_if_clause+ { STARTLOOP _a ENDLOOP }
 for_if_clause:
-    | ASYNC 'for' star_targets 'in' ~ disjunction ('if' disjunction )* { _a } 
-    | 'for' star_targets 'in' ~ disjunction ('if' disjunction )* { _a }
+    | ASYNC 'for' star_targets 'in' ~ disjunction ('if' disjunction )* { "async" " for " _a " in " _b STARTLOOP "if" _c[0] ENDLOOP} 
+    | 'for' star_targets 'in' ~ disjunction ('if' disjunction )* { "for " _a " in " _b STARTLOOP "if" _c[0] ENDLOOP }
 yield_expr:
-    | 'yield' 'from' expression { _a } 
-    | 'yield' [star_expressions] { _a }
+    | 'yield' 'from' expression { "yield " "from " _a } 
+    | 'yield' [star_expressions] { "yield " OPTIONAL _a ENDOPTIONAL }
 
 arguments:
-    | args [','] &')' { _a }
+    | args [','] &')' { _a "," }
 args:
     | (starred_expression | ( assignment_expression | expression !':=') !'=' (',' starred_expression | ( assignment_expression | expression !':=') !'=')*) [',' kwargs ] { _a } 
     | kwargs { _a }
 
 kwargs:
-    | (kwarg_or_starred (',' kwarg_or_starred)*) ',' (kwarg_or_double_starred (',' kwarg_or_double_starred)*) { _a } 
-    | (kwarg_or_starred (',' kwarg_or_starred)*) { _a } 
-    | (kwarg_or_double_starred (',' kwarg_or_double_starred)*) { _a }
+    | (kwarg_or_starred (',' kwarg_or_starred)*) ',' (kwarg_or_double_starred (',' kwarg_or_double_starred)*) { _a[0] STARTLOOP "," a[0][0] ENDLOOP "," _a[1][0] STARTLOOP "," _a[1][1] ENDLOOP } 
+    | (kwarg_or_starred (',' kwarg_or_starred)*) { _a[0] STARTLOOP "," a[0][0] ENDLOOP } 
+    | (kwarg_or_double_starred (',' kwarg_or_double_starred)*) { _a[0] STARTLOOP "," a[0][0] ENDLOOP }
 starred_expression:
-    | '*' expression { _a }
+    | '*' expression { "*" _a }
 kwarg_or_starred:
-    | NAME '=' expression { _a } 
+    | NAME '=' expression { _a "=" _b } 
     | starred_expression { _a }
 kwarg_or_double_starred:
-    | NAME '=' expression { _a } 
-    | '**' expression { _a }
+    | NAME '=' expression { _a "=" _b } 
+    | '**' expression { "**" _a }
 
 # NOTE: star_targets may contain *bitwise_or, targets may not.
 star_targets:
     | star_target !',' { _a } 
-    | star_target (',' star_target )* [','] { _a }
-star_targets_list_seq: (star_target (',' star_target)*) [','] { _a }
+    | star_target (',' star_target )* [','] { _a STARTLOOP "," _b[0] ENDLOOP "," }
+star_targets_list_seq: (star_target (',' star_target)*) [','] { _a[0] STARTLOOP "," _a[0][0] ENDLOOP "," }
 star_targets_tuple_seq:
-    | star_target (',' star_target )+ [','] { _a START } 
+    | star_target (',' star_target )+ [','] { _a STARTLOOP "," _a ENDLOOP "," } 
     | star_target ',' { _a "," }
 star_target:
     | '*' (!'*' star_target) { "*" _a[0] } 
