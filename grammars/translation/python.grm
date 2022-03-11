@@ -14,7 +14,7 @@ type_expressions:
     | '**' expression { "**" _a }
     | (expression (',' expression)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP } 
 
-statements: statement+ { STARTLOOP _a ENDLOOP }
+statements: statement+ { STARTLOOP PRINT_VARS _a ENDLOOP }
 statement: compound_stmt { _a }  
     | simple_stmts { _a } 
 statement_newline: 
@@ -54,8 +54,8 @@ compound_stmt:
 # NOTE: annotated_rhs may start with 'yield'; yield_expr must start with 'yield'
 assignment:
     | NAME ':' expression ['=' annotated_rhs ] { _a ":" _b } 
-    | ('(' single_target ')' | single_subscript_attribute_target) ':' expression ['=' annotated_rhs ] { "(" _a[0] ")" ":" _b OPTIONAL "=" _c ENDOPTIONAL } 
-    | (star_targets '=' )+ (yield_expr | star_expressions) !'=' [TYPE_COMMENT] { STARTLOOP _a[0] "=" ENDLOOP _b OPTIONAL _c ENDOPTIONAL} 
+    | ('(' single_target ')' | single_subscript_attribute_target) ':' expression ['=' annotated_rhs ] { "(" _a[0] ")" ":" _b[0] OPTIONAL "=" _c ENDOPTIONAL } 
+    | (star_targets '=' )+ (yield_expr | star_expressions) !'=' [TYPE_COMMENT] { STARTLOOP _a[0] " = " ENDLOOP _b[0]} 
     | single_target augassign ~ (yield_expr | star_expressions) { _a _b }
 augassign:
     | '+=' { "+=" } 
@@ -489,7 +489,7 @@ await_primary:
 primary:
     | primary '.' NAME { _a "." _b } 
     | primary genexp { _a " " _b } 
-    | primary '(' [arguments] ')' { _a "(" OPTIONAL _a ENDOPTIONAL ")" } 
+    | primary '(' [arguments] ')' { _a "(" OPTIONAL _b ENDOPTIONAL ")" } 
     | primary '[' slices ']' { _a "[" _b "]" } 
     | atom { _a }
 
@@ -548,7 +548,7 @@ yield_expr:
 arguments:
     | args [','] &')' { _a "," }
 args:
-    | (starred_expression | ( assignment_expression | expression !':=') !'=' (',' starred_expression | ( assignment_expression | expression !':=') !'=')*) [',' kwargs ] { _a } 
+    | ((starred_expression) | ( assignment_expression | expression !':=' ) !'=' (',' starred_expression | ( assignment_expression | expression !':=') !'=')*) [',' kwargs ] { _a[0] } 
     | kwargs { _a }
 
 kwargs:

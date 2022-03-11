@@ -17,10 +17,13 @@ def dive(i):
     elif type(i) == TokenInfo:
         print(i)
     else:
-        print(i.rest)
+        if(i is not None):
+            print(i.rest)
 
-        for x in i.rest:
-            dive(x)
+            for x in i.rest:
+                dive(x)
+
+# dive(gram)
 
 with open("results.py", "w") as fi:
     fi.write(gram.translate())
