@@ -9,23 +9,24 @@ with open("test_input.py") as fi:
     p = ToyParser(Tokenizer(tokenGen))
     gram = p.file()
 
-print(gram)
 
-i = gram
 def dive(i):
-        if type(i) == TokenInfo:
-            print("Base case")
-            print(i)
-            return
-        else:
-            if type(i) == list:
-                for x in i:
-                    print(i)
-                    dive(x)
-                return
-            i = i._a
-            print(i)
-            dive(i)
-            return
-# print(gram)
-# dive(i)
+    if type(i) == list:
+        print(i)
+        for i in i:
+            for x in i.rest:
+                dive(x)
+    elif type(i) == TokenInfo:
+        print(i)
+    else:
+        print(i.rest)
+
+        for x in i.rest:
+            dive(x)
+# dive(gram)
+
+# print(gram.rest[0].translate())
+# print(type(gram))
+# print("Final Result", gram.translate())
+with open("results.py", "w") as fi:
+    fi.write(gram.translate())

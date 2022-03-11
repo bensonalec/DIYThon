@@ -25,7 +25,14 @@ def generate_parser(output_file_name, grammar_file_location):
             currentNode += f'\tdef __init__(self, *rest):\n'
             currentNode += f'\t\tself.rest = rest\n'
             currentNode += f'\tdef translate(self):\n'
-            currentNode += f'\t\treturn self.rest\n'
+            currentNode += f'\t\ttoReturn = []\n'
+            currentNode += f'\t\tfor i in self.rest:\n'
+            currentNode += f'\t\t\ttry:\n'
+            currentNode += f'\t\t\t\ttoReturn.append(i.translate())\n'
+            currentNode += f'\t\t\texcept AttributeError:\n'
+            currentNode += f'\t\t\t\ttoReturn.append(i)\n'
+            currentNode += f'\t\treturn toReturn\n'
+            # currentNode += f'\t\treturn self.rest\n'
         else:
             for ind,translation in enumerate([x.action for x in rule.rhs.alts if x.action != None]):
                 # print(translation)
@@ -33,7 +40,7 @@ def generate_parser(output_file_name, grammar_file_location):
                 currentNode += f'\tdef __init__(self, *rest):\n'
                 currentNode += '\t\tself.rest = rest\n'
                 currentNode += f'\tdef translate(self):\n'
-                currentNode += f"\t\treturn tr.translate('{translation}', *self.rest)\n"
+                currentNode += f"\t\treturn tr.translation_parser('{translation}', *self.rest).parse()\n"
         nodeClasses += currentNode
 
         currentMethod = ""

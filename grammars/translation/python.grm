@@ -1,4 +1,4 @@
-file: [statements] ENDMARKER { _a _b _c "HEllo" } 
+file: [statements] ENDMARKER { OPTIONAL _a ENDOPTIONAL } 
 interactive: statement_newline { _a }
 eval: expressions NEWLINE* ENDMARKER { _a }
 func_type: '(' [type_expressions] ')' '->' expression NEWLINE* ENDMARKER { _a } 
@@ -14,7 +14,7 @@ type_expressions:
     | '**' expression { _a }
     | (expression (',' expression)*) { _a } 
 
-statements: statement+ { _a }
+statements: statement+ { STARTLOOP _a ENDLOOP }
 statement: compound_stmt { _a }  | simple_stmts { _a } 
 statement_newline: 
     | compound_stmt NEWLINE { _a } 
@@ -344,7 +344,7 @@ star_expressions:
     | star_expression ',' { _a } 
     | star_expression { _a }
 star_expression:
-    | '*' bitwise_or { _a } 
+    | '*' bitwise_or { "*" _a } 
     | expression { _a }
 
 star_named_expressions: (star_named_expression (',' star_named_expression)*) [','] { _a }
@@ -462,7 +462,7 @@ shift_expr:
     | sum { _a }
 
 sum:
-    | sum '+' term { _a } 
+    | sum '+' term { _a " + " _b } 
     | sum '-' term { _a } 
     | term { _a }
 term:
@@ -481,7 +481,7 @@ power:
     | await_primary '**' factor { _a } 
     | await_primary { _a }
 await_primary:
-    | AWAIT primary { _a } 
+    | AWAIT primary { "await" _a } 
     | primary { _a }
 primary:
     | primary '.' NAME { _a } 
@@ -567,10 +567,10 @@ star_targets:
     | star_target (',' star_target )* [','] { _a }
 star_targets_list_seq: (star_target (',' star_target)*) [','] { _a }
 star_targets_tuple_seq:
-    | star_target (',' star_target )+ [','] { _a } 
+    | star_target (',' star_target )+ [','] { _a START } 
     | star_target ',' { _a "," }
 star_target:
-    | '*' (!'*' star_target) { "*" _a } 
+    | '*' (!'*' star_target) { "*" _a[0] } 
     | target_with_star_atom { _a }
 target_with_star_atom:
     | t_primary '.' NAME !t_lookahead { _a "." _b } 
@@ -590,7 +590,7 @@ single_subscript_attribute_target:
     | t_primary '.' NAME !t_lookahead { _a "." _b } 
     | t_primary '[' slices ']' !t_lookahead { _a "[" _b "]" }
 
-del_targets: (del_target (',' del_target)*) [','] { _a }
+del_targets: (del_target (',' del_target)*) [','] { _a[0] STARTLOOP "," _a[1] ENDLOOP OPTIONAL "," ENDOPTIONAL }
 del_target:
     | t_primary '.' NAME !t_lookahead { _a "." _b } 
     | t_primary '[' slices ']' !t_lookahead { _a "[" _b "]" } 
@@ -604,7 +604,7 @@ del_t_atom:
 t_primary:
     | t_primary '.' NAME &t_lookahead { _a "." _b} 
     | t_primary '[' slices ']' &t_lookahead { _a "[" _b "]" } 
-    | t_primary genexp &t_lookahead { _a } 
+    | t_primary genexp &t_lookahead { _a _b } 
     | t_primary '(' [arguments] ')' &t_lookahead { _a "(" _b ")" } 
     | atom &t_lookahead { _a }
 t_lookahead: 
@@ -613,7 +613,7 @@ t_lookahead:
     | '.' { "." }
 
 invalid_double_starred_kvpairs:
-    | (double_starred_kvpair (',' double_starred_kvpair)*) ',' invalid_kvpair { _a } 
+    | (double_starred_kvpair (',' double_starred_kvpair)*) ',' invalid_kvpair { _a[0] STARTLOOP "," _a[1] ENDLOOP "," _b } 
     | expression ':' '*' bitwise_or { _a ":" "*" _b } 
     | expression ':' &('}'|',') { _a ":" }
 
