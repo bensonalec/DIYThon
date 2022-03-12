@@ -502,9 +502,7 @@ slice:
 atom:
     | NAME { _a } 
     | 'True' { "True" } 
-    | 'true' { "True" }
     | 'False' { "False" }
-    | 'false' { "false" } 
     | 'None' { "None" } 
     | strings { _a } 
     | NUMBER { _a } 
@@ -515,7 +513,6 @@ atom:
 
 strings: STRING+ { STARTLOOP _a ENDLOOP }
 list:
-    | '[' NUMBER '...' NUMBER ']' { "range(" _a "," _b ")" }
     | '[' [star_named_expressions] ']' { "[" OPTIONAL _a ENDOPTIONAL "]" }
 
 listcomp:

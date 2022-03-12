@@ -12,6 +12,8 @@ from tokenizer import exact_token_types
 from tokenizer import Mark
 from tokenizer import Tokenizer
 
+from keywords import keywords
+
 T = TypeVar("T")
 P = TypeVar("P", bound="Parser")
 F = TypeVar("F", bound=Callable[..., Any])
@@ -185,41 +187,7 @@ class Parser:
         self.reset_reach = self._tokenizer.reset_reach
 
     _keywords: Set[str] = set()
-    _keywords = [
-                    "and",
-                    "as",
-                    "assert",
-                    "break",
-                    "class",
-                    "continue",
-                    "def",
-                    "del",
-                    "elif",
-                    "else",
-                    "except",
-                    "False",
-                    "finally",
-                    "for",
-                    "from",
-                    "global",
-                    "if",
-                    "import",
-                    "in",
-                    "lambda",
-                    "None",
-                    "nonlocal",
-                    "not",
-                    "or",
-                    "pass",
-                    "raise",
-                    "return",
-                    "True",
-                    "try",
-                    "while",
-                    "with",
-                    "yield",
-                    "...",
-    ]
+    _keywords = [x[1:-1] for x in keywords]
     @abstractmethod
     def start(self) -> Any:
         raise NotImplementedError
