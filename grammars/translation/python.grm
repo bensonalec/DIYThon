@@ -14,17 +14,17 @@ type_expressions:
     | '**' expression { "**" _a }
     | (expression (',' expression)*) { _a[0] STARTLOOP "," _a[1] ENDLOOP } 
 
-statements: statement+ { STARTLOOP PRINT_VARS _a ENDLOOP }
+statements: statement+ { STARTLOOP _a ENDLOOP }
 statement: compound_stmt { _a }  
     | simple_stmts { _a } 
 statement_newline: 
-    | compound_stmt NEWLINE { _a _b } 
+    | compound_stmt NEWLINE { _a "\n" } 
     | simple_stmts { _a } 
     | NEWLINE { _a } 
     | ENDMARKER { _a }
 simple_stmts:
-    | simple_stmt !';' NEWLINE { _a "\n" }   # Not needed, there for speedup
-    | (simple_stmt (';' simple_stmt)*) [';'] NEWLINE { _a[0] STARTLOOP ";" _a[1] ENDLOOP ";" "\n" }
+    | simple_stmt !';' NEWLINE { _a "\n" }
+    | (simple_stmt (';' simple_stmt)*) [';'] NEWLINE { _a[0] STARTLOOP ";" _a[0, 1] ENDLOOP ";" "\n" }
 # NOTE: assignment MUST precede expression, else parsing a simple assignment
 # will throw a SyntaxError.
 simple_stmt:
@@ -107,7 +107,7 @@ dotted_name:
 
 if_stmt:
     | 'if' named_expression ':' block elif_stmt { "if " _a ":" _b _c } 
-    | 'if' named_expression ':' block [else_block] { "if " _a ":" _b OPTIONAL _c ENDOPTIONAL } 
+    | 'if' named_expression ':' block [else_block] { "if " _a ":" _b } 
 elif_stmt:
     | 'elif' named_expression ':' block elif_stmt { "elif " _a ":" _b _c } 
     | 'elif' named_expression ':' block [else_block] { "elif " _a ":" _b OPTIONAL _c ENDOPTIONAL }
@@ -340,7 +340,7 @@ class_def_raw:
     | 'class' NAME ['(' [arguments] ')' ] ':' block { "class " _a OPTIONAL "(" OPTIONAL _b ENDOPTIONAL ")" ":" _c }
 
 block:
-    | NEWLINE INDENT statements DEDENT { "\n" TABBED _a ENDTABBED } 
+    | NEWLINE INDENT statements DEDENT { "\n" TABBED _c ENDTABBED } 
     | simple_stmts { _a }
 star_expressions:
     | star_expression (',' star_expression )+ [','] { _a STARTLOOP "," _b ENDLOOP "," } 
@@ -425,7 +425,7 @@ inversion:
     | 'not' inversion { "not " _a } 
     | comparison { _a }
 comparison:
-    | bitwise_or compare_op_bitwise_or_pair+ { STARTLOOP _a ENDLOOP } 
+    | bitwise_or compare_op_bitwise_or_pair+ { _a STARTLOOP _b ENDLOOP } 
     | bitwise_or { _a }
 compare_op_bitwise_or_pair:
     | eq_bitwise_or { _a } 
@@ -507,7 +507,7 @@ atom:
     | strings { _a } 
     | NUMBER { _a } 
     | (tuple | group | genexp) { _a } 
-    | (list | listcomp) { _a } 
+    | (list | listcomp) { _a[0] } 
     | (dict | set | dictcomp | setcomp) { _a } 
     | '...' { "..." }
 

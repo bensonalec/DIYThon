@@ -216,6 +216,7 @@ class translation_parser:
             if tok.type == NEWLINE:
                 result += "\n"
             if tok.type == NAME and tok.string.startswith("_"):
+                # print("Variable", self.translatedArgs)
                 if self.tokenizer.peek().string == "[":
                     #contains some indexing
                     letter = tok.string[1:]

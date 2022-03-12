@@ -9,10 +9,10 @@ print(x)
 
 #Stretch Goals
 #Goal 4:
-# x = [1, 2, 3]
+x = [1, 2, 3]
 #Goal 5:
-# for i in [1, 2, 3]:
-#     pass
+for i in [1, 2, 3]:
+    pass
 #Goal 6:
-# if i == 3:
-#     pass
+if i == 3:
+    x = 2
