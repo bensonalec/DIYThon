@@ -350,7 +350,7 @@ star_expression:
     | '*' bitwise_or { "*" _a } 
     | expression { _a }
 
-star_named_expressions: (star_named_expression (',' star_named_expression)*) [','] { _a[0] STARTLOOP "," _a[1][0] ENDLOOP "," }
+star_named_expressions: (star_named_expression (',' star_named_expression)*) [','] { _a[0] STARTLOOP "," _a[1,0] ENDLOOP "," }
 star_named_expression:
     | '*' bitwise_or { "*" _a } 
     | named_expression { _a }
@@ -548,7 +548,7 @@ yield_expr:
 arguments:
     | args [','] &')' { _a "," }
 args:
-    | ((starred_expression) | ( assignment_expression | expression !':=' ) !'=' (',' starred_expression | ( assignment_expression | expression !':=') !'=')*) [',' kwargs ] { _a[0] } 
+    | ((starred_expression) | ( assignment_expression | expression !':=' ) !'=' (',' starred_expression | ( assignment_expression | expression !':=') !'=')*) [',' kwargs ] { _a[0,0] } 
     | kwargs { _a }
 
 kwargs:

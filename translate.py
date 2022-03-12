@@ -64,52 +64,56 @@ class translation_parser:
             self.translatedArgs.append(translateVar(ar))
         self.initialArgs = deepcopy(self.translatedArgs)
     def parse(self, end_marker=ENDMARKER):
-        # try:
-        self.current_tab_level = 0
-        result = ""
-        while(tok := self.tokenizer.next()):
-            if tok.type == end_marker or tok.string == end_marker:
-                return result
-            if tok.type == STRING:
-                result += "\t"*self.current_tab_level + tok.string.replace("\"","")
-            if tok.type == NEWLINE and tok.string=="\n":
-                result += "\n"
-            if tok.type == NAME and tok.string.startswith("_"):
-                if self.tokenizer.peek().string == "[":
-                    #contains some indexing
-                    letter = tok.string[1:]
-                    index = ord(letter) - 97
+        try:
+            self.current_tab_level = 0
+            result = ""
+            while(tok := self.tokenizer.next()):
+                if tok.type == end_marker or tok.string == end_marker:
+                    return result
+                if tok.type == STRING:
+                    result += "\t"*self.current_tab_level + tok.string.replace("\"","")
+                if tok.type == NEWLINE and tok.string=="\n":
+                    result += "\n"
+                if tok.type == NAME and tok.string.startswith("_"):
+                    if self.tokenizer.peek().string == "[":
+                        #contains some indexing
+                        letter = tok.string[1:]
+                        index = ord(letter) - 97
 
-                    self.tokenizer.next()
-                    ind = int(self.find_index())
-                    # if type(self.translatedArgs[index][ind] == list and len(self.translatedArgs[index][ind]) == 1):
-                    #     self.translatedArgs[index][ind] = self.translatedArgs[index][ind][0]                            
-                    result += "\t"*self.current_tab_level + self.translatedArgs[index][ind]
-                else:
-                    letter = tok.string[1:]
-                    index = ord(letter) - 97
-                    # if type(self.translatedArgs[index] == list and len(self.translatedArgs[index]) == 1):
-                    #     print(self.translatedArgs[index])
-                    #     self.translatedArgs[index] = self.translatedArgs[index][0]
-                    
-                    result += "\t"*self.current_tab_level + self.translatedArgs[index]
-            if tok.type == NAME and tok.string == "TABBED":
-                #want to consume tokens until ENDTABBED is reached
-                self.current_tab_level += 1
-            if tok.type == NAME and tok.string == "ENDTABBED":
-                self.current_tab_level -= 1
-            if tok.type == NAME and tok.string == "STARTLOOP":
-                #want to consume tokens until ENDLOOP is reached
-                loop_contents = self.loop()
-                result += loop_contents
-            if tok.type == NAME and tok.string == "OPTIONAL":
-                opt_content = self.optional()
-                result += opt_content
-        # except:
-        #     print(self.args)
-        #     print(self.initialArgs)
-        #     print(self.translatedArgs)
-        #     exit()
+                        self.tokenizer.next()
+                        indice = self.find_index()
+                        indice = [int(x) for x in indice.split(",")]
+                        currentVar = self.translatedArgs[index]
+                        for ind in indice:
+                            currentVar = currentVar[ind]
+                        # if type(self.translatedArgs[index][ind] == list and len(self.translatedArgs[index][ind]) == 1):
+                        #     self.translatedArgs[index][ind] = self.translatedArgs[index][ind][0]                            
+                        result += "\t"*self.current_tab_level + currentVar
+                    else:
+                        letter = tok.string[1:]
+                        index = ord(letter) - 97
+                        # if type(self.translatedArgs[index] == list and len(self.translatedArgs[index]) == 1):
+                        #     print(self.translatedArgs[index])
+                        #     self.translatedArgs[index] = self.translatedArgs[index][0]
+                        
+                        result += "\t"*self.current_tab_level + self.translatedArgs[index]
+                if tok.type == NAME and tok.string == "TABBED":
+                    #want to consume tokens until ENDTABBED is reached
+                    self.current_tab_level += 1
+                if tok.type == NAME and tok.string == "ENDTABBED":
+                    self.current_tab_level -= 1
+                if tok.type == NAME and tok.string == "STARTLOOP":
+                    #want to consume tokens until ENDLOOP is reached
+                    loop_contents = self.loop()
+                    result += loop_contents
+                if tok.type == NAME and tok.string == "OPTIONAL":
+                    opt_content = self.optional()
+                    result += opt_content
+        except:
+            print(self.args)
+            print(self.initialArgs)
+            print(self.translatedArgs)
+            exit()
     def find_index(self):
         result = ""
         while(tok := self.tokenizer.next()):
@@ -140,8 +144,14 @@ class translation_parser:
                     index = ord(letter) - 97
 
                     self.tokenizer.next()
-                    ind = int(self.find_index())
-                    result += "\t"*self.current_tab_level + self.translatedArgs[index][ind]
+                    indice = self.find_index()
+                    indice = [int(x) for x in indice.split(",")]
+                    currentVar = self.translatedArgs[index]
+                    for ind in indice:
+                        currentVar = currentVar[ind]
+
+                    # ind = int(self.find_index())
+                    result += "\t"*self.current_tab_level + currentVar
                 else:
                     index = self.get_index_from_variable(tok.string)
                     if self.translatedArgs[index]:
@@ -187,7 +197,12 @@ class translation_parser:
                     name = v[0]
                     ind = v[1]
                     if ind is not None:
-                        if len(self.translatedArgs[self.get_index_from_variable(name)][ind]) > 0:
+                        index = self.get_index_from_variable(name)
+                        indice = indice
+                        currentVar = self.translatedArgs[index]
+                        for ind in indice:
+                            currentVar = currentVar[ind]
+                        if len(currentVar) > 0:
                             finished = False
                     else:
                         if len(self.translatedArgs[self.get_index_from_variable(name)]) > 0:
@@ -207,14 +222,29 @@ class translation_parser:
                     index = ord(letter) - 97
 
                     self.tokenizer.next()
-                    ind = int(self.find_index())
-                    if type(self.translatedArgs[index][ind]) == list:
-                        if (tok.string, ind) not in loop_variables:
-                            loop_variables.append((tok.string,ind))
-                        if len(self.translatedArgs[index][ind]) == 0:
+                    # ind = int(self.find_index())
+                    indice = self.find_index()
+                    indice = [int(x) for x in indice.split(",")]
+                    if len(indice) == 1:
+                        currentVar = self.translatedArgs[index][indice[0]]
+                    elif len(indice) == 2:
+                        currentVar = self.translatedArgs[index][indice[0]][indice[1]]
+                    # currentVar = self.translatedArgs[index]
+                    # for ind in indice:
+                    #     currentVar = currentVar[ind]
+
+                    if type(currentVar) == list:
+                        if (tok.string, indice) not in loop_variables:
+                            loop_variables.append((tok.string,indice))
+                        if len(currentVar) == 0:
                             continue
-                        result += "\t"*self.current_tab_level + self.translatedArgs[index][ind][0]
-                        self.translatedArgs[index][ind].pop(0)
+                        result += "\t"*self.current_tab_level + currentVar[0]
+                        if len(indice) == 1:
+                            self.translatedArgs[index][indice[0]].pop(0)
+                        elif len(indice) == 2:
+                            self.translatedArgs[index][indice[0]][indice[1]].pop(0)
+
+                        # currentVar.pop(0)
                     else:
                         if self.tokenizer.peek().string == "[":
                             #contains some indexing
@@ -222,7 +252,7 @@ class translation_parser:
                         else:
                             letter = tok.string[1:]
                             index = ord(letter) - 97
-                            result += "\t"*self.current_tab_level + self.translatedArgs[index][ind]
+                            result += "\t"*self.current_tab_level + currentVar
 
                     # result += "\t"*self.current_tab_level + self.translatedArgs[index][ind]
                 else:
