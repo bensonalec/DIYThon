@@ -42,5 +42,6 @@ with open(target_file) as fi:
     gram = p.file()
 final_output = gram.translate()
 #Output final translated input
-with open(output_file, "w") as fi:
-    fi.write(final_output)
+exec(final_output)
+# with open(output_file, "w") as fi:
+#     fi.write(final_output)
