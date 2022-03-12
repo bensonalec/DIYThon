@@ -1,7 +1,16 @@
 from tokenize import generate_tokens
 from tokenizer import Tokenizer
 from grammar_parser import GeneratedParser
-import sccutils 
+import io
+
+def build_parser_from_string(inp):
+    buf = io.StringIO(inp)
+    tokenGen = generate_tokens(buf.readline)
+    p = GeneratedParser(Tokenizer(tokenGen))
+    gram = p.start()
+    p.synthetic_rules = {rule.name: rule for rule in p.synthetic_rules}
+    gram.rules = gram.rules |  p.synthetic_rules
+    return gram.rules
 
 def build_parser(grammar_file_location):
     with open(grammar_file_location) as fi:

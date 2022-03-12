@@ -16,7 +16,7 @@ from typing import (
     Union,
 )
 
-from keywords import keywords
+from gen_keywords import keywords
 class GrammarError(Exception):
     pass
 

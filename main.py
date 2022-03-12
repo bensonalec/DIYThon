@@ -1,17 +1,31 @@
-#Read in extension file names, and target file name
-extension_names = ["./extensions/rust_range.py", "./extensions/true_false.py"]
+#TODO: Read in extension file names, and target file name
+extension_files = ["./extensions/rust_range.py", "./extensions/true_false.py"]
 target_file = "test_input.py"
 output_file = "test_output.py"
 core_grammar = "./grammars/translation/python.grm"
+extension_plain = []
+extension_keywords = []
+for i in extension_files:
+    with open(i) as fi:
+        exec(fi.read())
+        extension_keywords.extend(keywords)
+        extension_plain.append(extension)
 #Generate new keywords for use
+from keywords import keywords
+total_keywords = keywords+ extension_keywords
+keyword_string = 'keywords = ["' + '","'.join(total_keywords) + '"]'
+with open("gen_keywords.py", "w") as fi:
+    fi.write(keyword_string)
 #Generate parser for core grammar, store as string
-from parser_gen_main import build_parser, generate_parser
+from parser_gen_main import build_parser, generate_parser, build_parser_from_string
 import sccutils 
-primary_rules = build_parser(core_grammar)
-#Generate parser for each extension
+final_grammar_string = ""
+with open(core_grammar) as fi:
+    final_grammar_string = fi.read()
 
-#Import all relevant parsers
-#Combine parsers together
+for i in extension_plain:
+    final_grammar_string += "\n" + i
+primary_rules = build_parser_from_string(final_grammar_string)
 #Generate final parser
 sccutils.compute_left_recursives(primary_rules)
 rules = primary_rules.items()

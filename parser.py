@@ -12,7 +12,7 @@ from tokenizer import exact_token_types
 from tokenizer import Mark
 from tokenizer import Tokenizer
 
-from keywords import keywords
+from gen_keywords import keywords
 
 T = TypeVar("T")
 P = TypeVar("P", bound="Parser")
