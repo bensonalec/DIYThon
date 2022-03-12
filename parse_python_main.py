@@ -26,6 +26,3 @@ def dive(i):
                 dive(x)
 
 # dive(gram)
-
-with open("results.py", "w") as fi:
-    fi.write(gram.translate())

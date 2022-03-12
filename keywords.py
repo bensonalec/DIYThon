@@ -1,5 +1,4 @@
 keywords = [
-    "'...'",
     "'and'",
     "'as'",
     "'assert'",
@@ -32,6 +31,4 @@ keywords = [
     "'while'",
     "'with'",
     "'yield'",
-    "'false'",
-    "'true'"
 ]

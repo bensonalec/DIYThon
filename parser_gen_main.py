@@ -3,7 +3,7 @@ from tokenizer import Tokenizer
 from grammar_parser import GeneratedParser
 import sccutils 
 
-def generate_parser(output_file_name, grammar_file_location):
+def build_parser(grammar_file_location):
     with open(grammar_file_location) as fi:
         tokenGen = generate_tokens(fi.readline)
         p = GeneratedParser(Tokenizer(tokenGen))
@@ -11,9 +11,9 @@ def generate_parser(output_file_name, grammar_file_location):
 
     p.synthetic_rules = {rule.name: rule for rule in p.synthetic_rules}
     gram.rules = gram.rules |  p.synthetic_rules
-    sccutils.compute_left_recursives(gram.rules)
-    rules = gram.rules.items()
+    return gram.rules
 
+def generate_parser(rules):
     varnum = 0
     parserClass = ""
     nodeClasses = ""
@@ -57,8 +57,9 @@ def generate_parser(output_file_name, grammar_file_location):
     output += nodeClasses
     output += "class ToyParser(Parser):\n"
     output += parserClass
+    
+    return output
+    # with open(output_file_name, "w") as fi:
+    #     fi.write(output)
 
-    with open(output_file_name, "w") as fi:
-        fi.write(output)
-
-generate_parser("out.py", "./grammars/translation/python.grm")
+# generate_parser("./grammars/translation/python.grm")

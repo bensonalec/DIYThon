@@ -1,3 +1,0 @@
-list:
-    | '[' NUMBER '...' NUMBER ']' { "range(" _a "," _b ")" }
-    | '[' [star_named_expressions] ']' { "[" OPTIONAL _a ENDOPTIONAL "]" }

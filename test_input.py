@@ -3,7 +3,7 @@
 # x = 21
 # x = "hello world"
 #Goal 2:
-# x = 1 + 6
+x = 1 + 6
 #Goal 3:
 # print(x)
 
