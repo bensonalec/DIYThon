@@ -4,6 +4,8 @@ from out import ToyParser
 
 with open("test_input.py") as fi:
     tokenGen = generate_tokens(fi.readline)
+    # for i in tokenGen:
+    #     print(i)
     p = ToyParser(Tokenizer(tokenGen))
     gram = p.file()
 

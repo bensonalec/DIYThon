@@ -502,7 +502,9 @@ slice:
 atom:
     | NAME { _a } 
     | 'True' { "True" } 
-    | 'False' { "False" } 
+    | 'true' { "True" }
+    | 'False' { "False" }
+    | 'false' { "false" } 
     | 'None' { "None" } 
     | strings { _a } 
     | NUMBER { _a } 
@@ -513,7 +515,9 @@ atom:
 
 strings: STRING+ { STARTLOOP _a ENDLOOP }
 list:
+    | '[' NUMBER '...' NUMBER ']' { "range(" _a "," _b ")" }
     | '[' [star_named_expressions] ']' { "[" OPTIONAL _a ENDOPTIONAL "]" }
+
 listcomp:
     | '[' named_expression for_if_clauses ']' { "[" _a " " _b "]" }
 tuple:

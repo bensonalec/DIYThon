@@ -218,6 +218,7 @@ class Parser:
                     "while",
                     "with",
                     "yield",
+                    "...",
     ]
     @abstractmethod
     def start(self) -> Any:

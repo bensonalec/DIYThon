@@ -17,6 +17,7 @@ from typing import (
 )
 
 keywords = [
+    "'...'",
     "'and'",
     "'as'",
     "'assert'",
