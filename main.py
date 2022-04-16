@@ -1,4 +1,3 @@
-#TODO: Read in extension file names, and target file name
 extension_files = ["./extensions/rust_range.py", "./extensions/true_false.py"]
 target_file = "test_input.py"
 output_file = "test_output.py"
@@ -22,10 +21,20 @@ import sccutils
 final_grammar_string = ""
 with open(core_grammar) as fi:
     final_grammar_string = fi.read()
-
+primary_rules, current_synth_num = build_parser_from_string(final_grammar_string)
+extensions_rules = []
 for i in extension_plain:
-    final_grammar_string += "\n" + i
-primary_rules = build_parser_from_string(final_grammar_string)
+    tmp_rules, current_synth_num = build_parser_from_string(i, current_synth_num)
+    extensions_rules.append(tmp_rules)
+
+for i in extensions_rules:
+    for key, value in i.items():
+        if key in primary_rules:
+            #merge
+            primary_rules[key].rhs.alts.extend(value.rhs.alts)
+        else:
+            print(key)
+            primary_rules[key] = value
 #Generate final parser
 sccutils.compute_left_recursives(primary_rules)
 rules = primary_rules.items()

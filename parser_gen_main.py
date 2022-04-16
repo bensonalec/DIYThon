@@ -3,14 +3,17 @@ from tokenizer import Tokenizer
 from grammar_parser import GeneratedParser
 import io
 
-def build_parser_from_string(inp):
+def build_parser_from_string(inp, synth_num=0):
     buf = io.StringIO(inp)
     tokenGen = generate_tokens(buf.readline)
     p = GeneratedParser(Tokenizer(tokenGen))
+    p.synthetic_rules = []
+    p.synth_num = synth_num
+
     gram = p.start()
     p.synthetic_rules = {rule.name: rule for rule in p.synthetic_rules}
     gram.rules = gram.rules |  p.synthetic_rules
-    return gram.rules
+    return gram.rules, p.synth_num
 
 def build_parser(grammar_file_location):
     with open(grammar_file_location) as fi:
