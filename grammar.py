@@ -76,6 +76,10 @@ class Rule:
         self.leader = False
         rhs.set_rule_name(name)
 
+
+    def recalc_indexes(self):
+        self.rhs.set_rule_name(self.name)
+
     def is_loop(self) -> bool:
         return self.name.startswith("_loop")
 

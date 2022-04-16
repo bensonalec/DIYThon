@@ -110,6 +110,7 @@ class translation_parser:
                     opt_content = self.optional()
                     result += opt_content
         except:
+            print(self.translation_definition)
             print(self.args)
             print(self.initialArgs)
             print(self.translatedArgs)

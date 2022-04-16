@@ -1,14 +1,16 @@
-extension_files = ["./extensions/rust_range.py", "./extensions/true_false.py"]
+extension_files = ["./extensions/rust_range.py", "./extensions/true_false.py", "./extensions/pdb_extension.py"]
 target_file = "test_input.py"
 output_file = "test_output.py"
 core_grammar = "./grammars/translation/python.grm"
 extension_plain = []
 extension_keywords = []
+top_contents = ""
 for i in extension_files:
     with open(i) as fi:
         exec(fi.read())
         extension_keywords.extend(keywords)
         extension_plain.append(extension)
+        top_contents += top_content
 #Generate new keywords for use
 from keywords import keywords
 total_keywords = keywords+ extension_keywords
@@ -36,6 +38,10 @@ for i in extensions_rules:
             print(key)
             primary_rules[key] = value
 #Generate final parser
+for key, value in primary_rules.items():
+    value.recalc_indexes()
+    primary_rules[key] = value
+
 sccutils.compute_left_recursives(primary_rules)
 rules = primary_rules.items()
 parser = generate_parser(rules)
@@ -50,7 +56,9 @@ with open(target_file) as fi:
     p = ToyParser(Tokenizer(tokenGen))
     gram = p.file()
 final_output = gram.translate()
+final_output = top_contents + final_output
 #Output final translated input
+print(final_output)
 exec(final_output)
 # with open(output_file, "w") as fi:
 #     fi.write(final_output)

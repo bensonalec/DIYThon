@@ -1,3 +1,6 @@
+top_content = """
+"""
+
 extension = """
 atom:
     | 'True' { "True" }
