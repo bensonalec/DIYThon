@@ -19,7 +19,6 @@ if i == 3:
 
 #Extension: Optional Access
 class myClass:
-    # def __init__(self):
     pass
 x = myClass()
 x.__dict__["sample"] = 0
@@ -38,3 +37,7 @@ false
 # Extension: Rust Style Ranges
 x = range(10)
 x = [0 ... 10]
+
+
+#Extension: Simple HTTP Function Wrappers
+x = get("https://google.com")

@@ -1,4 +1,4 @@
-extension_files = ["./extensions/optional_access.py", "./extensions/rust_range.py", "./extensions/true_false.py", "./extensions/pdb_extension.py", "./extensions/multiline_lambda.py"]
+extension_files = ["./extensions/requests_extension.py" ,"./extensions/optional_access.py", "./extensions/rust_range.py", "./extensions/true_false.py", "./extensions/pdb_extension.py"]
 target_file = "test_input.py"
 output_file = "test_output.py"
 core_grammar = "./grammars/translation/python.grm"
