@@ -1,7 +1,7 @@
 file: [statements] ENDMARKER { OPTIONAL _a ENDOPTIONAL } 
 interactive: statement_newline { _a }
 eval: expressions NEWLINE* ENDMARKER { _a "\n" }
-func_type: '(' [type_expressions] ')' '->' expression NEWLINE* ENDMARKER { "(" OPTIONAL _a ENDOPTIONAL ")->" _b "\n" } 
+func_type: '(' [type_expressions] ')' expression NEWLINE* ENDMARKER { "(" OPTIONAL _a ENDOPTIONAL ")->" _b "\n" } 
 fstring: star_expressions { _a }
 
 # type_expressions allow */** but ignore them
@@ -273,7 +273,7 @@ function_def:
     | function_def_raw { _a }
 
 function_def_raw:
-    | 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { "def " _a " (" OPTIONAL _b ENDOPTIONAL ")"  OPTIONAL "->" _c ENDOPTIONAL ":" OPTIONAL _d ENDOPTIONAL _e} 
+    | 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { "def " _a " (" OPTIONAL _b ENDOPTIONAL ")"  OPTIONAL _c ENDOPTIONAL ":" OPTIONAL _d ENDOPTIONAL _e} 
     | ASYNC 'def' NAME '(' [params] ')' ['->' expression ] ':' [func_type_comment] block { "async def " _a "(" OPTIONAL _b ENDOPTIONAL ")" OPTIONAL "->" _c ENDOPTIONAL ":" OPTIONAL _d ENDOPTIONAL _e }
 func_type_comment:
     | NEWLINE TYPE_COMMENT &(NEWLINE INDENT) { "\n" _a } # Must be followed by indented block
@@ -337,7 +337,7 @@ class_def:
     | decorators class_def_raw { _a _b } 
     | class_def_raw { _a }
 class_def_raw:
-    | 'class' NAME ['(' [arguments] ')' ] ':' block { "class " _a OPTIONAL "(" OPTIONAL _b ENDOPTIONAL ")" ":" _c }
+    | 'class' NAME ['(' [arguments] ')' ] ':' block { "class " _a  ":" _c }
 
 block:
     | NEWLINE INDENT statements DEDENT { "\n" TABBED _c ENDTABBED } 
@@ -487,7 +487,7 @@ await_primary:
     | AWAIT primary { "await" _a } 
     | primary { _a }
 primary:
-    | primary '.' NAME { _a "." _b } 
+    | primary '.' NAME { _a "." _b }
     | primary genexp { _a " " _b } 
     | primary '(' [arguments] ')' { _a "(" OPTIONAL _b ENDOPTIONAL ")" } 
     | primary '[' slices ']' { _a "[" _b "]" } 

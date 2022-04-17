@@ -1,4 +1,4 @@
-extension_files = ["./extensions/rust_range.py", "./extensions/true_false.py", "./extensions/pdb_extension.py"]
+extension_files = ["./extensions/optional_access.py", "./extensions/rust_range.py", "./extensions/true_false.py", "./extensions/pdb_extension.py", "./extensions/multiline_lambda.py"]
 target_file = "test_input.py"
 output_file = "test_output.py"
 core_grammar = "./grammars/translation/python.grm"
@@ -26,6 +26,7 @@ with open(core_grammar) as fi:
 primary_rules, current_synth_num = build_parser_from_string(final_grammar_string)
 extensions_rules = []
 for i in extension_plain:
+    # print(i)
     tmp_rules, current_synth_num = build_parser_from_string(i, current_synth_num)
     extensions_rules.append(tmp_rules)
 
@@ -33,15 +34,16 @@ for i in extensions_rules:
     for key, value in i.items():
         if key in primary_rules:
             #merge
-            primary_rules[key].rhs.alts.extend(value.rhs.alts)
+            for j in value.rhs.alts:
+                primary_rules[key].rhs.alts.insert(0,j)
         else:
-            print(key)
+            # print(key)
             primary_rules[key] = value
 #Generate final parser
 for key, value in primary_rules.items():
     value.recalc_indexes()
     primary_rules[key] = value
-
+# print(primary_rules["primary"])
 sccutils.compute_left_recursives(primary_rules)
 rules = primary_rules.items()
 parser = generate_parser(rules)
@@ -53,6 +55,9 @@ from tokenizer import Tokenizer
 from out import ToyParser
 with open(target_file) as fi:
     tokenGen = generate_tokens(fi.readline)
+    # for i in tokenGen:
+    #     print(i)
+    # exit()
     p = ToyParser(Tokenizer(tokenGen))
     gram = p.file()
 final_output = gram.translate()

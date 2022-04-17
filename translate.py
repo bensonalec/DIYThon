@@ -64,8 +64,8 @@ class translation_parser:
             self.translatedArgs.append(translateVar(ar))
         self.initialArgs = deepcopy(self.translatedArgs)
     def parse(self, end_marker=ENDMARKER):
+        self.current_tab_level = 0
         try:
-            self.current_tab_level = 0
             result = ""
             while(tok := self.tokenizer.next()):
                 if tok.type == end_marker or tok.string == end_marker:
@@ -100,15 +100,19 @@ class translation_parser:
                 if tok.type == NAME and tok.string == "TABBED":
                     #want to consume tokens until ENDTABBED is reached
                     self.current_tab_level += 1
+                    print(self.current_tab_level)
                 if tok.type == NAME and tok.string == "ENDTABBED":
                     self.current_tab_level -= 1
+                    print(self.current_tab_level)
+                if tok.type == NAME and tok.string == "QUOTE":
+                    result += '"'
                 if tok.type == NAME and tok.string == "STARTLOOP":
                     #want to consume tokens until ENDLOOP is reached
                     loop_contents = self.loop()
-                    result += loop_contents
+                    result += "\t"*self.current_tab_level + loop_contents
                 if tok.type == NAME and tok.string == "OPTIONAL":
                     opt_content = self.optional()
-                    result += opt_content
+                    result += "\t"*self.current_tab_level + opt_content
         except:
             print(self.translation_definition)
             print(self.args)
@@ -121,7 +125,7 @@ class translation_parser:
             if tok.string == "]":
                 return result
             else:
-                result += tok.string
+                result += "\t"*self.current_tab_level + tok.string
 
     def get_index_from_variable(self, variable_string):
         letter = variable_string[1:]
@@ -176,15 +180,18 @@ class translation_parser:
             if tok.type == NAME and tok.string == "TABBED":
                 #want to consume tokens until ENDTABBED is reached
                 self.current_tab_level += 1
+                print(self.current_tab_level)
+            if tok.type == NAME and tok.string == "QUOTE":
+                result += '"'
             if tok.type == NAME and tok.string == "ENDTABBED":
                 self.current_tab_level -= 1
             if tok.type == NAME and tok.string == "STARTLOOP":
                 #want to consume tokens until ENDLOOP is reached
                 loop_contents = self.parse("ENDLOOP")
-                result += loop_contents
+                result += "\t"*self.current_tab_level + loop_contents
             if tok.type == NAME and tok.string == "OPTIONAL":
                 opt_content = self.optional()
-                result += opt_content
+                result += "\t"*self.current_tab_level + opt_content
 
 
     def loop(self):
@@ -277,15 +284,18 @@ class translation_parser:
             if tok.type == NAME and tok.string == "TABBED":
                 #want to consume tokens until ENDTABBED is reached
                 self.current_tab_level += 1
+
+            if tok.type == NAME and tok.string == "QUOTE":
+                result += '"'
             if tok.type == NAME and tok.string == "ENDTABBED":
                 self.current_tab_level -= 1
             if tok.type == NAME and tok.string == "STARTLOOP":
                 #want to consume tokens until ENDLOOP is reached
                 loop_contents = self.parse("ENDLOOP")
-                result += loop_contents
+                result += "\t"*self.current_tab_level + loop_contents
             if tok.type == NAME and tok.string == "OPTIONAL":
                 opt_content = self.optional()
-                result += opt_content
+                result += "\t"*self.current_tab_level + opt_content
 
 
 

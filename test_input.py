@@ -17,12 +17,24 @@ for i in [1, 2, 3]:
 if i == 3:
     x = 2
 
+#Extension: Optional Access
+class myClass:
+    # def __init__(self):
+    pass
+x = myClass()
+x.__dict__["sample"] = 0
+print(x?.samp)
+print(x?.sample)
+
+#Extension: PDB
 $
-# Extension 1
+
+# Extension: Lowercase True/False
 True
 true
 False
 false
-# Extension 2
+
+# Extension: Rust Style Ranges
 x = range(10)
 x = [0 ... 10]
